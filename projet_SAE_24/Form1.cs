@@ -1,4 +1,5 @@
 ﻿using System;
+using static projet_SAE_24.Connexion;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SQLite;
+using appliPandora;
 
 namespace projet_SAE_24
 {
