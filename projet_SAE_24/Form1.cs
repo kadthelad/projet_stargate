@@ -48,20 +48,22 @@ namespace projet_SAE_24
                 // Selon la couleur, on affiche une image différente
                 if(maDB.Tables["especes"].Rows[i]["couleur"].ToString() == "Violet")
                 {
-                    pb.Image = Image.FromFile("U:\\SAE\\projet_SAE_24\\bin\\Debug\\Steve_Jobs.jpg");
+                    pb.Image = Image.FromFile("U:\\SAE\\projet_SAE_24\\bin\\Debug\\img\\monstres\\Steve_Jobs.jpg");
                 }
                 else
                 {
-                    pb.Image = Image.FromFile("U:\\SAE\\projet_SAE_24\\bin\\Debug\\Linus_Torvald.jpeg");
+                    pb.Image = Image.FromFile("U:\\SAE\\projet_SAE_24\\bin\\Debug\\img\\monstres\\Linus_Torvald.jpeg");
                 }
                 
                 // Paramètres pour bien placer l'image et le texte
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
-                lb.Text = maDB.Tables["especes"].Rows[i]["couleur"].ToString();
+                lb.Text = maDB.Tables["especes"].Rows[i]["nom"].ToString();
+
                 pb.Top = haut;
-                lb.Top = haut + 10;
+                //lb.Top = haut;
                 pb.Left = gauche;
-                lb.Left = gauche;
+                //lb.Left = gauche;
+
                 haut += 30;
                 gauche += 30;
 
