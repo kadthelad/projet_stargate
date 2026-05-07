@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 
-namespace appliPandora
+namespace projet_SAE_24
 {
     public class MesDatas
     {
