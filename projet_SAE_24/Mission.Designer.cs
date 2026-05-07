@@ -34,6 +34,7 @@
 			this.lblNomChef = new System.Windows.Forms.Label();
 			this.lblDateFinEstimee = new System.Windows.Forms.Label();
 			this.lblTitre = new System.Windows.Forms.Label();
+			this.btnPDF = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -92,11 +93,21 @@
 			this.lblTitre.TabIndex = 5;
 			this.lblTitre.Text = "Titre";
 			// 
+			// btnPDF
+			// 
+			this.btnPDF.Location = new System.Drawing.Point(449, 32);
+			this.btnPDF.Name = "btnPDF";
+			this.btnPDF.Size = new System.Drawing.Size(64, 64);
+			this.btnPDF.TabIndex = 6;
+			this.btnPDF.Text = "PDF";
+			this.btnPDF.UseVisualStyleBackColor = true;
+			// 
 			// Mission
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.IndianRed;
+			this.Controls.Add(this.btnPDF);
 			this.Controls.Add(this.lblTitre);
 			this.Controls.Add(this.lblDateFinEstimee);
 			this.Controls.Add(this.lblNomChef);
@@ -104,7 +115,7 @@
 			this.Controls.Add(this.lblBudget);
 			this.Controls.Add(this.pictureBox1);
 			this.Name = "Mission";
-			this.Size = new System.Drawing.Size(472, 128);
+			this.Size = new System.Drawing.Size(538, 128);
 			this.Load += new System.EventHandler(this.Mission_Load);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			this.ResumeLayout(false);
@@ -120,5 +131,6 @@
 		private System.Windows.Forms.Label lblNomChef;
 		private System.Windows.Forms.Label lblDateFinEstimee;
 		private System.Windows.Forms.Label lblTitre;
+		private System.Windows.Forms.Button btnPDF;
 	}
 }
