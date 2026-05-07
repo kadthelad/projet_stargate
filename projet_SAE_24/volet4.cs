@@ -1,5 +1,4 @@
-﻿using appliPandora;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -30,21 +29,37 @@ namespace projet_SAE_24
             SQLiteDataAdapter data = new SQLiteDataAdapter();
             data.SelectCommand = cmd;
             data.Fill(maDB, "especes");
+
+            // Mode déconnecté
+            query = "SELECT * FROM Habiter";
+            SQLiteCommand cmd2 = new SQLiteCommand(query, maConnec);
+            SQLiteDataAdapter data2 = new SQLiteDataAdapter();
+            data.SelectCommand = cmd2;
+            data.Fill(maDB, "habiter");
         }
 
         private void btn_test_Click(object sender, EventArgs e)
         {
-            // Variables pour définir le haut et la gauche
-            int haut = 30;
-            int gauche = 30;
-
             //Boucle pour afficher toutes les espèces du DataSet
             for (int i = 0; i < maDB.Tables["especes"].Rows.Count; i++)
             {
+                Panel p = new Panel();
                 PictureBox pb = new PictureBox();
-                Label lb = new Label();
+                Label lblNom = new Label();
+                Label lblCouleur = new Label();
+                Label lblOrigine = new Label();
 
-                // Selon la couleur, on affiche une image différente
+                string planete = "";
+
+                p.Width = 250;
+                p.Height = 110;
+
+                pb.Width = 100;
+                pb.Height = 100;
+                pb.Left = 0;
+                pb.Top = 0;
+                pb.SizeMode = PictureBoxSizeMode.StretchImage;
+
                 if (maDB.Tables["especes"].Rows[i]["couleur"].ToString() == "Violet")
                 {
                     pb.Image = Image.FromFile("U:\\SAE\\projet_SAE_24\\bin\\Debug\\img\\monstres\\Steve_Jobs.jpg");
@@ -54,21 +69,50 @@ namespace projet_SAE_24
                     pb.Image = Image.FromFile("U:\\SAE\\projet_SAE_24\\bin\\Debug\\img\\monstres\\Linus_Torvald.jpeg");
                 }
 
-                // Paramètres pour bien placer l'image et le texte
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;
-                lb.Text = maDB.Tables["especes"].Rows[i]["nom"].ToString();
+                lblNom.Text =  "---> " + maDB.Tables["especes"].Rows[i]["nom"].ToString();
+                lblNom.Font = new Font(lblNom.Font, FontStyle.Bold);
+                lblNom.Left = 110;
+                lblNom.Top = 20;
+                lblNom.AutoSize = true;
 
-                pb.Top = haut;
-                //lb.Top = haut;
-                pb.Left = gauche;
-                //lb.Left = gauche;
+                lblCouleur.Text = maDB.Tables["especes"].Rows[i]["couleur"].ToString();
+                lblCouleur.Left = 110;
+                lblCouleur.Top = 50;
+                lblCouleur.AutoSize = true;
 
-                haut += 30;
-                gauche += 30;
+                for(int j = 0; j < maDB.Tables["habiter"].Rows.Count; j++)
+                {
+                    if(maDB.Tables["especes"].Rows[i]["id"].ToString() == maDB.Tables["habiter"].Rows[j]["idEspece"].ToString())
+                    {
+                        planete += maDB.Tables["habiter"].Rows[j]["nomPlanete"].ToString() + "/";
+                    }
+                }
 
-                // Ajout du label et de l'image dans le Layout
-                ctrLayout.Controls.Add(pb);
-                ctrLayout.Controls.Add(lb);
+                if (planete == string.Empty)
+                {
+                    planete = "Origine inconnue";
+                }
+
+                if (planete == "Origine inconnue")
+                {
+                    lblOrigine.Text = planete;
+                    lblOrigine.ForeColor = Color.Red;
+                }
+                else
+                {
+                    lblOrigine.Text = planete.Substring(0, planete.Length - 1);
+                }
+
+                lblOrigine.Left = 110;
+                lblOrigine.Top = 70;
+                lblOrigine.AutoSize = true;
+
+                p.Controls.Add(pb);
+                p.Controls.Add(lblNom);
+                p.Controls.Add(lblCouleur);
+                p.Controls.Add(lblOrigine);
+
+                lay_espece.Controls.Add(p);
             }
         }
     }

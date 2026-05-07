@@ -9,8 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SQLite;
-using appliPandora;
 
 namespace projet_SAE_24
 {
@@ -40,7 +38,8 @@ namespace projet_SAE_24
 
 		private void btnDonnees_Click(object sender, EventArgs e)
 		{
-
+			volet4 volet4 = new volet4();
+			volet4.ShowDialog();
 		}
 
 		private void btnQuit_Click(object sender, EventArgs e)
