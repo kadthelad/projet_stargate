@@ -42,6 +42,7 @@
 			this.pictureBox1.Location = new System.Drawing.Point(15, 19);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(90, 90);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
@@ -87,7 +88,7 @@
 			this.lblTitre.Font = new System.Drawing.Font("Noto Sans Hebrew", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.lblTitre.Location = new System.Drawing.Point(121, 10);
 			this.lblTitre.Name = "lblTitre";
-			this.lblTitre.Size = new System.Drawing.Size(78, 37);
+			this.lblTitre.Size = new System.Drawing.Size(81, 38);
 			this.lblTitre.TabIndex = 5;
 			this.lblTitre.Text = "Titre";
 			// 
@@ -95,6 +96,7 @@
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.BackColor = System.Drawing.Color.IndianRed;
 			this.Controls.Add(this.lblTitre);
 			this.Controls.Add(this.lblDateFinEstimee);
 			this.Controls.Add(this.lblNomChef);

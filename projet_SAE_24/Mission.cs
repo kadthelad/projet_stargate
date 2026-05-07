@@ -13,14 +13,25 @@ namespace projet_SAE_24
 	public partial class Mission : UserControl
 	{
 		public Mission(String nomPlanete, String titreMission,
-			String dateDepart, String dateFinEstimee, String nomChef, int budget)
+			String dateDepart, String dateFinEstimee, String nomChef, String budget)
 		{
 			InitializeComponent();
 			lblTitre.Text = titreMission;
 			lblDateDepart.Text = dateDepart;
 			lblDateFinEstimee.Text = dateFinEstimee;
 			lblNomChef.Text = nomChef;
-			lblBudget.Text = "Budget : " + budget.ToString() + "$G";
+			lblBudget.Text = "Budget : " + budget + "$G";
+
+			try
+			{
+				string projectPath = Application.StartupPath; // trouve où est le /bin/Debug
+				Image img = Image.FromFile(projectPath + "/img/planetes/" + nomPlanete + ".png");
+				pictureBox1.Image = img;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Erreur lors de la recherche de l'image de la planète! Plus d'informations:\n" + ex.Message);
+			}
 		}
 
 		public Mission()

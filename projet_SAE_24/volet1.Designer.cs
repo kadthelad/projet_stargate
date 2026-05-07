@@ -35,7 +35,7 @@
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this.button4 = new System.Windows.Forms.Button();
+			this.btnRafraichir = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.cboTri = new System.Windows.Forms.ComboBox();
 			this.panel3 = new System.Windows.Forms.Panel();
@@ -69,7 +69,8 @@
 			this.flpTableauDeBord.BackColor = System.Drawing.SystemColors.ActiveBorder;
 			this.flpTableauDeBord.Location = new System.Drawing.Point(12, 63);
 			this.flpTableauDeBord.Name = "flpTableauDeBord";
-			this.flpTableauDeBord.Size = new System.Drawing.Size(650, 375);
+			this.flpTableauDeBord.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
+			this.flpTableauDeBord.Size = new System.Drawing.Size(499, 375);
 			this.flpTableauDeBord.TabIndex = 1;
 			// 
 			// button1
@@ -110,20 +111,20 @@
 			this.button2.Text = "Placeholder2";
 			this.button2.UseVisualStyleBackColor = true;
 			// 
-			// button4
+			// btnRafraichir
 			// 
-			this.button4.Location = new System.Drawing.Point(24, 17);
-			this.button4.Name = "button4";
-			this.button4.Size = new System.Drawing.Size(75, 75);
-			this.button4.TabIndex = 0;
-			this.button4.Text = "Refresh";
-			this.button4.UseVisualStyleBackColor = true;
+			this.btnRafraichir.Location = new System.Drawing.Point(35, 18);
+			this.btnRafraichir.Name = "btnRafraichir";
+			this.btnRafraichir.Size = new System.Drawing.Size(84, 84);
+			this.btnRafraichir.TabIndex = 0;
+			this.btnRafraichir.Text = "Rafraîchir";
+			this.btnRafraichir.UseVisualStyleBackColor = true;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
 			this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-			this.label1.Location = new System.Drawing.Point(32, 110);
+			this.label1.Location = new System.Drawing.Point(46, 105);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(61, 16);
 			this.label1.TabIndex = 4;
@@ -132,7 +133,7 @@
 			// cboTri
 			// 
 			this.cboTri.FormattingEnabled = true;
-			this.cboTri.Location = new System.Drawing.Point(0, 138);
+			this.cboTri.Location = new System.Drawing.Point(16, 124);
 			this.cboTri.Name = "cboTri";
 			this.cboTri.Size = new System.Drawing.Size(121, 24);
 			this.cboTri.TabIndex = 3;
@@ -140,11 +141,11 @@
 			// panel3
 			// 
 			this.panel3.Controls.Add(this.cboTri);
-			this.panel3.Controls.Add(this.button4);
+			this.panel3.Controls.Add(this.btnRafraichir);
 			this.panel3.Controls.Add(this.label1);
-			this.panel3.Location = new System.Drawing.Point(669, 68);
+			this.panel3.Location = new System.Drawing.Point(517, 63);
 			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(123, 369);
+			this.panel3.Size = new System.Drawing.Size(157, 369);
 			this.panel3.TabIndex = 3;
 			// 
 			// FormTDB
@@ -157,7 +158,10 @@
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.flpTableauDeBord);
 			this.Controls.Add(this.panel1);
+			this.MaximumSize = new System.Drawing.Size(818, 497);
+			this.MinimumSize = new System.Drawing.Size(818, 497);
 			this.Name = "FormTDB";
+			this.RightToLeft = System.Windows.Forms.RightToLeft.No;
 			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Missions - Tableau de bord";
 			this.Load += new System.EventHandler(this.FormTDB_Load);
@@ -179,7 +183,7 @@
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button button4;
+		private System.Windows.Forms.Button btnRafraichir;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ComboBox cboTri;
 		private System.Windows.Forms.Panel panel3;
