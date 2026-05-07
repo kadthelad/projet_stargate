@@ -28,13 +28,96 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.components = new System.ComponentModel.Container();
+			this.btnMissions = new System.Windows.Forms.Button();
+			this.lblTitre = new System.Windows.Forms.Label();
+			this.btnDonnees = new System.Windows.Forms.Button();
+			this.label1 = new System.Windows.Forms.Label();
+			this.btnQuit = new System.Windows.Forms.Button();
+			this.SuspendLayout();
+			// 
+			// btnMissions
+			// 
+			this.btnMissions.BackColor = System.Drawing.Color.ForestGreen;
+			this.btnMissions.Font = new System.Drawing.Font("Yu Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnMissions.Location = new System.Drawing.Point(272, 126);
+			this.btnMissions.Name = "btnMissions";
+			this.btnMissions.Size = new System.Drawing.Size(184, 62);
+			this.btnMissions.TabIndex = 1;
+			this.btnMissions.Text = "Missions";
+			this.btnMissions.UseVisualStyleBackColor = false;
+			this.btnMissions.Click += new System.EventHandler(this.btnMissions_Click);
+			// 
+			// lblTitre
+			// 
+			this.lblTitre.AutoSize = true;
+			this.lblTitre.Font = new System.Drawing.Font("Segoe Script", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lblTitre.Location = new System.Drawing.Point(194, 28);
+			this.lblTitre.Name = "lblTitre";
+			this.lblTitre.Size = new System.Drawing.Size(341, 67);
+			this.lblTitre.TabIndex = 2;
+			this.lblTitre.Text = "Projet Stargate";
+			// 
+			// btnDonnees
+			// 
+			this.btnDonnees.BackColor = System.Drawing.Color.ForestGreen;
+			this.btnDonnees.Font = new System.Drawing.Font("Yu Gothic", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.btnDonnees.Location = new System.Drawing.Point(272, 217);
+			this.btnDonnees.Name = "btnDonnees";
+			this.btnDonnees.Size = new System.Drawing.Size(184, 62);
+			this.btnDonnees.TabIndex = 3;
+			this.btnDonnees.Text = "Données";
+			this.btnDonnees.UseVisualStyleBackColor = false;
+			this.btnDonnees.Click += new System.EventHandler(this.btnDonnees_Click);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Location = new System.Drawing.Point(12, 332);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(431, 16);
+			this.label1.TabIndex = 4;
+			this.label1.Text = "Projet SAE2.4 - Kadir EKICI; Jason-Scott BEBEY BENA; Kevin Vasilescu";
+			// 
+			// btnQuit
+			// 
+			this.btnQuit.BackColor = System.Drawing.Color.Crimson;
+			this.btnQuit.Location = new System.Drawing.Point(669, 284);
+			this.btnQuit.Name = "btnQuit";
+			this.btnQuit.Size = new System.Drawing.Size(64, 64);
+			this.btnQuit.TabIndex = 5;
+			this.btnQuit.Text = "Quitter";
+			this.btnQuit.UseVisualStyleBackColor = false;
+			this.btnQuit.Click += new System.EventHandler(this.btnQuit_Click);
+			// 
+			// Form1
+			// 
+			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Text = "Form1";
+			this.BackColor = System.Drawing.Color.SlateGray;
+			this.ClientSize = new System.Drawing.Size(745, 357);
+			this.Controls.Add(this.btnQuit);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.btnDonnees);
+			this.Controls.Add(this.lblTitre);
+			this.Controls.Add(this.btnMissions);
+			this.MaximumSize = new System.Drawing.Size(763, 404);
+			this.MinimumSize = new System.Drawing.Size(763, 404);
+			this.Name = "Form1";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+			this.Text = "Projet Stargate";
+			this.Load += new System.EventHandler(this.Form1_Load);
+			this.ResumeLayout(false);
+			this.PerformLayout();
+
 		}
 
 		#endregion
+
+		private System.Windows.Forms.Button btnMissions;
+		private System.Windows.Forms.Label lblTitre;
+		private System.Windows.Forms.Button btnDonnees;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Button btnQuit;
 	}
 }
 
