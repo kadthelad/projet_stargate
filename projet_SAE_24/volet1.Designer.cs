@@ -31,17 +31,12 @@
 			this.panel1 = new System.Windows.Forms.Panel();
 			this.lblTitre = new System.Windows.Forms.Label();
 			this.flpTableauDeBord = new System.Windows.Forms.FlowLayoutPanel();
-			this.button1 = new System.Windows.Forms.Button();
+			this.btnCreerMission = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
 			this.button3 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
-			this.btnRafraichir = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
-			this.cboTri = new System.Windows.Forms.ComboBox();
-			this.panel3 = new System.Windows.Forms.Panel();
 			this.panel1.SuspendLayout();
 			this.panel2.SuspendLayout();
-			this.panel3.SuspendLayout();
 			this.SuspendLayout();
 			// 
 			// panel1
@@ -73,21 +68,23 @@
 			this.flpTableauDeBord.Size = new System.Drawing.Size(499, 375);
 			this.flpTableauDeBord.TabIndex = 1;
 			// 
-			// button1
+			// btnCreerMission
 			// 
-			this.button1.Location = new System.Drawing.Point(13, 3);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(126, 52);
-			this.button1.TabIndex = 2;
-			this.button1.Text = "Placeholder1";
-			this.button1.UseVisualStyleBackColor = true;
+			this.btnCreerMission.ForeColor = System.Drawing.Color.Red;
+			this.btnCreerMission.Location = new System.Drawing.Point(13, 3);
+			this.btnCreerMission.Name = "btnCreerMission";
+			this.btnCreerMission.Size = new System.Drawing.Size(126, 52);
+			this.btnCreerMission.TabIndex = 2;
+			this.btnCreerMission.Text = "Créer une mission";
+			this.btnCreerMission.UseVisualStyleBackColor = true;
+			this.btnCreerMission.Click += new System.EventHandler(this.btnCreerMission_Click);
 			// 
 			// panel2
 			// 
 			this.panel2.BackColor = System.Drawing.Color.DarkSlateGray;
 			this.panel2.Controls.Add(this.button3);
 			this.panel2.Controls.Add(this.button2);
-			this.panel2.Controls.Add(this.button1);
+			this.panel2.Controls.Add(this.btnCreerMission);
 			this.panel2.Location = new System.Drawing.Point(359, -1);
 			this.panel2.Name = "panel2";
 			this.panel2.Size = new System.Drawing.Size(441, 58);
@@ -111,50 +108,12 @@
 			this.button2.Text = "Placeholder2";
 			this.button2.UseVisualStyleBackColor = true;
 			// 
-			// btnRafraichir
-			// 
-			this.btnRafraichir.Location = new System.Drawing.Point(35, 18);
-			this.btnRafraichir.Name = "btnRafraichir";
-			this.btnRafraichir.Size = new System.Drawing.Size(84, 84);
-			this.btnRafraichir.TabIndex = 0;
-			this.btnRafraichir.Text = "Rafraîchir";
-			this.btnRafraichir.UseVisualStyleBackColor = true;
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-			this.label1.Location = new System.Drawing.Point(46, 105);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(61, 16);
-			this.label1.TabIndex = 4;
-			this.label1.Text = "Trier par:";
-			// 
-			// cboTri
-			// 
-			this.cboTri.FormattingEnabled = true;
-			this.cboTri.Location = new System.Drawing.Point(16, 124);
-			this.cboTri.Name = "cboTri";
-			this.cboTri.Size = new System.Drawing.Size(121, 24);
-			this.cboTri.TabIndex = 3;
-			// 
-			// panel3
-			// 
-			this.panel3.Controls.Add(this.cboTri);
-			this.panel3.Controls.Add(this.btnRafraichir);
-			this.panel3.Controls.Add(this.label1);
-			this.panel3.Location = new System.Drawing.Point(517, 63);
-			this.panel3.Name = "panel3";
-			this.panel3.Size = new System.Drawing.Size(157, 369);
-			this.panel3.TabIndex = 3;
-			// 
 			// FormTDB
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.DarkRed;
 			this.ClientSize = new System.Drawing.Size(800, 450);
-			this.Controls.Add(this.panel3);
 			this.Controls.Add(this.panel2);
 			this.Controls.Add(this.flpTableauDeBord);
 			this.Controls.Add(this.panel1);
@@ -168,8 +127,6 @@
 			this.panel1.ResumeLayout(false);
 			this.panel1.PerformLayout();
 			this.panel2.ResumeLayout(false);
-			this.panel3.ResumeLayout(false);
-			this.panel3.PerformLayout();
 			this.ResumeLayout(false);
 
 		}
@@ -179,13 +136,9 @@
 		private System.Windows.Forms.Panel panel1;
 		private System.Windows.Forms.Label lblTitre;
 		private System.Windows.Forms.FlowLayoutPanel flpTableauDeBord;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.Button btnCreerMission;
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Button button3;
 		private System.Windows.Forms.Button button2;
-		private System.Windows.Forms.Button btnRafraichir;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.ComboBox cboTri;
-		private System.Windows.Forms.Panel panel3;
 	}
 }
