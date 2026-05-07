@@ -16,5 +16,11 @@ namespace projet_SAE_24
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void showRecap_Click(object sender, EventArgs e)
+        {
+			recapMission frm = new recapMission();
+			frm.ShowDialog();
+        }
+    }
 }
