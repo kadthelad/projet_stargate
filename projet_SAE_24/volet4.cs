@@ -21,8 +21,15 @@ namespace projet_SAE_24
         SQLiteConnection maConnec = Connexion.Connec;
         DataSet maDB = MesDatas.DsGlobal;
 
+        string projectPath = Application.StartupPath;
+
         private void volet4_Load(object sender, EventArgs e)
         {
+            lay_espece.Controls.Clear();
+
+            maDB.Tables["especes"]?.Clear();
+            maDB.Tables["habiter"]?.Clear();
+
             // Mode déconnecté
             string query = "SELECT * FROM Espece";
             SQLiteCommand cmd = new SQLiteCommand(query, maConnec);
@@ -34,12 +41,9 @@ namespace projet_SAE_24
             query = "SELECT * FROM Habiter";
             SQLiteCommand cmd2 = new SQLiteCommand(query, maConnec);
             SQLiteDataAdapter data2 = new SQLiteDataAdapter();
-            data.SelectCommand = cmd2;
-            data.Fill(maDB, "habiter");
-        }
+            data2.SelectCommand = cmd2;
+            data2.Fill(maDB, "habiter");
 
-        private void btn_test_Click(object sender, EventArgs e)
-        {
             //Boucle pour afficher toutes les espèces du DataSet
             for (int i = 0; i < maDB.Tables["especes"].Rows.Count; i++)
             {
@@ -60,16 +64,38 @@ namespace projet_SAE_24
                 pb.Top = 0;
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                if (maDB.Tables["especes"].Rows[i]["couleur"].ToString() == "Violet")
+                switch (maDB.Tables["especes"].Rows[i]["couleur"].ToString())
                 {
-                    pb.Image = Image.FromFile("U:\\SAE\\projet_SAE_24\\bin\\Debug\\img\\monstres\\Steve_Jobs.jpg");
-                }
-                else
-                {
-                    pb.Image = Image.FromFile("U:\\SAE\\projet_SAE_24\\bin\\Debug\\img\\monstres\\Linus_Torvald.jpeg");
+                    case "Violet":
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Steve_Jobs.jpg");
+                        break;
+                    case "Orange":
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Linus_Torvald.jpeg");
+                        break;
+                    case "Marron":
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\smiling_rafa.jpg");
+                        break;
+                    case "Gris":
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Mark_Zuckerberg.jpg");
+                        break;
+                    case "Pourpre":
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Bill_Gates.jpg");
+                        break;
+                    case "Rose":
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Shigeru_Miyamoto.jpg");
+                        break;
+                    case "Vert":
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Hideo_Kojima.jpg");
+                        break;
+                    case "Bleu":
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Elon_Musk.jpg");
+                        break;
+                    default:
+                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\jason-rugby.jpg");
+                        break;
                 }
 
-                lblNom.Text =  "---> " + maDB.Tables["especes"].Rows[i]["nom"].ToString();
+                lblNom.Text = "---> " + maDB.Tables["especes"].Rows[i]["nom"].ToString();
                 lblNom.Font = new Font(lblNom.Font, FontStyle.Bold);
                 lblNom.Left = 110;
                 lblNom.Top = 20;
@@ -80,9 +106,9 @@ namespace projet_SAE_24
                 lblCouleur.Top = 50;
                 lblCouleur.AutoSize = true;
 
-                for(int j = 0; j < maDB.Tables["habiter"].Rows.Count; j++)
+                for (int j = 0; j < maDB.Tables["habiter"].Rows.Count; j++)
                 {
-                    if(maDB.Tables["especes"].Rows[i]["id"].ToString() == maDB.Tables["habiter"].Rows[j]["idEspece"].ToString())
+                    if (maDB.Tables["especes"].Rows[i]["id"].ToString() == maDB.Tables["habiter"].Rows[j]["idEspece"].ToString())
                     {
                         planete += maDB.Tables["habiter"].Rows[j]["nomPlanete"].ToString() + "/";
                     }
@@ -114,6 +140,12 @@ namespace projet_SAE_24
 
                 lay_espece.Controls.Add(p);
             }
+        }
+
+        private void btn_filtre_Click(object sender, EventArgs e)
+        {
+            filtre fenetreFiltre = new filtre();
+            fenetreFiltre.ShowDialog();
         }
     }
 }

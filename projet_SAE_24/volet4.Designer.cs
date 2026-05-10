@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.lay_espece = new System.Windows.Forms.FlowLayoutPanel();
-            this.btn_test = new System.Windows.Forms.Button();
             this.btn_filtre = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
@@ -41,24 +40,16 @@
             this.lay_espece.Size = new System.Drawing.Size(644, 426);
             this.lay_espece.TabIndex = 2;
             // 
-            // btn_test
-            // 
-            this.btn_test.Location = new System.Drawing.Point(662, 12);
-            this.btn_test.Name = "btn_test";
-            this.btn_test.Size = new System.Drawing.Size(126, 49);
-            this.btn_test.TabIndex = 3;
-            this.btn_test.Text = "Nombre de lignes d\'espèces";
-            this.btn_test.UseVisualStyleBackColor = true;
-            this.btn_test.Click += new System.EventHandler(this.btn_test_Click);
-            // 
             // btn_filtre
             // 
-            this.btn_filtre.Location = new System.Drawing.Point(662, 67);
+            this.btn_filtre.Font = new System.Drawing.Font("Arial", 14F);
+            this.btn_filtre.Location = new System.Drawing.Point(662, 12);
             this.btn_filtre.Name = "btn_filtre";
             this.btn_filtre.Size = new System.Drawing.Size(126, 49);
-            this.btn_filtre.TabIndex = 4;
-            this.btn_filtre.Text = "Filtre";
+            this.btn_filtre.TabIndex = 3;
+            this.btn_filtre.Text = "Filtrer";
             this.btn_filtre.UseVisualStyleBackColor = true;
+            this.btn_filtre.Click += new System.EventHandler(this.btn_filtre_Click);
             // 
             // volet4
             // 
@@ -66,9 +57,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btn_filtre);
-            this.Controls.Add(this.btn_test);
             this.Controls.Add(this.lay_espece);
             this.Name = "volet4";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "volet4";
             this.Load += new System.EventHandler(this.volet4_Load);
             this.ResumeLayout(false);
@@ -78,7 +69,6 @@
         #endregion
 
         private System.Windows.Forms.FlowLayoutPanel lay_espece;
-        private System.Windows.Forms.Button btn_test;
         private System.Windows.Forms.Button btn_filtre;
     }
 }
