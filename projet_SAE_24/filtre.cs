@@ -37,5 +37,49 @@ namespace projet_SAE_24
                 cboCouleur.Items.Add(ds.Tables["couleurs"].Rows[i]["couleur"].ToString());
             }
         }
+
+        public string NomEspece
+        {
+            get { return txtNom.Text; }
+        }
+
+        public string Couleur
+        {
+            get { return cboCouleur.Text; }
+        }
+
+        public bool Allie
+        {
+            get { return rdbAllie.Checked; }
+        }
+
+        public bool Ennemi
+        {
+            get { return rdbEnnemi.Checked; }
+        }
+
+        private void rdbAllie_CheckedChanged(object sender, EventArgs e)
+        {
+            rdbEnnemi.Enabled = true;
+        }
+
+        private void rdbEnnemi_CheckedChanged(object sender, EventArgs e)
+        {
+            rdbAllie.Enabled = true;
+        }
+
+        private void btnReinitialiser_Click(object sender, EventArgs e)
+        {
+            txtNom.Text = string.Empty;
+            rdbAllie.Checked = false;
+            rdbEnnemi.Checked = false;
+            cboCouleur.Text = string.Empty;
+        }
+
+        private void btnValider_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.OK;
+            this.Close();
+        }
     }
 }

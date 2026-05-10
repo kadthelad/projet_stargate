@@ -23,35 +23,26 @@ namespace projet_SAE_24
 
         string projectPath = Application.StartupPath;
 
-        private void volet4_Load(object sender, EventArgs e)
+        public void Creation_De_Panel(string nomRecherche = "", string couleurRecherche = "")
         {
             lay_espece.Controls.Clear();
-
-            maDB.Tables["especes"]?.Clear();
-            maDB.Tables["habiter"]?.Clear();
-
-            // Mode déconnecté
-            string query = "SELECT * FROM Espece";
-            SQLiteCommand cmd = new SQLiteCommand(query, maConnec);
-            SQLiteDataAdapter data = new SQLiteDataAdapter();
-            data.SelectCommand = cmd;
-            data.Fill(maDB, "especes");
-
-            // Mode déconnecté
-            query = "SELECT * FROM Habiter";
-            SQLiteCommand cmd2 = new SQLiteCommand(query, maConnec);
-            SQLiteDataAdapter data2 = new SQLiteDataAdapter();
-            data2.SelectCommand = cmd2;
-            data2.Fill(maDB, "habiter");
 
             //Boucle pour afficher toutes les espèces du DataSet
             for (int i = 0; i < maDB.Tables["especes"].Rows.Count; i++)
             {
+                string nom = maDB.Tables["especes"].Rows[i]["nom"].ToString();
+                string couleur = maDB.Tables["especes"].Rows[i]["couleur"].ToString();
+
                 Panel p = new Panel();
                 PictureBox pb = new PictureBox();
                 Label lblNom = new Label();
                 Label lblCouleur = new Label();
                 Label lblOrigine = new Label();
+
+                if ((nomRecherche != "" && !nom.ToLower().Contains(nomRecherche.ToLower())) || (couleurRecherche != "" && !couleur.ToLower().Contains(couleurRecherche.ToLower())))
+                {
+                    continue;
+                }
 
                 string planete = "";
 
@@ -130,7 +121,7 @@ namespace projet_SAE_24
                 }
 
                 lblOrigine.Left = 110;
-                lblOrigine.Top = 70;
+                lblOrigine.Top = 80;
                 lblOrigine.AutoSize = true;
 
                 p.Controls.Add(pb);
@@ -142,10 +133,53 @@ namespace projet_SAE_24
             }
         }
 
+        private void volet4_Load(object sender, EventArgs e)
+        {
+            lay_espece.Controls.Clear();
+
+            maDB.Tables["especes"]?.Clear();
+            maDB.Tables["habiter"]?.Clear();
+
+            // Mode déconnecté
+            string query = "SELECT * FROM Espece";
+            SQLiteCommand cmd = new SQLiteCommand(query, maConnec);
+            SQLiteDataAdapter data = new SQLiteDataAdapter();
+            data.SelectCommand = cmd;
+            data.Fill(maDB, "especes");
+
+            // Mode déconnecté
+            query = "SELECT * FROM Habiter";
+            SQLiteCommand cmd2 = new SQLiteCommand(query, maConnec);
+            SQLiteDataAdapter data2 = new SQLiteDataAdapter();
+            data2.SelectCommand = cmd2;
+            data2.Fill(maDB, "habiter");
+
+            query = "SELECT * FROM Allie";
+            SQLiteCommand cmd3 = new SQLiteCommand(query, maConnec);
+            SQLiteDataAdapter data3 = new SQLiteDataAdapter();
+            data3.SelectCommand = cmd3;
+            data3.Fill(maDB, "allies");
+
+            query = "SELECT * FROM Ennemi";
+            SQLiteCommand cmd4 = new SQLiteCommand(query, maConnec);
+            SQLiteDataAdapter data4 = new SQLiteDataAdapter();
+            data4.SelectCommand = cmd4;
+            data4.Fill(maDB, "ennemis");
+
+            Creation_De_Panel();
+        }
+
         private void btn_filtre_Click(object sender, EventArgs e)
         {
             filtre fenetreFiltre = new filtre();
-            fenetreFiltre.ShowDialog();
+
+            if (fenetreFiltre.ShowDialog() == DialogResult.OK)
+            {
+                string couleurRecherche = fenetreFiltre.Couleur;
+                string nomRecherche = fenetreFiltre.NomEspece;
+
+                Creation_De_Panel(nomRecherche, couleurRecherche);
+            }
         }
     }
 }
