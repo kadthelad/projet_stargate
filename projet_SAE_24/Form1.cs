@@ -20,18 +20,33 @@ namespace projet_SAE_24
 
 		private void Form1_Load(object sender, EventArgs e)
 		{
+			//string requete = "SELECT * FROM Mission";
+			//SQLiteCommand commande = new SQLiteCommand(requete, Connexion.Connec);
+			//SQLiteDataAdapter donnee = new SQLiteDataAdapter();
+			//donnee.SelectCommand = commande;
+			//donnee.Fill(MesDatas.DsGlobal, "mission");
+
 			// Chargement de la base de donnée en local (pour le mode déconnecté)
 			// - Missions
-			string requete = "SELECT * FROM Mission";
-			SQLiteCommand commande = new SQLiteCommand(requete, Connexion.Connec);
-			SQLiteDataAdapter donnee = new SQLiteDataAdapter();
-			donnee.SelectCommand = commande;
-			donnee.Fill(MesDatas.DsGlobal, "missions");
+			DataTable dtSchema = Connexion.Connec.GetSchema("Tables");
+			for (int i = 1; i < dtSchema.Rows.Count; i++)
+			{
+
+				//récupération des tables
+				string nomTable = dtSchema.Rows[i]["TABLE_NAME"].ToString();
+
+				string req = "select * from " + nomTable;
+				SQLiteCommand cd = new SQLiteCommand(req, Connexion.Connec);
+				SQLiteDataAdapter da = new SQLiteDataAdapter(cd);
+				da.Fill(MesDatas.DsGlobal, nomTable);
+
+			}
 		}
 
-		private void btnMissions_Click(object sender, EventArgs e)
+
+        private void btnMissions_Click(object sender, EventArgs e)
 		{
-			FormTDB tableauDeBord = new FormTDB();
+			Volet3 tableauDeBord = new Volet3(1);
 			tableauDeBord.ShowDialog();
 		}
 
