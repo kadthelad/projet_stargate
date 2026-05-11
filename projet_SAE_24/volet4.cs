@@ -23,7 +23,7 @@ namespace projet_SAE_24
 
         string projectPath = Application.StartupPath;
 
-        public void Creation_De_Panel(string nomRecherche = "", string couleurRecherche = "")
+        public void Creation_De_Panel(string nomRecherche = "", string couleurRecherche = "", bool allieRecherche = false, bool ennemiRecherche = false)
         {
             lay_espece.Controls.Clear();
 
@@ -32,14 +32,102 @@ namespace projet_SAE_24
             {
                 string nom = maDB.Tables["especes"].Rows[i]["nom"].ToString();
                 string couleur = maDB.Tables["especes"].Rows[i]["couleur"].ToString();
+                int idEspece = Convert.ToInt32(maDB.Tables["especes"].Rows[i]["id"]);
+
+                bool estAllie = false;
+                bool estEnnemi = false;
+
+                string bienveillance = "";
+                string instrument = "";
+
+                string agressivite = "";
+                string arme = "";
 
                 Panel p = new Panel();
                 PictureBox pb = new PictureBox();
                 Label lblNom = new Label();
                 Label lblCouleur = new Label();
                 Label lblOrigine = new Label();
+                Label lblBienveillance = new Label();
+                Label lblInstrumentMusique = new Label();
+                Label lblAgressivite = new Label();
+                Label lblTypeArme = new Label();
+
+                for (int j = 0; j < maDB.Tables["allies"].Rows.Count; j++)
+                {
+                    if (Convert.ToInt32(maDB.Tables["allies"].Rows[j]["idEspece"]) == idEspece)
+                    {
+                        estAllie = true;
+
+                        bienveillance = maDB.Tables["allies"].Rows[j]["degreBienveillance"].ToString();
+                        instrument = maDB.Tables["allies"].Rows[j]["instrumentMusique"].ToString();
+
+                        break;
+                    }
+                }
+
+                if (estAllie)
+                {
+                    lblBienveillance.Text = "Bienveillance : " + bienveillance;
+                    lblInstrumentMusique.Text = instrument;
+                    lblInstrumentMusique.ForeColor = Color.Green;
+
+                    lblBienveillance.Left = 110;
+                    lblBienveillance.Top = 50;
+                    lblBienveillance.AutoSize = true;
+
+                    lblInstrumentMusique.Left = 110;
+                    lblInstrumentMusique.Top = 80;
+                    lblInstrumentMusique.AutoSize = true;
+
+                    p.Controls.Add(lblBienveillance);
+                    p.Controls.Add(lblInstrumentMusique);
+                }
+
+                for (int j = 0; j < maDB.Tables["ennemis"].Rows.Count; j++)
+                {
+                    if (Convert.ToInt32(maDB.Tables["ennemis"].Rows[j]["idEspece"]) == idEspece)
+                    {
+                        estEnnemi = true;
+
+                        agressivite = maDB.Tables["ennemis"].Rows[j]["degreAgressivite"].ToString();
+                        arme = maDB.Tables["ennemis"].Rows[j]["typeArme"].ToString();
+
+                        break;
+                    }
+                }
+
+                if (estEnnemi)
+                {
+                    lblAgressivite.Text = "Agressivité : " + agressivite;
+                    lblTypeArme.Text = arme;
+                    lblTypeArme.ForeColor = Color.Green;
+
+                    lblAgressivite.Left = 110;
+                    lblAgressivite.Top = 50;
+                    lblAgressivite.AutoSize = true;
+
+                    lblTypeArme.Left = 110;
+                    lblTypeArme.Top = 80;
+                    lblTypeArme.AutoSize = true;
+
+                    p.Controls.Add(lblAgressivite);
+                    p.Controls.Add(lblTypeArme);
+                }
 
                 if ((nomRecherche != "" && !nom.ToLower().Contains(nomRecherche.ToLower())) || (couleurRecherche != "" && !couleur.ToLower().Contains(couleurRecherche.ToLower())))
+                {
+                    continue;
+                }
+
+                bool aucunFiltre = !allieRecherche && !ennemiRecherche;
+
+                bool afficher =
+                    aucunFiltre ||
+                    (allieRecherche && estAllie) ||
+                    (ennemiRecherche && estEnnemi);
+
+                if (!afficher)
                 {
                     continue;
                 }
@@ -94,7 +182,7 @@ namespace projet_SAE_24
 
                 lblCouleur.Text = maDB.Tables["especes"].Rows[i]["couleur"].ToString();
                 lblCouleur.Left = 110;
-                lblCouleur.Top = 50;
+                lblCouleur.Top = 35;
                 lblCouleur.AutoSize = true;
 
                 for (int j = 0; j < maDB.Tables["habiter"].Rows.Count; j++)
@@ -121,7 +209,7 @@ namespace projet_SAE_24
                 }
 
                 lblOrigine.Left = 110;
-                lblOrigine.Top = 80;
+                lblOrigine.Top = 65;
                 lblOrigine.AutoSize = true;
 
                 p.Controls.Add(pb);
@@ -178,7 +266,7 @@ namespace projet_SAE_24
                 string couleurRecherche = fenetreFiltre.Couleur;
                 string nomRecherche = fenetreFiltre.NomEspece;
 
-                Creation_De_Panel(nomRecherche, couleurRecherche);
+                Creation_De_Panel(nomRecherche, couleurRecherche, fenetreFiltre.Allie, fenetreFiltre.Ennemi);
             }
         }
     }
