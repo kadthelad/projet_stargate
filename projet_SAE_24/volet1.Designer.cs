@@ -65,7 +65,7 @@
 			this.flpTableauDeBord.Location = new System.Drawing.Point(12, 63);
 			this.flpTableauDeBord.Name = "flpTableauDeBord";
 			this.flpTableauDeBord.Padding = new System.Windows.Forms.Padding(4, 0, 0, 0);
-			this.flpTableauDeBord.Size = new System.Drawing.Size(499, 375);
+			this.flpTableauDeBord.Size = new System.Drawing.Size(559, 375);
 			this.flpTableauDeBord.TabIndex = 1;
 			// 
 			// btnCreerMission
