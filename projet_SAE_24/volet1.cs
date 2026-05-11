@@ -34,7 +34,7 @@ namespace projet_SAE_24
 				{
 					String nomChef = dataRowsChef[0]["nom"].ToString() + " " + dataRowsChef[0]["prenom"].ToString();
 
-					Mission missionUC = new Mission(ligne["nomPlanete"].ToString(), ligne["nomPlanete"].ToString(),
+					Mission missionUC = new Mission(ligne["nomPlanete"].ToString(), ligne["numero"].ToString(),
 						ligne["dateDepart"].ToString(), ligne["dateRetour"].ToString(),
 						nomChef, ligne["budget"].ToString());
 					flpTableauDeBord.Controls.Add(missionUC);

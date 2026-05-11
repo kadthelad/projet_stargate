@@ -101,6 +101,7 @@
 			this.btnPDF.TabIndex = 6;
 			this.btnPDF.Text = "PDF";
 			this.btnPDF.UseVisualStyleBackColor = true;
+			this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
 			// 
 			// Mission
 			// 
