@@ -28,11 +28,11 @@ namespace projet_SAE_24
             lay_espece.Controls.Clear();
 
             //Boucle pour afficher toutes les espèces du DataSet
-            for (int i = 0; i < maDB.Tables["especes"].Rows.Count; i++)
+            for (int i = 0; i < maDB.Tables["Espece"].Rows.Count; i++)
             {
-                string nom = maDB.Tables["especes"].Rows[i]["nom"].ToString();
-                string couleur = maDB.Tables["especes"].Rows[i]["couleur"].ToString();
-                int idEspece = Convert.ToInt32(maDB.Tables["especes"].Rows[i]["id"]);
+                string nom = maDB.Tables["Espece"].Rows[i]["nom"].ToString();
+                string couleur = maDB.Tables["Espece"].Rows[i]["couleur"].ToString();
+                int idEspece = Convert.ToInt32(maDB.Tables["Espece"].Rows[i]["id"]);
 
                 bool estAllie = false;
                 bool estEnnemi = false;
@@ -53,14 +53,14 @@ namespace projet_SAE_24
                 Label lblAgressivite = new Label();
                 Label lblTypeArme = new Label();
 
-                for (int j = 0; j < maDB.Tables["allies"].Rows.Count; j++)
+                for (int j = 0; j < maDB.Tables["Allie"].Rows.Count; j++)
                 {
-                    if (Convert.ToInt32(maDB.Tables["allies"].Rows[j]["idEspece"]) == idEspece)
+                    if (Convert.ToInt32(maDB.Tables["Allie"].Rows[j]["idEspece"]) == idEspece)
                     {
                         estAllie = true;
 
-                        bienveillance = maDB.Tables["allies"].Rows[j]["degreBienveillance"].ToString();
-                        instrument = maDB.Tables["allies"].Rows[j]["instrumentMusique"].ToString();
+                        bienveillance = maDB.Tables["Allie"].Rows[j]["degreBienveillance"].ToString();
+                        instrument = maDB.Tables["Allie"].Rows[j]["instrumentMusique"].ToString();
 
                         break;
                     }
@@ -84,14 +84,14 @@ namespace projet_SAE_24
                     p.Controls.Add(lblInstrumentMusique);
                 }
 
-                for (int j = 0; j < maDB.Tables["ennemis"].Rows.Count; j++)
+                for (int j = 0; j < maDB.Tables["Ennemi"].Rows.Count; j++)
                 {
-                    if (Convert.ToInt32(maDB.Tables["ennemis"].Rows[j]["idEspece"]) == idEspece)
+                    if (Convert.ToInt32(maDB.Tables["Ennemi"].Rows[j]["idEspece"]) == idEspece)
                     {
                         estEnnemi = true;
 
-                        agressivite = maDB.Tables["ennemis"].Rows[j]["degreAgressivite"].ToString();
-                        arme = maDB.Tables["ennemis"].Rows[j]["typeArme"].ToString();
+                        agressivite = maDB.Tables["Ennemi"].Rows[j]["degreAgressivite"].ToString();
+                        arme = maDB.Tables["Ennemi"].Rows[j]["typeArme"].ToString();
 
                         break;
                     }
@@ -143,53 +143,26 @@ namespace projet_SAE_24
                 pb.Top = 0;
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                switch (maDB.Tables["especes"].Rows[i]["couleur"].ToString())
-                {
-                    case "Violet":
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Steve_Jobs.jpg");
-                        break;
-                    case "Orange":
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Linus_Torvald.jpeg");
-                        break;
-                    case "Marron":
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\smiling_rafa.jpg");
-                        break;
-                    case "Gris":
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Mark_Zuckerberg.jpg");
-                        break;
-                    case "Pourpre":
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Bill_Gates.jpg");
-                        break;
-                    case "Rose":
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Shigeru_Miyamoto.jpg");
-                        break;
-                    case "Vert":
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Hideo_Kojima.jpg");
-                        break;
-                    case "Bleu":
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\Elon_Musk.jpg");
-                        break;
-                    default:
-                        pb.Image = Image.FromFile(projectPath + "\\img\\monstres\\jason-rugby.jpg");
-                        break;
-                }
+                string couleurEspece = maDB.Tables["Espece"].Rows[i]["couleur"].ToString();
 
-                lblNom.Text = "---> " + maDB.Tables["especes"].Rows[i]["nom"].ToString();
+                pb.Image = Image.FromFile(projectPath + "/img/monstres/" + couleurEspece + ".jpg");
+
+                lblNom.Text = "---> " + maDB.Tables["Espece"].Rows[i]["nom"].ToString();
                 lblNom.Font = new Font(lblNom.Font, FontStyle.Bold);
                 lblNom.Left = 110;
                 lblNom.Top = 20;
                 lblNom.AutoSize = true;
 
-                lblCouleur.Text = maDB.Tables["especes"].Rows[i]["couleur"].ToString();
+                lblCouleur.Text = maDB.Tables["Espece"].Rows[i]["couleur"].ToString();
                 lblCouleur.Left = 110;
                 lblCouleur.Top = 35;
                 lblCouleur.AutoSize = true;
 
-                for (int j = 0; j < maDB.Tables["habiter"].Rows.Count; j++)
+                for (int j = 0; j < maDB.Tables["Habiter"].Rows.Count; j++)
                 {
-                    if (maDB.Tables["especes"].Rows[i]["id"].ToString() == maDB.Tables["habiter"].Rows[j]["idEspece"].ToString())
+                    if (maDB.Tables["Espece"].Rows[i]["id"].ToString() == maDB.Tables["Habiter"].Rows[j]["idEspece"].ToString())
                     {
-                        planete += maDB.Tables["habiter"].Rows[j]["nomPlanete"].ToString() + "/";
+                        planete += maDB.Tables["Habiter"].Rows[j]["nomPlanete"].ToString() + "/";
                     }
                 }
 
@@ -223,37 +196,6 @@ namespace projet_SAE_24
 
         private void volet4_Load(object sender, EventArgs e)
         {
-            lay_espece.Controls.Clear();
-
-            maDB.Tables["especes"]?.Clear();
-            maDB.Tables["habiter"]?.Clear();
-
-            // Mode déconnecté
-            string query = "SELECT * FROM Espece";
-            SQLiteCommand cmd = new SQLiteCommand(query, maConnec);
-            SQLiteDataAdapter data = new SQLiteDataAdapter();
-            data.SelectCommand = cmd;
-            data.Fill(maDB, "especes");
-
-            // Mode déconnecté
-            query = "SELECT * FROM Habiter";
-            SQLiteCommand cmd2 = new SQLiteCommand(query, maConnec);
-            SQLiteDataAdapter data2 = new SQLiteDataAdapter();
-            data2.SelectCommand = cmd2;
-            data2.Fill(maDB, "habiter");
-
-            query = "SELECT * FROM Allie";
-            SQLiteCommand cmd3 = new SQLiteCommand(query, maConnec);
-            SQLiteDataAdapter data3 = new SQLiteDataAdapter();
-            data3.SelectCommand = cmd3;
-            data3.Fill(maDB, "allies");
-
-            query = "SELECT * FROM Ennemi";
-            SQLiteCommand cmd4 = new SQLiteCommand(query, maConnec);
-            SQLiteDataAdapter data4 = new SQLiteDataAdapter();
-            data4.SelectCommand = cmd4;
-            data4.Fill(maDB, "ennemis");
-
             Creation_De_Panel();
         }
 
@@ -268,6 +210,13 @@ namespace projet_SAE_24
 
                 Creation_De_Panel(nomRecherche, couleurRecherche, fenetreFiltre.Allie, fenetreFiltre.Ennemi);
             }
+        }
+
+        private void btnPlantes_Click(object sender, EventArgs e)
+        {
+            volet5 fenetrePlanete = new volet5();
+
+            fenetrePlanete.ShowDialog();
         }
     }
 }

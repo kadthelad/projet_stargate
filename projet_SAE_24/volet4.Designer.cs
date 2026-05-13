@@ -30,6 +30,7 @@
         {
             this.lay_espece = new System.Windows.Forms.FlowLayoutPanel();
             this.btn_filtre = new System.Windows.Forms.Button();
+            this.btnPlantes = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lay_espece
@@ -51,16 +52,28 @@
             this.btn_filtre.UseVisualStyleBackColor = true;
             this.btn_filtre.Click += new System.EventHandler(this.btn_filtre_Click);
             // 
+            // btnPlantes
+            // 
+            this.btnPlantes.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnPlantes.Location = new System.Drawing.Point(662, 389);
+            this.btnPlantes.Name = "btnPlantes";
+            this.btnPlantes.Size = new System.Drawing.Size(126, 49);
+            this.btnPlantes.TabIndex = 4;
+            this.btnPlantes.Text = "Liste des planètes";
+            this.btnPlantes.UseVisualStyleBackColor = true;
+            this.btnPlantes.Click += new System.EventHandler(this.btnPlantes_Click);
+            // 
             // volet4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnPlantes);
             this.Controls.Add(this.btn_filtre);
             this.Controls.Add(this.lay_espece);
             this.Name = "volet4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "volet4";
+            this.Text = "Informations sur les espèces";
             this.Load += new System.EventHandler(this.volet4_Load);
             this.ResumeLayout(false);
 
@@ -70,5 +83,6 @@
 
         private System.Windows.Forms.FlowLayoutPanel lay_espece;
         private System.Windows.Forms.Button btn_filtre;
+        private System.Windows.Forms.Button btnPlantes;
     }
 }
