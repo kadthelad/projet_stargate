@@ -28,6 +28,7 @@ namespace projet_SAE_24
             foreach (DataRow ligne in maDB.Tables["Planete"].Rows)
             {
                 MessageBox.Show(ligne["nom"].ToString());
+                Console.WriteLine("d");
             }
         }
     }
