@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.layPlanetes = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
-            // flowLayoutPanel1
+            // layPlanetes
             // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(12, 12);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(776, 426);
-            this.flowLayoutPanel1.TabIndex = 0;
+            this.layPlanetes.Location = new System.Drawing.Point(12, 12);
+            this.layPlanetes.Name = "layPlanetes";
+            this.layPlanetes.Size = new System.Drawing.Size(776, 426);
+            this.layPlanetes.TabIndex = 0;
             // 
             // volet5
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.flowLayoutPanel1);
+            this.Controls.Add(this.layPlanetes);
             this.Name = "volet5";
             this.Text = "volet5";
             this.Load += new System.EventHandler(this.volet5_Load);
@@ -53,6 +53,6 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel layPlanetes;
     }
 }
