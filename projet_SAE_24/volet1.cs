@@ -45,7 +45,16 @@ namespace projet_SAE_24
 		private void btnCreerMission_Click(object sender, EventArgs e)
 		{
 			FrmAdminAccess frmAdminAccess = new FrmAdminAccess();
-			frmAdminAccess.ShowDialog();
+			if (frmAdminAccess.ShowDialog() == DialogResult.OK)
+			{
+				// Lancer le volet d'ajout de mission
+				MessageBox.Show("Authentification réussie!");
+				FormADM frmAjoutDeMission = new FormADM();
+				if (frmAjoutDeMission.ShowDialog() == DialogResult.OK)
+				{
+					// Rafraichir les missions
+				}
+			}
 		}
 	}
 }
