@@ -78,15 +78,37 @@ namespace projet_SAE_24
                         typeMembre = "militaire";
                         break;
                 }
-                //MessageBox.Show(matriculeMembre);
+
                 string nomMembre = monds.Tables["Membre"].Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Nom"].ToString();
                 string prenomMembre = monds.Tables["Membre"].Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Prenom"].ToString();
                 ucMembre membre = new ucMembre(nomMembre, prenomMembre, typeMembre);
-                // remplacer le test par le nom du militaire
-
 
                 flpMembres.Controls.Add(membre);
             }
+
+            DataTable tableCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}").CopyToDataTable();
+            int haut = 30;
+            int gauche = 30;
+            foreach(DataRow objectifDeCapture in tableCapture.Rows)
+            {
+                int idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
+                string nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
+                MessageBox.Show(nomEnnemie);
+
+                
+
+                Label lblObjectif = new Label();
+                lblObjectif.Text = $"{nomEnnemie} --> {objectifDeCapture["objectif"]} prise(s)";
+                lblObjectif.Top = haut;
+                lblObjectif.Left = gauche;
+
+                haut += 20;
+
+                grpObjectifCapture.Controls.Add(lblObjectif);
+            }
+
+
+
 
         }
     }

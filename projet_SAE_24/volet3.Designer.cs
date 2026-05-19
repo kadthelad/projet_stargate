@@ -38,6 +38,7 @@
             this.lblDateDepart = new System.Windows.Forms.Label();
             this.lblBudget = new System.Windows.Forms.Label();
             this.lblSoldeRestant = new System.Windows.Forms.Label();
+            this.grpObjectifCapture = new System.Windows.Forms.GroupBox();
             this.grpFeuilleDeRoute.SuspendLayout();
             this.grpMembres.SuspendLayout();
             this.SuspendLayout();
@@ -100,6 +101,7 @@
             // 
             // flpMembres
             // 
+            this.flpMembres.AutoScroll = true;
             this.flpMembres.Location = new System.Drawing.Point(8, 23);
             this.flpMembres.Name = "flpMembres";
             this.flpMembres.Size = new System.Drawing.Size(908, 181);
@@ -147,11 +149,21 @@
             this.lblSoldeRestant.TabIndex = 8;
             this.lblSoldeRestant.Text = "Sold après dépenses : ";
             // 
+            // grpObjectifCapture
+            // 
+            this.grpObjectifCapture.Location = new System.Drawing.Point(16, 587);
+            this.grpObjectifCapture.Name = "grpObjectifCapture";
+            this.grpObjectifCapture.Size = new System.Drawing.Size(834, 92);
+            this.grpObjectifCapture.TabIndex = 9;
+            this.grpObjectifCapture.TabStop = false;
+            this.grpObjectifCapture.Text = "Objectif de Capture";
+            // 
             // Volet3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 649);
+            this.ClientSize = new System.Drawing.Size(953, 718);
+            this.Controls.Add(this.grpObjectifCapture);
             this.Controls.Add(this.lblSoldeRestant);
             this.Controls.Add(this.lblBudget);
             this.Controls.Add(this.lblDateDepart);
@@ -185,5 +197,6 @@
         private System.Windows.Forms.Label lblBudget;
         private System.Windows.Forms.Label lblSoldeRestant;
         private System.Windows.Forms.FlowLayoutPanel flpMembres;
+        private System.Windows.Forms.GroupBox grpObjectifCapture;
     }
 }
