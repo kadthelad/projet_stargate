@@ -33,11 +33,11 @@
             this.grpFeuilleDeRoute = new System.Windows.Forms.GroupBox();
             this.rtbFeuilleDeRoute = new System.Windows.Forms.RichTextBox();
             this.grpMembres = new System.Windows.Forms.GroupBox();
+            this.flpMembres = new System.Windows.Forms.FlowLayoutPanel();
             this.lblDateRetour = new System.Windows.Forms.Label();
             this.lblDateDepart = new System.Windows.Forms.Label();
             this.lblBudget = new System.Windows.Forms.Label();
             this.lblSoldeRestant = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.grpFeuilleDeRoute.SuspendLayout();
             this.grpMembres.SuspendLayout();
             this.SuspendLayout();
@@ -88,15 +88,22 @@
             // 
             // grpMembres
             // 
-            this.grpMembres.Controls.Add(this.flowLayoutPanel1);
+            this.grpMembres.Controls.Add(this.flpMembres);
             this.grpMembres.Location = new System.Drawing.Point(16, 369);
             this.grpMembres.Margin = new System.Windows.Forms.Padding(4);
             this.grpMembres.Name = "grpMembres";
             this.grpMembres.Padding = new System.Windows.Forms.Padding(4);
-            this.grpMembres.Size = new System.Drawing.Size(924, 197);
+            this.grpMembres.Size = new System.Drawing.Size(924, 211);
             this.grpMembres.TabIndex = 4;
             this.grpMembres.TabStop = false;
             this.grpMembres.Text = "Membres";
+            // 
+            // flpMembres
+            // 
+            this.flpMembres.Location = new System.Drawing.Point(8, 23);
+            this.flpMembres.Name = "flpMembres";
+            this.flpMembres.Size = new System.Drawing.Size(908, 181);
+            this.flpMembres.TabIndex = 0;
             // 
             // lblDateRetour
             // 
@@ -140,18 +147,11 @@
             this.lblSoldeRestant.TabIndex = 8;
             this.lblSoldeRestant.Text = "Sold après dépenses : ";
             // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(8, 23);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(908, 166);
-            this.flowLayoutPanel1.TabIndex = 0;
-            // 
             // Volet3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 570);
+            this.ClientSize = new System.Drawing.Size(953, 649);
             this.Controls.Add(this.lblSoldeRestant);
             this.Controls.Add(this.lblBudget);
             this.Controls.Add(this.lblDateDepart);
@@ -184,6 +184,6 @@
         private System.Windows.Forms.Label lblDateDepart;
         private System.Windows.Forms.Label lblBudget;
         private System.Windows.Forms.Label lblSoldeRestant;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.FlowLayoutPanel flpMembres;
     }
 }

@@ -29,7 +29,7 @@ namespace projet_SAE_24
 			// Chargement de la base de donnée en local (pour le mode déconnecté)
 			// - Missions
 			DataTable dtSchema = Connexion.Connec.GetSchema("Tables");
-			for (int i = 1; i < dtSchema.Rows.Count; i++)
+			for (int i = 0; i < dtSchema.Rows.Count; i++)
 			{
 
 				//récupération des tables
@@ -46,7 +46,7 @@ namespace projet_SAE_24
 
         private void btnMissions_Click(object sender, EventArgs e)
 		{
-			Volet3 tableauDeBord = new Volet3(1);
+			Volet3 tableauDeBord = new Volet3(1, "Sckxyss");
 			tableauDeBord.ShowDialog();
 		}
 

@@ -18,13 +18,23 @@ namespace projet_SAE_24
 
         }
 
-        public ucMembre(string nomMembre, string nomImage)
+        public ucMembre(string nom, string prenom, string nomImage)
         {
             InitializeComponent();
             string cheminProjet = Application.StartupPath;
-            Image img = Image.FromFile(cheminProjet);
+            try
+            {
+            Image img = Image.FromFile(cheminProjet + "/img/membres/" + nomImage + ".png");
+            pcbPhotoMembre.Image = img;
+            }
+            catch(Exception error)
+            {
+                Image img = Image.FromFile(cheminProjet + "/img/membres/placeholder.png");
+                pcbPhotoMembre.Image = img;
+            }
 
-            lblNomMembre.Text = nomMembre;
+            lblNom.Text = nom;
+            lblPrenom.Text = prenom;
         }
 
         private void ucMembre_Load(object sender, EventArgs e)

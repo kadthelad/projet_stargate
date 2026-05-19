@@ -29,7 +29,8 @@
         private void InitializeComponent()
         {
             this.pcbPhotoMembre = new System.Windows.Forms.PictureBox();
-            this.lblNomMembre = new System.Windows.Forms.Label();
+            this.lblPrenom = new System.Windows.Forms.Label();
+            this.lblNom = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPhotoMembre)).BeginInit();
             this.SuspendLayout();
             // 
@@ -38,23 +39,34 @@
             this.pcbPhotoMembre.Location = new System.Drawing.Point(3, 3);
             this.pcbPhotoMembre.Name = "pcbPhotoMembre";
             this.pcbPhotoMembre.Size = new System.Drawing.Size(144, 91);
+            this.pcbPhotoMembre.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbPhotoMembre.TabIndex = 0;
             this.pcbPhotoMembre.TabStop = false;
             // 
-            // lblNomMembre
+            // lblPrenom
             // 
-            this.lblNomMembre.AutoSize = true;
-            this.lblNomMembre.Location = new System.Drawing.Point(53, 97);
-            this.lblNomMembre.Name = "lblNomMembre";
-            this.lblNomMembre.Size = new System.Drawing.Size(35, 13);
-            this.lblNomMembre.TabIndex = 1;
-            this.lblNomMembre.Text = "label1";
+            this.lblPrenom.AutoSize = true;
+            this.lblPrenom.Location = new System.Drawing.Point(53, 97);
+            this.lblPrenom.Name = "lblPrenom";
+            this.lblPrenom.Size = new System.Drawing.Size(35, 13);
+            this.lblPrenom.TabIndex = 1;
+            this.lblPrenom.Text = "label1";
+            // 
+            // lblNom
+            // 
+            this.lblNom.AutoSize = true;
+            this.lblNom.Location = new System.Drawing.Point(53, 125);
+            this.lblNom.Name = "lblNom";
+            this.lblNom.Size = new System.Drawing.Size(35, 13);
+            this.lblNom.TabIndex = 2;
+            this.lblNom.Text = "label1";
             // 
             // ucMembre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblNomMembre);
+            this.Controls.Add(this.lblNom);
+            this.Controls.Add(this.lblPrenom);
             this.Controls.Add(this.pcbPhotoMembre);
             this.Name = "ucMembre";
             this.Load += new System.EventHandler(this.ucMembre_Load);
@@ -67,6 +79,7 @@
         #endregion
 
         private System.Windows.Forms.PictureBox pcbPhotoMembre;
-        private System.Windows.Forms.Label lblNomMembre;
+        private System.Windows.Forms.Label lblPrenom;
+        private System.Windows.Forms.Label lblNom;
     }
 }
