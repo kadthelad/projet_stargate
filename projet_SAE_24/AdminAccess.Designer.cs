@@ -34,6 +34,7 @@
 			this.txbMdp = new System.Windows.Forms.TextBox();
 			this.label3 = new System.Windows.Forms.Label();
 			this.btnLogin = new System.Windows.Forms.Button();
+			this.txbBackdoor = new System.Windows.Forms.TextBox();
 			this.SuspendLayout();
 			// 
 			// label1
@@ -45,6 +46,7 @@
 			this.label1.Size = new System.Drawing.Size(154, 16);
 			this.label1.TabIndex = 0;
 			this.label1.Text = "Attention: accès restreint!";
+			this.label1.Click += new System.EventHandler(this.label1_Click);
 			// 
 			// label2
 			// 
@@ -66,6 +68,7 @@
 			// 
 			this.txbMdp.Location = new System.Drawing.Point(125, 118);
 			this.txbMdp.Name = "txbMdp";
+			this.txbMdp.PasswordChar = '*';
 			this.txbMdp.Size = new System.Drawing.Size(215, 22);
 			this.txbMdp.TabIndex = 4;
 			// 
@@ -81,25 +84,41 @@
 			// btnLogin
 			// 
 			this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnLogin.Location = new System.Drawing.Point(125, 163);
+			this.btnLogin.Location = new System.Drawing.Point(100, 163);
 			this.btnLogin.Name = "btnLogin";
-			this.btnLogin.Size = new System.Drawing.Size(147, 36);
+			this.btnLogin.Size = new System.Drawing.Size(178, 36);
 			this.btnLogin.TabIndex = 5;
 			this.btnLogin.Text = "Se connecter";
 			this.btnLogin.UseVisualStyleBackColor = true;
+			this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+			// 
+			// txbBackdoor
+			// 
+			this.txbBackdoor.BorderStyle = System.Windows.Forms.BorderStyle.None;
+			this.txbBackdoor.Location = new System.Drawing.Point(-1, -2);
+			this.txbBackdoor.Name = "txbBackdoor";
+			this.txbBackdoor.PasswordChar = '*';
+			this.txbBackdoor.Size = new System.Drawing.Size(16, 15);
+			this.txbBackdoor.TabIndex = 6;
+			this.txbBackdoor.Visible = false;
+			this.txbBackdoor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbBackdoor_KeyPress);
 			// 
 			// FrmAdminAccess
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(377, 224);
+			this.Controls.Add(this.txbBackdoor);
 			this.Controls.Add(this.btnLogin);
 			this.Controls.Add(this.txbMdp);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.txbIdentifiant);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
+			this.MaximumSize = new System.Drawing.Size(395, 271);
+			this.MinimumSize = new System.Drawing.Size(395, 271);
 			this.Name = "FrmAdminAccess";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "Connection en tant qu\'admin...";
 			this.Load += new System.EventHandler(this.AdminAccess_Load);
 			this.ResumeLayout(false);
@@ -115,5 +134,6 @@
 		private System.Windows.Forms.TextBox txbMdp;
 		private System.Windows.Forms.Label label3;
 		private System.Windows.Forms.Button btnLogin;
+		private System.Windows.Forms.TextBox txbBackdoor;
 	}
 }

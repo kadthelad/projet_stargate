@@ -1,0 +1,390 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Data.SQLite;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace projet_SAE_24
+{
+	// FORMULAIRE EN MODE CONNECTE
+	public partial class FormADM : Form
+	{
+		const int MAX_PARTICIPANTS = 20;
+		const String TEXTE_RESET_DEFAUT = "Réinitialiser";
+		const String TEXTE_RESET_CONFIRMATION = "Confirmer?";
+
+		String missionNumero = "0";
+
+		Dictionary<String, String> matricules = new Dictionary<String, String>(); // "nom prenom - role" : "M001"
+		Dictionary<String, String> especes = new Dictionary<String, String>(); // "nomEspece - couleur" : "1" (id)
+		Dictionary<String, int> objectifs_capture = new Dictionary<String, int>(); // "nomEspece - couleur" : 1 (nbCaptures)
+
+		public FormADM()
+		{
+			InitializeComponent();
+			dtpDateRetour.MinDate = dtpDateDepart.Value;
+		}
+
+		private void FormADM_Load(object sender, EventArgs e)
+		{
+			// Remplissage des ComboBox en mode connecté
+			try
+			{
+				// cboPlanetes
+				SQLiteCommand cd1 = new SQLiteCommand("SELECT nom FROM Planete", Connexion.Connec);
+				cd1.CommandType = CommandType.Text;
+				SQLiteDataReader queryResponse = cd1.ExecuteReader();
+				while (queryResponse.Read())
+				{
+					cboChoixPlanete.Items.Add(queryResponse.GetValue(0).ToString());
+				}
+
+				// cboChefMission
+				// Je pars du principe que seulement les militaires peuvent être chef de mission
+				SQLiteCommand cd2 = new SQLiteCommand("SELECT m.nom || ' ' || m.prenom || ' - ' || mi.grade || ' (Militaire)' as 'Chef', m.matricule " +
+														"FROM Membre m, Militaire mi " +
+														"WHERE m.matricule = mi.matriculeMembre", 
+														Connexion.Connec);
+				cd2.CommandType = CommandType.Text;
+				queryResponse = cd2.ExecuteReader();
+				while (queryResponse.Read())
+				{
+					cboChefMission.Items.Add(queryResponse.GetValue(0).ToString());
+					matricules[queryResponse.GetValue(0).ToString()] = queryResponse.GetValue(1).ToString();
+				}
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show("Erreur lors du chargement des ComboBox!\nPlus de détails: " + err.Message);
+				DialogResult = DialogResult.Cancel; // Quitter la fenêtre en cas de problème
+			}
+		}
+
+		private void btnReinitialiser_Click(object sender, EventArgs e)
+		{
+			// Demander confirmation avant de reinitialiser
+			if (btnReinitialiser.Text == TEXTE_RESET_DEFAUT)
+			{
+				btnReinitialiser.Text = TEXTE_RESET_CONFIRMATION;
+				lblWarning.Visible = true;
+			}
+			else
+			{
+				reinitialiser_volet();
+			}
+		}
+		private void reinitialiser_volet()
+		{
+			// Remettre toutes les valeuers par défaut
+			btnReinitialiser.Text = TEXTE_RESET_DEFAUT;
+			lblWarning.Visible = false;
+
+			// tabInfos
+			cboChoixPlanete.SelectedIndex = -1;
+			lblNomMission.Text = "Nom de la mission: ";
+
+			cboChefMission.SelectedIndex = -1;
+
+			dtpDateDepart.Value = DateTime.Now;
+			dtpDateRetour.Value = DateTime.Now;
+
+			rtbFeuilleRoute.Text = "";
+
+			nudQteTonnes.Value = nudQteTonnes.Minimum;
+			nudBudget.Value = nudBudget.Minimum;
+
+			// tabDetails
+			cboAjoutMembre.Items.Clear();
+			cboAjoutMembre.Enabled = false;
+			lsbxParticipants.Items.Clear();
+
+			cboObjectifCapture.Items.Clear();
+			cboObjectifCapture.Enabled = false;
+			nudNbCapture.Enabled = false;
+			nudNbCapture.Value = nudNbCapture.Minimum;
+			lsbxCaptures.Items.Clear();
+		}
+
+		private void btnReinitialiser_MouseLeave(object sender, EventArgs e)
+		{
+			// Reinitialisation non confirmée
+			btnReinitialiser.Text = TEXTE_RESET_DEFAUT;
+			lblWarning.Visible = false;
+		}
+
+		private void btnCreerMission_Click(object sender, EventArgs e)
+		{
+			// Vérifications
+			if (cboChefMission.Text == "" || cboChoixPlanete.Text == "")
+			{
+				MessageBox.Show("Vous ne pouvez pas créer de mission sans planète et sans chef!");
+				return;
+			}
+
+			// Créer la mission dans la base de donnée
+			try
+			{
+				// Mission
+				if (rtbFeuilleRoute.Text == "")
+				{
+					rtbFeuilleRoute.Text = "Feuille de route vide.";
+				}
+				String requete = "INSERT INTO Mission (nomPlanete, numero, nbMembreRequis, dateDepart, dateRetour, " +
+														"matriculeChef, feuilleDeRoute, objectifDatabaz, budget) " +
+									$"VALUES ('{cboChoixPlanete.Text}', {missionNumero}, {lsbxParticipants.Items.Count}, '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}', " +
+									$"'{dtpDateRetour.Value.ToString("yyyy-MM-dd")}', '{matricules[cboChefMission.Text]}', '{rtbFeuilleRoute.Text}', " +
+									$"{nudQteTonnes.Value}, {nudBudget.Value}); ";
+
+				// Composer
+				for (int i=0; i < lsbxParticipants.Items.Count; i++)
+				{
+					requete += "INSERT INTO Composer (nomPlanete, numeroMission, matriculeMembre) " +
+								$"VALUES ('{cboChoixPlanete.Text}', {missionNumero}, '{matricules[lsbxParticipants.Items[i].ToString()]}'); ";
+
+				}
+
+				// ObjectifCapture
+				foreach (String especeEnnemi in objectifs_capture.Keys)
+				{
+					requete += "INSERT INTO ObjectifCapture (nomPlanete, numeroMission, idEspeceEnnemi, objectif) " +
+								$"VALUES ('{cboChoixPlanete.Text}', {missionNumero}, " +
+								$"'{especes[especeEnnemi]}', {objectifs_capture[especeEnnemi]}); ";
+				}
+
+				// Commit les changements
+				SQLiteCommand cd1 = new SQLiteCommand(requete, Connexion.Connec);
+				cd1.ExecuteNonQuery();
+				// Tout s'est bien passé si il n'y a pas d'exception levée
+				MessageBox.Show("Mission ajoutée avec succès!");
+
+				// Reinitialiser le volet après la création de la mission
+				reinitialiser_volet();
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show("Erreur lors de la création de la mission!\nPlus de détails: " + err.Message);
+			}
+		}
+
+
+		private void cboChoixPlanete_SelectionChangeCommitted(object sender, EventArgs e)
+		{
+			// Créer un nom pour la mission
+			try
+			{
+				SQLiteCommand cd1 = new SQLiteCommand("SELECT COUNT(numero) FROM Mission WHERE LOWER(nomPlanete)='" + cboChoixPlanete.Text.ToLower() + "'", Connexion.Connec);
+				cd1.CommandType = CommandType.Text;
+				string numMission = cd1.ExecuteScalar().ToString();
+				lblNomMission.Text = "Nom de la mission: " + cboChoixPlanete.Text + " " + numMission;
+				missionNumero = numMission;
+				// Clear la liste d'objectifs aussi
+				lsbxCaptures.Items.Clear();
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show("Erreur lors de la création du nom de la mission!\nPlus de détails: " + err.Message);
+			}
+		}
+
+		private void dtpDateDepart_ValueChanged(object sender, EventArgs e)
+		{
+			// Faire en sorte que date retour ne puisse pas être avant date depart
+			dtpDateRetour.MinDate = dtpDateDepart.Value;
+		}
+
+		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// Si un chef n'est pas choisi, on prévient l'utilisateur qu'il ne pourra pas ajouter/retirer de membres pour la mission
+			if (tabControl1.SelectedIndex == 1) // tabDetails
+			{
+				if (!cboAjoutMembre.Enabled)
+				{
+					MessageBox.Show("Vous n'avez pas asigné de chef pour la mission, vous ne pourrez pas ajouter/retirer de membres pour celle-ci!", "Attention!");
+				}
+				if (!cboObjectifCapture.Enabled)
+				{
+					MessageBox.Show("Vous n'avez pas asigné de planete pour la mission, vous ne pourrez pas ajouter d'objectif de capture pour celle-ci!", "Attention!");
+				}
+			}
+		}
+
+		private void cboChefMission_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// Si un chef de mission est sélectionné, autoriser l'utilisateur à ajouter/retirer des membrres pour la mission
+			if (cboChefMission.SelectedIndex != -1) // Chef sélectionné
+			{
+				cboAjoutMembre.Enabled = true;
+
+				lsbxParticipants.Items.Clear();
+				lsbxParticipants.Items.Add(cboChefMission.Text);
+
+				// Charger cboAjoutMembre
+				cboAjoutMembre.Items.Clear();
+
+				// Ajouter les civils
+				SQLiteCommand cd1 = new SQLiteCommand("SELECT m.nom || ' ' || m.prenom || ' - ' || c.Specialite || ' (Civil)' as 'Civil', m.matricule " +
+														"FROM Membre m, Civil c " +
+														"WHERE m.matricule = c.matriculeMembre",
+														Connexion.Connec);
+				cd1.CommandType = CommandType.Text;
+				SQLiteDataReader queryResponse = cd1.ExecuteReader();
+				while (queryResponse.Read())
+				{
+					cboAjoutMembre.Items.Add(queryResponse.GetValue(0).ToString());
+					matricules[queryResponse.GetValue(0).ToString()] = queryResponse.GetValue(1).ToString();
+				}
+
+				// Ajouter les militaires
+				// Vu qu'on a déjà cboChefMission qui contient tous les militaires, suffit de copier les items et de retirer le chef
+				foreach (String militaire in cboChefMission.Items)
+				{
+					if (militaire != cboChefMission.Text)
+					{
+						cboAjoutMembre.Items.Add(militaire);
+					}
+				}
+			}
+			else // Pas de chef sélectionné
+			{
+				cboAjoutMembre.Enabled = false;
+			}
+
+		}
+
+		private void cboChoixPlanete_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// Si une planete est sélectionnée, autoriser l'ajout de capture d'especes en objectif
+			if (cboChoixPlanete.SelectedIndex != -1) // Planete sélectionnée
+			{
+				cboObjectifCapture.Enabled = true;
+
+				lsbxCaptures.Items.Clear();
+
+				// charger cboObjectifCapture
+				cboObjectifCapture.Items.Clear();
+				objectifs_capture.Clear();
+				nudNbCapture.Value = nudNbCapture.Minimum;
+				nudNbCapture.Enabled = false;
+
+
+				String requete_tout_ennemi = "SELECT es.nom || ' - ' || es.couleur as 'Monstre Ennemi', es.id " +
+									"FROM Espece es, Ennemi en " +
+									"WHERE es.id = en.idEspece";
+				String requete_planete_ennemis = "SELECT es.nom || ' - ' || es.couleur as 'Monstre Ennemi', es.id " +
+																"FROM Espece es, Ennemi en, Habiter h " +
+																"WHERE es.id = en.idEspece AND es.id = h.idEspece AND h.nomPlanete = '" + cboChoixPlanete.Text + "'";
+				String requete = requete_planete_ennemis;
+				if (ckbAfficherTousEnnemis.Checked)
+				{
+					requete = requete_tout_ennemi;
+				}
+
+				SQLiteCommand cd1 = new SQLiteCommand(requete, Connexion.Connec);
+				cd1.CommandType = CommandType.Text;
+				SQLiteDataReader queryResponse = cd1.ExecuteReader();
+				while (queryResponse.Read())
+				{
+					cboObjectifCapture.Items.Add(queryResponse.GetValue(0).ToString());
+					especes[queryResponse.GetValue(0).ToString()] = queryResponse.GetValue(1).ToString();
+				}
+			}
+			else // Pas de planete sélectionnée
+			{
+				cboObjectifCapture.Enabled = false;
+			}
+		}
+
+		private void cboAjoutMembre_SelectionChangeCommitted(object sender, EventArgs e)
+		{
+			// Ajouter un membre dans la liste des membres de la misison
+			if (lsbxParticipants.Items.Count >= MAX_PARTICIPANTS)
+			{
+				MessageBox.Show("Vous ne pouvez pas ajouter plus de membres pour la mission!");
+			}
+			else
+			{
+				lsbxParticipants.Items.Add(cboAjoutMembre.Text);
+				cboAjoutMembre.Items.Remove(cboAjoutMembre.Text);
+			}
+		}
+
+		private void lsbxParticipants_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// Retirer un membre de la mission
+			if (lsbxParticipants.SelectedIndex != -1)
+			{
+				if (lsbxParticipants.SelectedItem.ToString() != cboChefMission.Text)
+				{
+					cboAjoutMembre.Items.Add(lsbxParticipants.SelectedItem);
+					lsbxParticipants.Items.Remove(lsbxParticipants.SelectedItem);
+				}
+			}
+		}
+
+		private void ckbAfficherTousEnnemis_CheckedChanged(object sender, EventArgs e)
+		{
+			cboChoixPlanete_SelectedIndexChanged(sender, e);
+		}
+
+		private void lsbxCaptures_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			// Retirer un objectif de la mission
+			if (lsbxCaptures.SelectedIndex != -1)
+			{
+				objectifs_capture.Remove(objectifs_capture.Keys.ToList()[lsbxCaptures.SelectedIndex]);
+				lsbxCaptures.Items.RemoveAt(lsbxCaptures.SelectedIndex);
+			}
+		}
+
+		private void cboObjectifCapture_SelectedIndexChanged(object sender, EventArgs e)
+		{
+			if (cboObjectifCapture.SelectedIndex != -1)
+			{
+				nudNbCapture.Enabled = true;
+			}
+			else
+			{
+				nudNbCapture.Enabled = false;
+				nudNbCapture.Value = nudNbCapture.Minimum;
+			}
+		}
+
+		private void nudNbCapture_ValueChanged(object sender, EventArgs e)
+		{
+			if (nudNbCapture.Value != nudNbCapture.Minimum && nudNbCapture.Enabled)
+			{
+				btnAjoutObjectif.Enabled = true;
+			}
+			else
+			{
+				btnAjoutObjectif.Enabled = false;
+			}
+		}
+		private void btnAjoutObjectif_Click(object sender, EventArgs e)
+		{
+			// Ajouter objectif
+			if (!objectifs_capture.ContainsKey(cboObjectifCapture.Text)) // Si la clé n'existe pas...
+			{
+				objectifs_capture[cboObjectifCapture.Text] = Convert.ToInt32(nudNbCapture.Value);
+			}
+			else
+			{
+				objectifs_capture[cboObjectifCapture.Text] += Convert.ToInt32(nudNbCapture.Value);
+			}
+
+			// Actualiser la liste des objectifs
+			lsbxCaptures.Items.Clear();
+			foreach (String especeEnnemi in objectifs_capture.Keys)
+			{
+				lsbxCaptures.Items.Add(especeEnnemi + " ---> " + objectifs_capture[especeEnnemi].ToString());
+			}
+		}
+	}
+}

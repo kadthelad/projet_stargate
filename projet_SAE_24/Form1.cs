@@ -25,7 +25,7 @@ namespace projet_SAE_24
 		{
 			// Chargement de la base de donnée entière en local (pour le mode déconnecté)
 			DataTable dtSchema = Connexion.Connec.GetSchema("Tables");
-			for (int i = 1; i < dtSchema.Rows.Count; i++)
+			for (int i = 0; i < dtSchema.Rows.Count; i++)
 			{
 				string nomTable = dtSchema.Rows[i]["TABLE_NAME"].ToString();
 				string requete = "SELECT * FROM " + nomTable;
