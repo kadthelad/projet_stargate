@@ -33,6 +33,7 @@
             // 
             // layPlanetes
             // 
+            this.layPlanetes.AutoScroll = true;
             this.layPlanetes.Location = new System.Drawing.Point(12, 12);
             this.layPlanetes.Name = "layPlanetes";
             this.layPlanetes.Size = new System.Drawing.Size(776, 426);
