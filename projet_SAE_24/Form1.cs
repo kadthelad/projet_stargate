@@ -31,10 +31,6 @@ namespace projet_SAE_24
 				donnees.SelectCommand = commande;
 				donnees.Fill(MesDatas.DsGlobal, nomTable);
 			}
-
-			FormADM ajoutDeMission = new FormADM();
-			ajoutDeMission.ShowDialog();
-			Application.Exit();
 		}
 
 		private void btnMissions_Click(object sender, EventArgs e)
