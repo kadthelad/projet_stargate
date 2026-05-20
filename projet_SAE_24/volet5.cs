@@ -28,7 +28,8 @@ namespace projet_SAE_24
         {
             foreach (DataRow ligne in maDB.Tables["Planete"].Rows)
             {
-                PictureBox pb = new PictureBox();
+                PictureBox pb1 = new PictureBox();
+                PictureBox pb2 = new PictureBox();
                 Panel p = new Panel();
                 Label lblNomPlanete = new Label();
 
@@ -37,8 +38,8 @@ namespace projet_SAE_24
                 /*MessageBox.Show(projectPath + "/img/planetes/" + planete + ".png");
                 MessageBox.Show(File.Exists(projectPath + "/img//planetes/" + planete + ".png").ToString());*/
 
-                pb.Image = Image.FromFile(projectPath + "/img/planetes/" + planete + ".png");
-                pb.SizeMode = PictureBoxSizeMode.StretchImage;
+                pb1.Image = Image.FromFile(projectPath + "/img/planetes/" + planete + ".png");
+                pb1.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 p.Width = 150;
                 p.Height = 100;
@@ -49,12 +50,38 @@ namespace projet_SAE_24
                 lblNomPlanete.Left = 100;
                 lblNomPlanete.Top = 5;
                 lblNomPlanete.AutoSize = true;
-                lblNomPlanete.Font = new Font("Arial", 12, FontStyle.Bold);
+                lblNomPlanete.Font = new Font("Arial", 8, FontStyle.Bold);
 
-                lblNomPlanete.Top = pb.Bottom + 5;
-                lblNomPlanete.Left = pb.Left + (pb.Width - lblNomPlanete.PreferredWidth) / 2;
+                lblNomPlanete.Top = pb1.Bottom + 5;
+                lblNomPlanete.Left = pb1.Left + (pb1.Width - lblNomPlanete.PreferredWidth) / 2;
 
-                p.Controls.Add(pb);
+                if (ligne["temperature"] != DBNull.Value)
+                {
+                    int temperature = Convert.ToInt32(ligne["temperature"]);
+
+                    if (temperature < 0)
+                    {
+                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/enerve.jpg");
+                    }
+                    else if (temperature >= 0 && temperature <= 100)
+                    {
+                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/normal.jpg");
+                    }
+                    else if (temperature > 100)
+                    {
+                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/heureux.jpg");
+                    }
+                }
+
+                pb2.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                pb2.Width = 50;
+                pb2.Height = 50;
+                pb2.Left = p.Left + 10;
+                pb2.Top = pb1.Bottom + 10;
+
+                p.Controls.Add(pb1);
+                p.Controls.Add(pb2);
                 p.Controls.Add(lblNomPlanete);
                 layPlanetes.Controls.Add(p);
                 

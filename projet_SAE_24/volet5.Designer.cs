@@ -46,7 +46,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.layPlanetes);
             this.Name = "volet5";
-            this.Text = "volet5";
+            this.Text = "Informations sur les planètes";
             this.Load += new System.EventHandler(this.volet5_Load);
             this.ResumeLayout(false);
 
