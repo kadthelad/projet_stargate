@@ -39,8 +39,10 @@
             this.lblBudget = new System.Windows.Forms.Label();
             this.lblSoldeRestant = new System.Windows.Forms.Label();
             this.grpObjectifCapture = new System.Windows.Forms.GroupBox();
+            this.pcbJournal = new System.Windows.Forms.PictureBox();
             this.grpFeuilleDeRoute.SuspendLayout();
             this.grpMembres.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbJournal)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -158,11 +160,22 @@
             this.grpObjectifCapture.TabStop = false;
             this.grpObjectifCapture.Text = "Objectif de Capture";
             // 
+            // pcbJournal
+            // 
+            this.pcbJournal.Location = new System.Drawing.Point(856, 596);
+            this.pcbJournal.Name = "pcbJournal";
+            this.pcbJournal.Size = new System.Drawing.Size(76, 83);
+            this.pcbJournal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbJournal.TabIndex = 11;
+            this.pcbJournal.TabStop = false;
+            this.pcbJournal.Click += new System.EventHandler(this.pcbJournal_Click);
+            // 
             // Volet3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(953, 718);
+            this.Controls.Add(this.pcbJournal);
             this.Controls.Add(this.grpObjectifCapture);
             this.Controls.Add(this.lblSoldeRestant);
             this.Controls.Add(this.lblBudget);
@@ -180,6 +193,7 @@
             this.Load += new System.EventHandler(this.recapMission_Load);
             this.grpFeuilleDeRoute.ResumeLayout(false);
             this.grpMembres.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pcbJournal)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -198,5 +212,6 @@
         private System.Windows.Forms.Label lblSoldeRestant;
         private System.Windows.Forms.FlowLayoutPanel flpMembres;
         private System.Windows.Forms.GroupBox grpObjectifCapture;
+        private System.Windows.Forms.PictureBox pcbJournal;
     }
 }

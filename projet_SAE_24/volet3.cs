@@ -22,6 +22,19 @@ namespace projet_SAE_24
             InitializeComponent();
             m_missioNumero = missionChoisi;
             m_missionPlanete = missionPlanete;
+
+            // ajout de l'icone de journal sur le bouton de journal
+            string cheminProjet = Application.StartupPath;
+            try
+            {
+                Image img = Image.FromFile(cheminProjet + "/img/icons/journal.png");
+                pcbJournal.Image = img;
+            }
+            catch (Exception error)
+            {
+                Image img = Image.FromFile(cheminProjet + "/img/membres/placeholder.png");
+                pcbJournal.Image = img;
+            }
         }
 
         DataSet monds = MesDatas.DsGlobal;
@@ -111,6 +124,12 @@ namespace projet_SAE_24
 
 
 
+        }
+
+        private void pcbJournal_Click(object sender, EventArgs e)
+        {
+            Journal journal = new Journal();
+            journal.Show();
         }
     }
 }
