@@ -32,6 +32,7 @@ namespace projet_SAE_24
                 PictureBox pb2 = new PictureBox();
                 Panel p = new Panel();
                 Label lblNomPlanete = new Label();
+                Label lblTemperature = new Label();
 
                 string planete = ligne["nom"].ToString().Trim();
 
@@ -58,6 +59,7 @@ namespace projet_SAE_24
                 if (ligne["temperature"] != DBNull.Value)
                 {
                     int temperature = Convert.ToInt32(ligne["temperature"]);
+                    lblTemperature.Text = temperature.ToString() + "°";
 
                     if (temperature < 0)
                     {
@@ -73,16 +75,23 @@ namespace projet_SAE_24
                     }
                 }
 
+                lblTemperature.AutoSize = true;
+
                 pb2.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                pb2.Width = 50;
-                pb2.Height = 50;
-                pb2.Left = p.Left + 10;
-                pb2.Top = pb1.Bottom + 10;
+                pb2.Width = 20;
+                pb2.Height = 20;
+
+                pb2.Left = p.Left;
+                pb2.Top = pb1.Bottom + 20;
+
+                lblTemperature.Left = pb2.Right + 10;
+                lblTemperature.Top = pb2.Top + 5;
 
                 p.Controls.Add(pb1);
                 p.Controls.Add(pb2);
                 p.Controls.Add(lblNomPlanete);
+                p.Controls.Add(lblTemperature);
                 layPlanetes.Controls.Add(p);
                 
             }
