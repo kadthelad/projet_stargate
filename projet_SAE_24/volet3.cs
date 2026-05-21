@@ -93,14 +93,15 @@ namespace projet_SAE_24
             {
                 int idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
                 string nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
-                MessageBox.Show(nomEnnemie);
 
                 
 
                 Label lblObjectif = new Label();
-                lblObjectif.Text = $"{nomEnnemie} --> {objectifDeCapture["objectif"]} prise(s)";
+                string objectifPrises = objectifDeCapture["objectif"].ToString();
+                lblObjectif.Text = $"{nomEnnemie} --> {objectifPrises} prise(s)";
                 lblObjectif.Top = haut;
                 lblObjectif.Left = gauche;
+                lblObjectif.AutoSize = true;
 
                 haut += 20;
 
