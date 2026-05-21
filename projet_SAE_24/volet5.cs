@@ -33,17 +33,18 @@ namespace projet_SAE_24
                 Panel p = new Panel();
                 Label lblNomPlanete = new Label();
                 Label lblTemperature = new Label();
+                Label lblGravite = new Label();
+                Label lblDataBaz = new Label();
 
                 string planete = ligne["nom"].ToString().Trim();
-
-                /*MessageBox.Show(projectPath + "/img/planetes/" + planete + ".png");
-                MessageBox.Show(File.Exists(projectPath + "/img//planetes/" + planete + ".png").ToString());*/
+                string gravite = ligne["gravite"].ToString().Trim();
+                string databaz = "";
 
                 pb1.Image = Image.FromFile(projectPath + "/img/planetes/" + planete + ".png");
                 pb1.SizeMode = PictureBoxSizeMode.StretchImage;
 
-                p.Width = 150;
-                p.Height = 100;
+                p.Width = 175;
+                p.Height = 150;
 
                 p.Margin = new Padding(30);
 
@@ -88,10 +89,41 @@ namespace projet_SAE_24
                 lblTemperature.Left = pb2.Right + 10;
                 lblTemperature.Top = pb2.Top + 5;
 
+                lblGravite.Text = "Gravité : " + gravite;
+                lblGravite.Top = pb2.Bottom + 5;
+                lblGravite.Left = p.Left;
+
+                if (ligne["dataBazON"] != DBNull.Value)
+                {
+                    int db = Convert.ToInt32(ligne["dataBazON"]);
+
+                    switch (db)
+                    {
+                        case 1:
+                            databaz = "Présence de DataBaz";
+                            lblDataBaz.ForeColor = Color.Green;
+                            break;
+                        case 0:
+                            databaz = "Pas de DataBaz";
+                            lblDataBaz.ForeColor = Color.Red;
+                            break;
+                        default:
+                            databaz = "";
+                            break;
+                    }
+                }
+                
+                lblDataBaz.Text = databaz;
+                lblDataBaz.AutoSize = true;
+                lblDataBaz.Top = lblGravite.Bottom + 2;
+                lblDataBaz.Left = p.Left;
+
                 p.Controls.Add(pb1);
                 p.Controls.Add(pb2);
                 p.Controls.Add(lblNomPlanete);
                 p.Controls.Add(lblTemperature);
+                p.Controls.Add(lblGravite);
+                p.Controls.Add(lblDataBaz);
                 layPlanetes.Controls.Add(p);
                 
             }
