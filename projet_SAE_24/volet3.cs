@@ -23,8 +23,20 @@ namespace projet_SAE_24
             m_missioNumero = missionChoisi;
             m_missionPlanete = missionPlanete;
 
-            // ajout de l'icone de journal sur le bouton de journal
             string cheminProjet = Application.StartupPath;
+            // ajout de l'icone de journal sur le bouton de journal
+            try
+            {
+                Image img = Image.FromFile(cheminProjet + "/img/icons/journal.png");
+                pcbJournal.Image = img;
+            }
+            catch (Exception error)
+            {
+                Image img = Image.FromFile(cheminProjet + "/img/membres/placeholder.png");
+                pcbJournal.Image = img;
+            }
+
+            //ajout de l'image de la planete
             try
             {
                 Image img = Image.FromFile(cheminProjet + "/img/icons/journal.png");
@@ -120,10 +132,6 @@ namespace projet_SAE_24
 
                 grpObjectifCapture.Controls.Add(lblObjectif);
             }
-
-
-
-
         }
 
         private void pcbJournal_Click(object sender, EventArgs e)
