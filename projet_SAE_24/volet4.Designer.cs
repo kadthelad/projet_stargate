@@ -28,29 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lay_espece = new System.Windows.Forms.FlowLayoutPanel();
-            this.btn_filtre = new System.Windows.Forms.Button();
+            this.layEspece = new System.Windows.Forms.FlowLayoutPanel();
+            this.btnFiltre = new System.Windows.Forms.Button();
             this.btnPlantes = new System.Windows.Forms.Button();
+            this.btnQuitterFenetre = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lay_espece
+            // layEspece
             // 
-            this.lay_espece.AutoScroll = true;
-            this.lay_espece.Location = new System.Drawing.Point(12, 12);
-            this.lay_espece.Name = "lay_espece";
-            this.lay_espece.Size = new System.Drawing.Size(644, 426);
-            this.lay_espece.TabIndex = 2;
+            this.layEspece.AutoScroll = true;
+            this.layEspece.Location = new System.Drawing.Point(12, 12);
+            this.layEspece.Name = "layEspece";
+            this.layEspece.Size = new System.Drawing.Size(644, 426);
+            this.layEspece.TabIndex = 2;
             // 
-            // btn_filtre
+            // btnFiltre
             // 
-            this.btn_filtre.Font = new System.Drawing.Font("Arial", 14F);
-            this.btn_filtre.Location = new System.Drawing.Point(662, 12);
-            this.btn_filtre.Name = "btn_filtre";
-            this.btn_filtre.Size = new System.Drawing.Size(126, 49);
-            this.btn_filtre.TabIndex = 3;
-            this.btn_filtre.Text = "Filtrer";
-            this.btn_filtre.UseVisualStyleBackColor = true;
-            this.btn_filtre.Click += new System.EventHandler(this.btn_filtre_Click);
+            this.btnFiltre.Font = new System.Drawing.Font("Arial", 14F);
+            this.btnFiltre.Location = new System.Drawing.Point(662, 12);
+            this.btnFiltre.Name = "btnFiltre";
+            this.btnFiltre.Size = new System.Drawing.Size(126, 49);
+            this.btnFiltre.TabIndex = 3;
+            this.btnFiltre.Text = "Filtrer";
+            this.btnFiltre.UseVisualStyleBackColor = true;
+            this.btnFiltre.Click += new System.EventHandler(this.btn_filtre_Click);
             // 
             // btnPlantes
             // 
@@ -63,14 +64,26 @@
             this.btnPlantes.UseVisualStyleBackColor = true;
             this.btnPlantes.Click += new System.EventHandler(this.btnPlantes_Click);
             // 
+            // btnQuitterFenetre
+            // 
+            this.btnQuitterFenetre.Font = new System.Drawing.Font("Arial", 10F);
+            this.btnQuitterFenetre.Location = new System.Drawing.Point(662, 334);
+            this.btnQuitterFenetre.Name = "btnQuitterFenetre";
+            this.btnQuitterFenetre.Size = new System.Drawing.Size(126, 49);
+            this.btnQuitterFenetre.TabIndex = 5;
+            this.btnQuitterFenetre.Text = "Quitter la fenêtre";
+            this.btnQuitterFenetre.UseVisualStyleBackColor = true;
+            this.btnQuitterFenetre.Click += new System.EventHandler(this.button1_Click);
+            // 
             // volet4
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.btnPlantes);
-            this.Controls.Add(this.btn_filtre);
-            this.Controls.Add(this.lay_espece);
+            this.Controls.Add(this.btnFiltre);
+            this.Controls.Add(this.layEspece);
             this.Name = "volet4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Informations sur les espèces";
@@ -81,8 +94,9 @@
 
         #endregion
 
-        private System.Windows.Forms.FlowLayoutPanel lay_espece;
-        private System.Windows.Forms.Button btn_filtre;
+        private System.Windows.Forms.FlowLayoutPanel layEspece;
+        private System.Windows.Forms.Button btnFiltre;
         private System.Windows.Forms.Button btnPlantes;
+        private System.Windows.Forms.Button btnQuitterFenetre;
     }
 }

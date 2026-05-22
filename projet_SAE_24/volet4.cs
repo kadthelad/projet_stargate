@@ -25,7 +25,7 @@ namespace projet_SAE_24
 
         public void Creation_De_Panel(string nomRecherche = "", string couleurRecherche = "", bool allieRecherche = false, bool ennemiRecherche = false)
         {
-            lay_espece.Controls.Clear();
+            layEspece.Controls.Clear();
 
             //Boucle pour afficher toutes les espèces du DataSet
             for (int i = 0; i < maDB.Tables["Espece"].Rows.Count; i++)
@@ -190,7 +190,7 @@ namespace projet_SAE_24
                 p.Controls.Add(lblCouleur);
                 p.Controls.Add(lblOrigine);
 
-                lay_espece.Controls.Add(p);
+                layEspece.Controls.Add(p);
             }
         }
 
@@ -217,6 +217,11 @@ namespace projet_SAE_24
             volet5 fenetrePlanete = new volet5();
 
             fenetrePlanete.ShowDialog();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
