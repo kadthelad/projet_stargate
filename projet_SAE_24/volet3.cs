@@ -17,11 +17,24 @@ namespace projet_SAE_24
     {
         readonly int m_missioNumero;
         readonly string m_missionPlanete;
-        public Volet3(int missionChoisi, string missionPlanete)
+        public Volet3(int nbMissionPlanete, string missionPlanete)
         {
             InitializeComponent();
-            m_missioNumero = missionChoisi;
+            m_missioNumero = nbMissionPlanete;
             m_missionPlanete = missionPlanete;
+
+
+        }
+
+        DataSet monds = MesDatas.DsGlobal;
+
+        private void recapMission_Load(object sender, EventArgs e)
+        {
+            remplirForm();
+        }
+
+        private void remplirForm()
+        {
 
             string cheminProjet = Application.StartupPath;
             // ajout de l'icone de journal sur le bouton de journal
@@ -39,30 +52,21 @@ namespace projet_SAE_24
             //ajout de l'image de la planete
             try
             {
-                Image img = Image.FromFile(cheminProjet + "/img/icons/journal.png");
-                pcbJournal.Image = img;
+                Image img = Image.FromFile(cheminProjet + "/img/planetes/" + m_missionPlanete + ".png");
+                pcbPlanete.Image = img;
             }
             catch (Exception error)
             {
                 Image img = Image.FromFile(cheminProjet + "/img/membres/placeholder.png");
-                pcbJournal.Image = img;
+                pcbPlanete.Image = img;
             }
-        }
 
-        DataSet monds = MesDatas.DsGlobal;
-
-        private void recapMission_Load(object sender, EventArgs e)
-        {
-            remplirForm();
-        }
-
-        private void remplirForm()
-        {
             // recuperation de la table des missions
             DataTable tblMission = monds.Tables["Mission"];
 
             // recuperation de la mission
             DataRow ligneDeLaMission = tblMission.Select($"nomPlanete = '{m_missionPlanete}' AND numero = {m_missioNumero}").CopyToDataTable().Rows[0];
+            string matriculeChef = ligneDeLaMission["matriculeChef"].ToString();
 
             // pour le nom de la mission
             lblMisssion.Text = ligneDeLaMission["nomPlanete"].ToString();
@@ -104,17 +108,24 @@ namespace projet_SAE_24
                         break;
                 }
 
-                string nomMembre = monds.Tables["Membre"].Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Nom"].ToString();
-                string prenomMembre = monds.Tables["Membre"].Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Prenom"].ToString();
+                DataTable tableMembre = monds.Tables["Membre"];
+                string nomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Nom"].ToString();
+                string prenomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Prenom"].ToString();
                 ucMembre membre = new ucMembre(nomMembre, prenomMembre, typeMembre);
+
+                if (matriculeChef == matriculeMembre)
+                {
+                    membre.definirChef();
+                }
 
                 flpMembres.Controls.Add(membre);
             }
 
-            DataTable tableCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}").CopyToDataTable();
+            // Création table captures
+            DataTable tblObjectifCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}").CopyToDataTable();
             int haut = 30;
             int gauche = 30;
-            foreach(DataRow objectifDeCapture in tableCapture.Rows)
+            foreach (DataRow objectifDeCapture in tblObjectifCapture.Rows)
             {
                 int idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
                 string nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();

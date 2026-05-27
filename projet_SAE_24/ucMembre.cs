@@ -41,5 +41,12 @@ namespace projet_SAE_24
         {
 
         }
+
+        public void definirChef()
+        {
+            Font font = new Font(lblNom.Font, FontStyle.Underline);
+            lblNom.Font = font;
+            lblPrenom.Font = font;
+        }
     }
 }

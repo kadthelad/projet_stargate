@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
             this.lblMisssion = new System.Windows.Forms.Label();
             this.grpFeuilleDeRoute = new System.Windows.Forms.GroupBox();
             this.rtbFeuilleDeRoute = new System.Windows.Forms.RichTextBox();
@@ -40,20 +39,12 @@
             this.lblSoldeRestant = new System.Windows.Forms.Label();
             this.grpObjectifCapture = new System.Windows.Forms.GroupBox();
             this.pcbJournal = new System.Windows.Forms.PictureBox();
+            this.pcbPlanete = new System.Windows.Forms.PictureBox();
             this.grpFeuilleDeRoute.SuspendLayout();
             this.grpMembres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbJournal)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbPlanete)).BeginInit();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(371, 11);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(117, 91);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "placeHolderImagePLanete";
             // 
             // lblMisssion
             // 
@@ -170,11 +161,21 @@
             this.pcbJournal.TabStop = false;
             this.pcbJournal.Click += new System.EventHandler(this.pcbJournal_Click);
             // 
+            // pcbPlanete
+            // 
+            this.pcbPlanete.Location = new System.Drawing.Point(359, 15);
+            this.pcbPlanete.Name = "pcbPlanete";
+            this.pcbPlanete.Size = new System.Drawing.Size(118, 107);
+            this.pcbPlanete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbPlanete.TabIndex = 12;
+            this.pcbPlanete.TabStop = false;
+            // 
             // Volet3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(953, 718);
+            this.Controls.Add(this.pcbPlanete);
             this.Controls.Add(this.pcbJournal);
             this.Controls.Add(this.grpObjectifCapture);
             this.Controls.Add(this.lblSoldeRestant);
@@ -184,7 +185,6 @@
             this.Controls.Add(this.grpMembres);
             this.Controls.Add(this.grpFeuilleDeRoute);
             this.Controls.Add(this.lblMisssion);
-            this.Controls.Add(this.label1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Volet3";
@@ -194,14 +194,13 @@
             this.grpFeuilleDeRoute.ResumeLayout(false);
             this.grpMembres.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbJournal)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbPlanete)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblMisssion;
         private System.Windows.Forms.GroupBox grpFeuilleDeRoute;
         private System.Windows.Forms.RichTextBox rtbFeuilleDeRoute;
@@ -213,5 +212,6 @@
         private System.Windows.Forms.FlowLayoutPanel flpMembres;
         private System.Windows.Forms.GroupBox grpObjectifCapture;
         private System.Windows.Forms.PictureBox pcbJournal;
+        private System.Windows.Forms.PictureBox pcbPlanete;
     }
 }
