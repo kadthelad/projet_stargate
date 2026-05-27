@@ -53,6 +53,7 @@ namespace projet_SAE_24
                 Label lblAgressivite = new Label();
                 Label lblTypeArme = new Label();
 
+                //Si l'espèce est un allié, estAllie devient true et on stocke le degré de bienveillance et l'instrument de musique dans des variables
                 for (int j = 0; j < maDB.Tables["Allie"].Rows.Count; j++)
                 {
                     if (Convert.ToInt32(maDB.Tables["Allie"].Rows[j]["idEspece"]) == idEspece)
@@ -66,6 +67,7 @@ namespace projet_SAE_24
                     }
                 }
 
+                //Les labels correspondants aux races alliées sont donc changées en conséquence
                 if (estAllie)
                 {
                     lblBienveillance.Text = "Bienveillance : " + bienveillance;
@@ -84,6 +86,7 @@ namespace projet_SAE_24
                     p.Controls.Add(lblInstrumentMusique);
                 }
 
+                //Idem avec les races ennemies
                 for (int j = 0; j < maDB.Tables["Ennemi"].Rows.Count; j++)
                 {
                     if (Convert.ToInt32(maDB.Tables["Ennemi"].Rows[j]["idEspece"]) == idEspece)
@@ -115,18 +118,22 @@ namespace projet_SAE_24
                     p.Controls.Add(lblTypeArme);
                 }
 
+                //Filtre pour les noms des espèces et des couleurs
                 if ((nomRecherche != "" && !nom.ToLower().Contains(nomRecherche.ToLower())) || (couleurRecherche != "" && !couleur.ToLower().Contains(couleurRecherche.ToLower())))
                 {
                     continue;
                 }
 
+                // Vérifie si aucun filtre (allié/ennemi) n'est sélectionné
                 bool aucunFiltre = !allieRecherche && !ennemiRecherche;
 
+                // Détermine si l'espèce doit être affichée selon les filtres choisis
                 bool afficher =
                     aucunFiltre ||
                     (allieRecherche && estAllie) ||
                     (ennemiRecherche && estEnnemi);
 
+                // Si l'espèce ne correspond pas aux filtres, on passe à la suivante
                 if (!afficher)
                 {
                     continue;
@@ -158,6 +165,7 @@ namespace projet_SAE_24
                 lblCouleur.Top = 35;
                 lblCouleur.AutoSize = true;
 
+                //Boucle permettant d'ajouter les différentes planètes où se trouvent les espèces
                 for (int j = 0; j < maDB.Tables["Habiter"].Rows.Count; j++)
                 {
                     if (maDB.Tables["Espece"].Rows[i]["id"].ToString() == maDB.Tables["Habiter"].Rows[j]["idEspece"].ToString())
@@ -166,11 +174,13 @@ namespace projet_SAE_24
                     }
                 }
 
+                //Si la variable planète est vide, on met dedans "Origine inconnue"
                 if (planete == string.Empty)
                 {
                     planete = "Origine inconnue";
                 }
 
+                //lblOrigine a comme texte planete et si il contient une ou plusieurs planètes, on utilise un Substring pour enlever le slash de fin
                 if (planete == "Origine inconnue")
                 {
                     lblOrigine.Text = planete;
@@ -199,6 +209,7 @@ namespace projet_SAE_24
             Creation_De_Panel();
         }
 
+        //Ouvre une nouvelle fenêtre pour le filtre
         private void btn_filtre_Click(object sender, EventArgs e)
         {
             filtre fenetreFiltre = new filtre();
@@ -212,6 +223,7 @@ namespace projet_SAE_24
             }
         }
 
+        //Afficher le volet sur les planètes
         private void btnPlantes_Click(object sender, EventArgs e)
         {
             volet5 fenetrePlanete = new volet5();
@@ -219,6 +231,7 @@ namespace projet_SAE_24
             fenetrePlanete.ShowDialog();
         }
 
+        //Fermer la fenêtre
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
