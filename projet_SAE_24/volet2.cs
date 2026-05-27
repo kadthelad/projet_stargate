@@ -258,18 +258,41 @@ namespace projet_SAE_24
 			}
 		}
 
-		private bool verifDisponibilite(String matricule)
+		private bool estDisponible(String matricule)
 		{
-			if (matricule == "")
+			// On cherche les personnes qui ont des matricules qui apparaissent durant une mission
+			// dans une plage de temps donnée avec les DateTimePickers
+			try
 			{
-				return false;
-			}
-			String requete = "SELECT c.matriculeMembre " +
-								"FROM Composer c, Mission m " +
-								"WHERE c.nomPlanete = m.nomPlanete AND c.numeroMission = m.numero " +
-								$"AND m.dateRetour < '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}' " +
-								$"AND m.date";
+				if (matricule == "")
+				{
+					return false;
+				}
+				String requete = "SELECT c.matriculeMembre " +
+								 "FROM Composer c, Mission m " +
+								 "WHERE c.nomPlanete = m.nomPlanete AND c.numeroMission = m.numero " +
+								 "AND (" +
+									$"('{dtpDateRetour.Value.ToString("yyyy-MM-dd")}' >= m.dateDepart AND '{dtpDateRetour.Value.ToString("yyyy-MM-dd")}' <= m.dateRetour) " +
+									"OR " +
+									$"('{dtpDateDepart.Value.ToString("yyyy-MM-dd")}' <= m.dateRetour AND '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}' >= m.dateDepart)" +
+								 ")";
 
+				SQLiteCommand commande = new SQLiteCommand(requete, Connexion.Connec);
+				commande.CommandType = CommandType.Text;
+				SQLiteDataReader queryResponse = commande.ExecuteReader();
+				while (queryResponse.Read())
+				{
+					if (queryResponse.GetString(0) == matricule)
+					{
+						return false;
+					}
+				}
+				return true;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Erreur lors de la verification de disponibilite!\nPlus d'informations: " + ex.Message);
+			}
 			return false;
 		}
 		
@@ -278,6 +301,14 @@ namespace projet_SAE_24
 			// Si un chef de mission est sélectionné, autoriser l'utilisateur à ajouter/retirer des membrres pour la mission
 			if (cboChefMission.SelectedIndex != -1) // Chef sélectionné
 			{
+				lsbxParticipants.Items.Clear(); // Rafraichir la liste des participants
+
+				if (!estDisponible(matricules[cboChefMission.Text]))
+				{
+					MessageBox.Show("Ce chef est déjà dans une mission durant cette plage de temps!");
+					return;
+				}
+
 				cboAjoutMembre.Enabled = true;
 
 				lsbxParticipants.Items.Clear();
@@ -365,6 +396,10 @@ namespace projet_SAE_24
 			if (lsbxParticipants.Items.Count >= MAX_PARTICIPANTS)
 			{
 				MessageBox.Show("Vous ne pouvez pas ajouter plus de membres pour la mission!");
+			}
+			else if (!estDisponible(matricules[cboAjoutMembre.Text]))
+			{
+				MessageBox.Show("Cette personne est déjà dans une mission durant cette plage de temps!");
 			}
 			else
 			{
