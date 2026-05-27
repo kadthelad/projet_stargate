@@ -1,4 +1,5 @@
 ﻿using System;
+using static projet_SAE_24.Connexion;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,7 +42,8 @@ namespace projet_SAE_24
 
 		private void btnDonnees_Click(object sender, EventArgs e)
 		{
-
+			volet4 volet4 = new volet4();
+			volet4.ShowDialog();
 		}
 
 		private void btnQuit_Click(object sender, EventArgs e)
