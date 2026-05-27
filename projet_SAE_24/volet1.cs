@@ -25,6 +25,7 @@ namespace projet_SAE_24
 
 		private void Rafraichir_Missions()
 		{
+			flpTableauDeBord.Controls.Clear();
 			// Ajouter les missions avec une boucle
 			foreach (DataRow ligne in dsGlobal.Tables["Mission"].Rows)
 			{
@@ -34,9 +35,7 @@ namespace projet_SAE_24
 				{
 					String nomChef = dataRowsChef[0]["nom"].ToString() + " " + dataRowsChef[0]["prenom"].ToString();
 
-					Mission missionUC = new Mission(ligne["nomPlanete"].ToString(), ligne["numero"].ToString(),
-						ligne["dateDepart"].ToString(), ligne["dateRetour"].ToString(),
-						nomChef, ligne["budget"].ToString());
+					Mission missionUC = new Mission(ligne["nomPlanete"].ToString(), ligne["numero"].ToString());
 					flpTableauDeBord.Controls.Add(missionUC);
 				}
 			}
@@ -50,10 +49,9 @@ namespace projet_SAE_24
 				// Lancer le volet d'ajout de mission
 				MessageBox.Show("Authentification réussie!");
 				FormADM frmAjoutDeMission = new FormADM();
-				if (frmAjoutDeMission.ShowDialog() == DialogResult.OK)
-				{
-					// Rafraichir les missions
-				}
+				frmAjoutDeMission.ShowDialog();
+				// Rafraichir les missions
+				Rafraichir_Missions();
 			}
 		}
 	}

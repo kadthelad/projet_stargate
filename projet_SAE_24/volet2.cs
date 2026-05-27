@@ -47,10 +47,10 @@ namespace projet_SAE_24
 				}
 
 				// cboChefMission
-				// Je pars du principe que seulement les militaires peuvent être chef de mission
+				// Je pars du principe que seulement les militaires peuvent être chef de mission DISPONIBLES
 				SQLiteCommand cd2 = new SQLiteCommand("SELECT m.nom || ' ' || m.prenom || ' - ' || mi.grade || ' (Militaire)' as 'Chef', m.matricule " +
 														"FROM Membre m, Militaire mi " +
-														"WHERE m.matricule = mi.matriculeMembre", 
+														"WHERE m.matricule = mi.matriculeMembre ",
 														Connexion.Connec);
 				cd2.CommandType = CommandType.Text;
 				queryResponse = cd2.ExecuteReader();
@@ -157,7 +157,7 @@ namespace projet_SAE_24
 				}
 				String nomPlanete = echApostrophe(cboChoixPlanete.Text);
 
-
+				// Construction de la requete SQL
 				String requete = "INSERT INTO Mission (nomPlanete, numero, nbMembreRequis, dateDepart, dateRetour, " +
 														"matriculeChef, feuilleDeRoute, objectifDatabaz, budget) " +
 									$"VALUES ('{nomPlanete}', {missionNumero}, {lsbxParticipants.Items.Count}, '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}', " +
@@ -179,10 +179,31 @@ namespace projet_SAE_24
 								$"VALUES ('{nomPlanete}', {missionNumero}, " +
 								$"'{especes[especeEnnemi]}', {objectifs_capture[especeEnnemi]}); ";
 				}
-				MessageBox.Show(requete);
+
 				// Commit les changements
 				SQLiteCommand cd1 = new SQLiteCommand(requete, Connexion.Connec);
 				cd1.ExecuteNonQuery();
+
+				// La mission sera dans la base de donnée, mais pas dans mesDatas, alors on l'ajoute
+				// Table Mission
+				string requete2 = $"SELECT * FROM Mission WHERE nomPlanete = '{nomPlanete}' AND numero = {missionNumero}";
+				SQLiteCommand commande = new SQLiteCommand(requete2, Connexion.Connec);
+				SQLiteDataAdapter donnees = new SQLiteDataAdapter();
+				donnees.SelectCommand = commande;
+				donnees.Fill(MesDatas.DsGlobal, "Mission");
+				// Table Composer
+				string requete3 = $"SELECT * FROM Composer WHERE nomPlanete = '{nomPlanete}' AND numeroMission = {missionNumero}";
+				commande = new SQLiteCommand(requete3, Connexion.Connec);
+				donnees = new SQLiteDataAdapter();
+				donnees.SelectCommand = commande;
+				donnees.Fill(MesDatas.DsGlobal, "Composer");
+				// Table ObjectifCapture
+				string requete4 = $"SELECT * FROM ObjectifCapture WHERE nomPlanete = '{nomPlanete}' AND numeroMission = {missionNumero}";
+				commande = new SQLiteCommand(requete4, Connexion.Connec);
+				donnees = new SQLiteDataAdapter();
+				donnees.SelectCommand = commande;
+				donnees.Fill(MesDatas.DsGlobal, "ObjectifCapture");
+
 				// Tout s'est bien passé si il n'y a pas d'exception levée
 				MessageBox.Show("Mission ajoutée avec succès!");
 
@@ -237,6 +258,21 @@ namespace projet_SAE_24
 			}
 		}
 
+		private bool verifDisponibilite(String matricule)
+		{
+			if (matricule == "")
+			{
+				return false;
+			}
+			String requete = "SELECT c.matriculeMembre " +
+								"FROM Composer c, Mission m " +
+								"WHERE c.nomPlanete = m.nomPlanete AND c.numeroMission = m.numero " +
+								$"AND m.dateRetour < '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}' " +
+								$"AND m.date";
+
+			return false;
+		}
+		
 		private void cboChefMission_SelectedIndexChanged(object sender, EventArgs e)
 		{
 			// Si un chef de mission est sélectionné, autoriser l'utilisateur à ajouter/retirer des membrres pour la mission

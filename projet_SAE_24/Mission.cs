@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,22 +33,27 @@ namespace projet_SAE_24
 		String numeroMission = "";
 		String nomChef = "";
 
-		public Mission(String CNomPlanete, String CNumeroMission,
-			String dateDepart, String dateFinEstimee, String CNomChef, String budget)
+		public Mission(String CNomPlanete, String CNumeroMission)
 		{
 			InitializeComponent();
-			nomPlanete = CNomPlanete;
-			numeroMission = CNumeroMission;
-			nomChef = CNomChef;
-
-			lblTitre.Text = nomPlanete + " " + numeroMission;
-			lblDateDepart.Text = dateDepart;
-			lblDateFinEstimee.Text = dateFinEstimee;
-			lblNomChef.Text = nomChef;
-			lblBudget.Text = "Budget : " + budget + "$G";
-
+			dsGlobal = MesDatas.DsGlobal;
 			try
 			{
+				// Actualiser les labels
+				DataRow missionActuelle = dsGlobal.Tables["Mission"].Select($"nomPlanete = '{CNomPlanete}'")[0];
+
+				nomPlanete = CNomPlanete;
+				numeroMission = CNumeroMission;
+				nomChef = dsGlobal.Tables["Membre"].Select($"matricule = '{missionActuelle["matriculeChef"]}'")[0]["nom"] + " " +
+						dsGlobal.Tables["Membre"].Select($"matricule = '{missionActuelle["matriculeChef"]}'")[0]["prenom"];
+
+				lblTitre.Text = nomPlanete + " " + numeroMission;
+				lblDateDepart.Text = missionActuelle["dateDepart"].ToString();
+				lblDateFinEstimee.Text = missionActuelle["dateRetour"].ToString();
+				lblNomChef.Text = nomChef;
+				lblBudget.Text = "Budget : " + missionActuelle["budget"] + "$G";
+
+				// Chargement de l'image
 				Image img = Image.FromFile(projectPath + "/img/planetes/" + nomPlanete + ".png");
 				pictureBox1.Image = img;
 			}
