@@ -20,7 +20,7 @@ namespace projet_SAE_24
 		const String TEXTE_RESET_DEFAUT = "Réinitialiser";
 		const String TEXTE_RESET_CONFIRMATION = "Confirmer?";
 
-		String missionNumero = "0";
+		String missionNumero = "1";
 
 		Dictionary<String, String> matricules = new Dictionary<String, String>(); // "nom prenom - role" : "M001"
 		Dictionary<String, String> especes = new Dictionary<String, String>(); // "nomEspece - couleur" : "1" (id)
@@ -65,6 +65,25 @@ namespace projet_SAE_24
 				MessageBox.Show("Erreur lors du chargement des ComboBox!\nPlus de détails: " + err.Message);
 				DialogResult = DialogResult.Cancel; // Quitter la fenêtre en cas de problème
 			}
+		}
+
+		// Permet d'échapper les apostrophes pour les requetes SQL
+		private String echApostrophe(String texte)
+		{
+			String returnTexte = "";
+			foreach (char ch in texte)
+			{
+				if (ch == '\'')
+				{
+					returnTexte += ch + "'";
+				}
+				else
+				{
+					returnTexte += ch;
+				}
+			}
+
+			return returnTexte;
 		}
 
 		private void btnReinitialiser_Click(object sender, EventArgs e)
@@ -136,17 +155,20 @@ namespace projet_SAE_24
 				{
 					rtbFeuilleRoute.Text = "Feuille de route vide.";
 				}
+				String nomPlanete = echApostrophe(cboChoixPlanete.Text);
+
+
 				String requete = "INSERT INTO Mission (nomPlanete, numero, nbMembreRequis, dateDepart, dateRetour, " +
 														"matriculeChef, feuilleDeRoute, objectifDatabaz, budget) " +
-									$"VALUES ('{cboChoixPlanete.Text}', {missionNumero}, {lsbxParticipants.Items.Count}, '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}', " +
-									$"'{dtpDateRetour.Value.ToString("yyyy-MM-dd")}', '{matricules[cboChefMission.Text]}', '{rtbFeuilleRoute.Text}', " +
+									$"VALUES ('{nomPlanete}', {missionNumero}, {lsbxParticipants.Items.Count}, '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}', " +
+									$"'{dtpDateRetour.Value.ToString("yyyy-MM-dd")}', '{matricules[cboChefMission.Text]}', '{echApostrophe(rtbFeuilleRoute.Text)}', " +
 									$"{nudQteTonnes.Value}, {nudBudget.Value}); ";
 
 				// Composer
 				for (int i=0; i < lsbxParticipants.Items.Count; i++)
 				{
 					requete += "INSERT INTO Composer (nomPlanete, numeroMission, matriculeMembre) " +
-								$"VALUES ('{cboChoixPlanete.Text}', {missionNumero}, '{matricules[lsbxParticipants.Items[i].ToString()]}'); ";
+								$"VALUES ('{nomPlanete}', {missionNumero}, '{matricules[lsbxParticipants.Items[i].ToString()]}'); ";
 
 				}
 
@@ -154,10 +176,10 @@ namespace projet_SAE_24
 				foreach (String especeEnnemi in objectifs_capture.Keys)
 				{
 					requete += "INSERT INTO ObjectifCapture (nomPlanete, numeroMission, idEspeceEnnemi, objectif) " +
-								$"VALUES ('{cboChoixPlanete.Text}', {missionNumero}, " +
+								$"VALUES ('{nomPlanete}', {missionNumero}, " +
 								$"'{especes[especeEnnemi]}', {objectifs_capture[especeEnnemi]}); ";
 				}
-
+				MessageBox.Show(requete);
 				// Commit les changements
 				SQLiteCommand cd1 = new SQLiteCommand(requete, Connexion.Connec);
 				cd1.ExecuteNonQuery();
@@ -181,9 +203,9 @@ namespace projet_SAE_24
 			{
 				SQLiteCommand cd1 = new SQLiteCommand("SELECT COUNT(numero) FROM Mission WHERE LOWER(nomPlanete)='" + cboChoixPlanete.Text.ToLower() + "'", Connexion.Connec);
 				cd1.CommandType = CommandType.Text;
-				string numMission = cd1.ExecuteScalar().ToString();
+				int numMission = Convert.ToInt32(cd1.ExecuteScalar().ToString()) + 1;
 				lblNomMission.Text = "Nom de la mission: " + cboChoixPlanete.Text + " " + numMission;
-				missionNumero = numMission;
+				missionNumero = numMission.ToString();
 				// Clear la liste d'objectifs aussi
 				lsbxCaptures.Items.Clear();
 			}
