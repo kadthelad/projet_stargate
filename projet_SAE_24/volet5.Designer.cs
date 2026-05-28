@@ -36,6 +36,8 @@
             // 
             this.layPlanetes.AutoScroll = true;
             this.layPlanetes.Location = new System.Drawing.Point(12, 12);
+            this.layPlanetes.MaximumSize = new System.Drawing.Size(776, 426);
+            this.layPlanetes.MinimumSize = new System.Drawing.Size(776, 426);
             this.layPlanetes.Name = "layPlanetes";
             this.layPlanetes.Size = new System.Drawing.Size(776, 426);
             this.layPlanetes.TabIndex = 0;
@@ -58,6 +60,8 @@
             this.ClientSize = new System.Drawing.Size(899, 450);
             this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.layPlanetes);
+            this.MaximumSize = new System.Drawing.Size(915, 489);
+            this.MinimumSize = new System.Drawing.Size(915, 489);
             this.Name = "volet5";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Informations sur les planètes";

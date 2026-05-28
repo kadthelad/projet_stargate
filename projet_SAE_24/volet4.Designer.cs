@@ -84,6 +84,8 @@
             this.Controls.Add(this.btnPlantes);
             this.Controls.Add(this.btnFiltre);
             this.Controls.Add(this.layEspece);
+            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "volet4";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Informations sur les espèces";

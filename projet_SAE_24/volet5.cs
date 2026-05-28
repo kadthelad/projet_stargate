@@ -202,6 +202,9 @@ namespace projet_SAE_24
             {
                 MessageBox.Show(debutEspecePlusieurs + espece.Substring(0, espece.Length - 1) + ".");
             }
+
+            visionMission vm = new visionMission(p.Name);
+            vm.ShowDialog();
         }
 
         private void btnQuitterFenetre_Click(object sender, EventArgs e)
