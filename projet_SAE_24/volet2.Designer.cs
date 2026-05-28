@@ -210,6 +210,7 @@
 			this.dtpDateRetour.Name = "dtpDateRetour";
 			this.dtpDateRetour.Size = new System.Drawing.Size(239, 22);
 			this.dtpDateRetour.TabIndex = 9;
+			this.dtpDateRetour.ValueChanged += new System.EventHandler(this.dtpDateRetour_ValueChanged);
 			// 
 			// dtpDateDepart
 			// 
