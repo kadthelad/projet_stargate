@@ -130,7 +130,7 @@ namespace projet_SAE_24
                 int idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
                 string nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
 
-                
+
 
                 Label lblObjectif = new Label();
                 string objectifPrises = objectifDeCapture["objectif"].ToString();
@@ -143,11 +143,40 @@ namespace projet_SAE_24
 
                 grpObjectifCapture.Controls.Add(lblObjectif);
             }
+
+            // Création de la table de capture de compte rendu de mission
+            DataTable tblResultatCapture = new DataTable();
+
+            //Ajout des differentes colones
+            tblResultatCapture.Columns.Add("nomEspece");
+            tblResultatCapture.Columns.Add("objectifInitial");
+            tblResultatCapture.Columns.Add("resultatFinal");
+            tblResultatCapture.Columns.Add("tauxReussite");
+
+            DataTable tblCapture = monds.Tables["Capturer"];
+            for (int i = 0; i < tblObjectifCapture.Rows.Count; i++)
+            {
+                DataRow ligneObjectif = tblObjectifCapture.Rows[i];
+                DataRow ligneResultat = tblCapture.Rows[i];
+                string nomEspece = monds.Tables["Espece"].Select($"id = {ligneObjectif["idEspeceEnnemi"]}")[0]["nom"].ToString();
+                int objectifInital = Convert.ToInt32(ligneObjectif["objectif"]);
+                int resultatFinal = Convert.ToInt32(ligneResultat["nombre"]);
+                double tauxReussite = objectifInital / resultatFinal;
+
+                tblResultatCapture.Rows.Add(
+                    nomEspece,
+                    objectifInital,
+                    resultatFinal,
+                    tauxReussite
+                    );
+            }
+            tblResultatCapture.TableName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
+            monds.Tables.Add(tblResultatCapture);
         }
 
         private void pcbJournal_Click(object sender, EventArgs e)
         {
-            Journal journal = new Journal();
+            Journal journal = new Journal(m_missionPlanete, m_missioNumero);
             journal.Show();
         }
     }

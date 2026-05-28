@@ -40,10 +40,14 @@
             this.grpObjectifCapture = new System.Windows.Forms.GroupBox();
             this.pcbJournal = new System.Windows.Forms.PictureBox();
             this.pcbPlanete = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.grpFeuilleDeRoute.SuspendLayout();
             this.grpMembres.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbJournal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPlanete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMisssion
@@ -64,7 +68,7 @@
             this.grpFeuilleDeRoute.Margin = new System.Windows.Forms.Padding(4);
             this.grpFeuilleDeRoute.Name = "grpFeuilleDeRoute";
             this.grpFeuilleDeRoute.Padding = new System.Windows.Forms.Padding(4);
-            this.grpFeuilleDeRoute.Size = new System.Drawing.Size(924, 149);
+            this.grpFeuilleDeRoute.Size = new System.Drawing.Size(1116, 149);
             this.grpFeuilleDeRoute.TabIndex = 3;
             this.grpFeuilleDeRoute.TabStop = false;
             this.grpFeuilleDeRoute.Text = "Feuille de route";
@@ -76,7 +80,7 @@
             this.rtbFeuilleDeRoute.Location = new System.Drawing.Point(0, 23);
             this.rtbFeuilleDeRoute.Margin = new System.Windows.Forms.Padding(4);
             this.rtbFeuilleDeRoute.Name = "rtbFeuilleDeRoute";
-            this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(916, 125);
+            this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(1106, 125);
             this.rtbFeuilleDeRoute.TabIndex = 1;
             this.rtbFeuilleDeRoute.Text = "";
             // 
@@ -87,7 +91,7 @@
             this.grpMembres.Margin = new System.Windows.Forms.Padding(4);
             this.grpMembres.Name = "grpMembres";
             this.grpMembres.Padding = new System.Windows.Forms.Padding(4);
-            this.grpMembres.Size = new System.Drawing.Size(924, 211);
+            this.grpMembres.Size = new System.Drawing.Size(1116, 211);
             this.grpMembres.TabIndex = 4;
             this.grpMembres.TabStop = false;
             this.grpMembres.Text = "Membres";
@@ -97,7 +101,7 @@
             this.flpMembres.AutoScroll = true;
             this.flpMembres.Location = new System.Drawing.Point(8, 23);
             this.flpMembres.Name = "flpMembres";
-            this.flpMembres.Size = new System.Drawing.Size(908, 181);
+            this.flpMembres.Size = new System.Drawing.Size(1098, 181);
             this.flpMembres.TabIndex = 0;
             // 
             // lblDateRetour
@@ -123,7 +127,7 @@
             // lblBudget
             // 
             this.lblBudget.AutoSize = true;
-            this.lblBudget.Location = new System.Drawing.Point(652, 122);
+            this.lblBudget.Location = new System.Drawing.Point(759, 122);
             this.lblBudget.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblBudget.Name = "lblBudget";
             this.lblBudget.Size = new System.Drawing.Size(59, 16);
@@ -135,7 +139,7 @@
             this.lblSoldeRestant.AutoSize = true;
             this.lblSoldeRestant.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSoldeRestant.ForeColor = System.Drawing.Color.Red;
-            this.lblSoldeRestant.Location = new System.Drawing.Point(652, 162);
+            this.lblSoldeRestant.Location = new System.Drawing.Point(759, 162);
             this.lblSoldeRestant.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSoldeRestant.Name = "lblSoldeRestant";
             this.lblSoldeRestant.Size = new System.Drawing.Size(181, 18);
@@ -144,18 +148,18 @@
             // 
             // grpObjectifCapture
             // 
-            this.grpObjectifCapture.Location = new System.Drawing.Point(16, 587);
+            this.grpObjectifCapture.Location = new System.Drawing.Point(16, 596);
             this.grpObjectifCapture.Name = "grpObjectifCapture";
-            this.grpObjectifCapture.Size = new System.Drawing.Size(834, 92);
+            this.grpObjectifCapture.Size = new System.Drawing.Size(887, 90);
             this.grpObjectifCapture.TabIndex = 9;
             this.grpObjectifCapture.TabStop = false;
             this.grpObjectifCapture.Text = "Objectif de Capture";
             // 
             // pcbJournal
             // 
-            this.pcbJournal.Location = new System.Drawing.Point(856, 596);
+            this.pcbJournal.Location = new System.Drawing.Point(909, 596);
             this.pcbJournal.Name = "pcbJournal";
-            this.pcbJournal.Size = new System.Drawing.Size(76, 83);
+            this.pcbJournal.Size = new System.Drawing.Size(67, 67);
             this.pcbJournal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbJournal.TabIndex = 11;
             this.pcbJournal.TabStop = false;
@@ -170,11 +174,31 @@
             this.pcbPlanete.TabIndex = 12;
             this.pcbPlanete.TabStop = false;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Location = new System.Drawing.Point(982, 596);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(67, 67);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 13;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Location = new System.Drawing.Point(1055, 596);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(67, 67);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 14;
+            this.pictureBox2.TabStop = false;
+            // 
             // Volet3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(953, 718);
+            this.ClientSize = new System.Drawing.Size(1135, 718);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.pcbPlanete);
             this.Controls.Add(this.pcbJournal);
             this.Controls.Add(this.grpObjectifCapture);
@@ -195,6 +219,8 @@
             this.grpMembres.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbJournal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPlanete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -213,5 +239,7 @@
         private System.Windows.Forms.GroupBox grpObjectifCapture;
         private System.Windows.Forms.PictureBox pcbJournal;
         private System.Windows.Forms.PictureBox pcbPlanete;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
     }
 }

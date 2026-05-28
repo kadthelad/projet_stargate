@@ -1,4 +1,10 @@
-﻿using System;
+﻿using iText.IO.Font.Constants;
+using iText.Kernel.Font;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using iText.Layout.Properties;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,11 +14,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Image = System.Drawing.Image;
+using PdfImage = iText.Layout.Element.Image;
 
 namespace projet_SAE_24
 {
     public partial class Journal : Form
     {
+        string projectPath = Application.StartupPath;
+        readonly int m_missionNumero;
+        readonly string m_missionPlanete;
+        DataSet monds = MesDatas.DsGlobal;
         public Journal()
         {
             InitializeComponent();
@@ -118,6 +130,12 @@ namespace projet_SAE_24
             lblTotalDepenses.Text += sommeDepense;
         }
 
+        public void creerPDF()
+        {
+           
+
+        }
+
         private void btnDebut_Click(object sender, EventArgs e)
         {
             bsEvenement.MoveFirst();
@@ -143,6 +161,59 @@ namespace projet_SAE_24
             this.Close();
         }
 
+        private void btnPdf_Click(object sender, EventArgs e)
+        {
+            int test = 0;
+            // Création du fichier PDF
+            string cheminPdf = Path.Combine(projectPath, "BilanCapture_" + m_missionPlanete + "_" + m_missionNumero + ".pdf"); // Chemin de sauvegarde
+
+            PdfWriter writer = new PdfWriter(cheminPdf); // Permet d'écrire...
+            PdfDocument pdf = new PdfDocument(writer); // ...dans ce PDF...
+            Document document = new Document(pdf); // ...qui sera stocké dans ce fichier Document
+
+            // Changement de la police d'écriture
+            PdfFont font = PdfFontFactory.CreateFont(StandardFonts.HELVETICA);
+            PdfFont fontBold = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+
+            // Titre
+            Paragraph titre = new Paragraph("Bilan Capture - " + m_missionPlanete + " " + m_missionNumero)
+                .SetFont(fontBold) // En gras
+                .SetFontSize(24) // La taille de la police
+                .SetTextAlignment(TextAlignment.CENTER); // L'alignement du texte
+            document.Add(titre); // Ajouter le texte dans le document
+
+            document.Add(new Paragraph("\n")); // Pour ajouter un espace entre le titre et les infos
+
+
+            // Tableau des captures
+            Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 2, 2, 2 }));
+            table.SetWidth(UnitValue.CreatePercentValue(100));
+
+            // En-tetes du tableau
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Nom de l'espèce").SetFont(fontBold)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Objectif initial").SetFont(fontBold)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Nombre de captures réalisées").SetFont(fontBold)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Taux de reussite (en %)").SetFont(fontBold)));
+
+            // Remplir le tableau avec les données du DataSet...
+            // On recupere la table BilanCapture pour la mission selectionée
+            DataTable tblBilanCapture = monds.Tables[$"BilanCapture{m_missionPlanete}-{m_missionNumero}"];
+
+            foreach (DataRow lignecapture in tblBilanCapture.Rows)
+            {
+                MessageBox.Show(lignecapture["nomEspece"].ToString());
+                table.AddCell(lignecapture["nomEspece"].ToString());
+                table.AddCell(lignecapture["objectifInitial"].ToString());
+                table.AddCell(lignecapture["resultatFinal"].ToString());
+                table.AddCell(lignecapture["tauxReussite"].ToString());
+            }
+            document.Add(table); // Ajouter le tableau sur le pdf
+
+            // Fermeture 
+            document.Close();
+            pdf.Close();
+            writer.Close();
+            
         }
     }
 }
