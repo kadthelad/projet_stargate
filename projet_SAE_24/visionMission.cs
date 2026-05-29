@@ -22,12 +22,13 @@ namespace projet_SAE_24
         DataSet maDB = MesDatas.DsGlobal;
 
         private string m_nomPlanete;
-
+        private Label lblMission;
+        private Panel p;
+        private Timer t;
         public visionMission(string nomPlanete)
         {
             InitializeComponent();
 
-            MessageBox.Show("je suis la planète " + nomPlanete);
             m_nomPlanete = nomPlanete;
         }
 
@@ -41,7 +42,51 @@ namespace projet_SAE_24
                     string numMission = maDB.Tables["Mission"].Rows[i]["numero"].ToString();
                     Mission miss = new Mission(m_nomPlanete, numMission);
                     layMissions.Controls.Add(miss);
+                    /*Location : 12;12
+                     Margin : 3;3;3;3
+                     Size : 580; 387
+                     */
                 }
+            }
+
+            if(layMissions.Controls.Count == 0)
+            {
+                t = new Timer();
+                p = new Panel();
+
+                p.Width = 300;
+                p.Height = 50;
+
+                p.Left = (layMissions.Width - p.Width) / 2;
+                p.Top = (layMissions.Height - p.Height) / 2;
+
+                p.Location = new Point((layMissions.Width - p.Width) / 2, (layMissions.Height - p.Height) / 2);
+
+                lblMission = new Label();
+
+                lblMission.Text = "Pas de mission sur cette planète";
+                lblMission.AutoSize = true;
+
+                lblMission.Top = 20;
+                lblMission.Left = p.Width;
+
+                p.Controls.Add(lblMission);
+                layMissions.Controls.Add(p);
+
+                t.Interval = 50;
+                t.Tick += DeplacerLabel;
+                t.Start();
+            }
+        }
+
+        private void DeplacerLabel(object sender, EventArgs e)
+        {
+            lblMission.Left -= 5;
+
+            // Quand le texte sort complètement à gauche
+            if (lblMission.Right < 0)
+            {
+                lblMission.Left = p.Width;
             }
         }
 

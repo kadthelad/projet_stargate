@@ -31,6 +31,7 @@
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.layMissions = new System.Windows.Forms.FlowLayoutPanel();
             this.btnQuitterFenetre = new System.Windows.Forms.Button();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.SuspendLayout();
             // 
             // layMissions
@@ -72,5 +73,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.FlowLayoutPanel layMissions;
         private System.Windows.Forms.Button btnQuitterFenetre;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
     }
 }
