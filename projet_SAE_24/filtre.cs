@@ -18,24 +18,27 @@ namespace projet_SAE_24
             InitializeComponent();
         }
 
-        SQLiteConnection conn = Connexion.Connec;
-        DataSet ds = MesDatas.DsGlobal;
+        SQLiteConnection maConnec = Connexion.Connec;
+        DataSet maDB = MesDatas.DsGlobal;
 
         private void filtre_Load(object sender, EventArgs e)
         {
             cboCouleur.Items.Clear();
-            ds.Tables["couleurs"]?.Clear();
+            cboPlanete.Items.Clear();
 
-            string query = "SELECT DISTINCT couleur FROM Espece";
-            SQLiteCommand cmd = new SQLiteCommand(query, conn);
-            SQLiteDataAdapter data = new SQLiteDataAdapter();
-            data.SelectCommand = cmd;
-            data.Fill(ds, "couleurs");
-
-            for(int i = 0; i < ds.Tables["couleurs"].Rows.Count; i++)
+            for(int i = 0; i < maDB.Tables["Espece"].Rows.Count; i++)
             {
-                cboCouleur.Items.Add(ds.Tables["couleurs"].Rows[i]["couleur"].ToString());
+                if (!cboCouleur.Items.Contains(maDB.Tables["Espece"].Rows[i]["couleur"].ToString()))
+                {
+                    cboCouleur.Items.Add(maDB.Tables["Espece"].Rows[i]["couleur"].ToString());
+                }
             }
+
+            for(int i = 0; i < maDB.Tables["Planete"].Rows.Count;i++)
+            {
+                cboPlanete.Items.Add(maDB.Tables["Planete"].Rows[i]["nom"].ToString());
+            }
+
         }
 
         public string NomEspece
@@ -80,6 +83,27 @@ namespace projet_SAE_24
         {
             DialogResult = DialogResult.OK;
             this.Close();
+        }
+
+        private void txtNom_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsSeparator(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsPunctuation(e.KeyChar) && e.KeyChar != '-')
+                e.Handled = true;
+
+            if (e.KeyChar == '-' && txtNom.Text.Contains('-'))
+                e.Handled = true;
+
+            if (char.IsSymbol(e.KeyChar))
+                e.Handled = true;
+
+            if (e.KeyChar == 'µ')
+                e.Handled = true;
         }
     }
 }

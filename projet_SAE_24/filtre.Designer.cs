@@ -36,6 +36,8 @@
             this.rdbEnnemi = new System.Windows.Forms.RadioButton();
             this.btnValider = new System.Windows.Forms.Button();
             this.btnReinitialiser = new System.Windows.Forms.Button();
+            this.lblPlanete = new System.Windows.Forms.Label();
+            this.cboPlanete = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // lblNom
@@ -54,11 +56,12 @@
             this.txtNom.Name = "txtNom";
             this.txtNom.Size = new System.Drawing.Size(164, 20);
             this.txtNom.TabIndex = 1;
+            this.txtNom.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNom_KeyPress);
             // 
             // cboCouleur
             // 
             this.cboCouleur.FormattingEnabled = true;
-            this.cboCouleur.Location = new System.Drawing.Point(121, 104);
+            this.cboCouleur.Location = new System.Drawing.Point(121, 82);
             this.cboCouleur.Name = "cboCouleur";
             this.cboCouleur.Size = new System.Drawing.Size(164, 21);
             this.cboCouleur.TabIndex = 2;
@@ -67,7 +70,7 @@
             // 
             this.lblCouleur.AutoSize = true;
             this.lblCouleur.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCouleur.Location = new System.Drawing.Point(33, 103);
+            this.lblCouleur.Location = new System.Drawing.Point(33, 81);
             this.lblCouleur.Name = "lblCouleur";
             this.lblCouleur.Size = new System.Drawing.Size(80, 19);
             this.lblCouleur.TabIndex = 3;
@@ -119,11 +122,31 @@
             this.btnReinitialiser.UseVisualStyleBackColor = true;
             this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
             // 
+            // lblPlanete
+            // 
+            this.lblPlanete.AutoSize = true;
+            this.lblPlanete.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPlanete.Location = new System.Drawing.Point(33, 132);
+            this.lblPlanete.Name = "lblPlanete";
+            this.lblPlanete.Size = new System.Drawing.Size(76, 19);
+            this.lblPlanete.TabIndex = 8;
+            this.lblPlanete.Text = "Planète :";
+            // 
+            // cboPlanete
+            // 
+            this.cboPlanete.FormattingEnabled = true;
+            this.cboPlanete.Location = new System.Drawing.Point(121, 133);
+            this.cboPlanete.Name = "cboPlanete";
+            this.cboPlanete.Size = new System.Drawing.Size(164, 21);
+            this.cboPlanete.TabIndex = 9;
+            // 
             // filtre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(615, 201);
+            this.Controls.Add(this.cboPlanete);
+            this.Controls.Add(this.lblPlanete);
             this.Controls.Add(this.btnReinitialiser);
             this.Controls.Add(this.btnValider);
             this.Controls.Add(this.rdbEnnemi);
@@ -151,5 +174,7 @@
         private System.Windows.Forms.RadioButton rdbEnnemi;
         private System.Windows.Forms.Button btnValider;
         private System.Windows.Forms.Button btnReinitialiser;
+        private System.Windows.Forms.Label lblPlanete;
+        private System.Windows.Forms.ComboBox cboPlanete;
     }
 }
