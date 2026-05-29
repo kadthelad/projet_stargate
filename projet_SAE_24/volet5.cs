@@ -43,7 +43,9 @@ namespace projet_SAE_24
                 string gravite = ligne["gravite"].ToString().Trim();
                 string databaz = "";
 
-                pb1.Image = Image.FromFile(projectPath + "/img/planetes/" + planete + ".png");
+                Image img1 = (Image)Properties.Resources.ResourceManager.GetObject(planete);
+
+                pb1.Image = img1;
                 pb1.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 //Couleur d'arrière-plan non définitive
@@ -75,15 +77,15 @@ namespace projet_SAE_24
 
                     if (temperature < 0)
                     {
-                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/enerve.jpg");
+                        pb2.Image = (Image)Properties.Resources.ResourceManager.GetObject("enerve");
                     }
                     else if (temperature >= 0 && temperature <= 100)
                     {
-                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/normal.jpg");
+                        pb2.Image = (Image)Properties.Resources.ResourceManager.GetObject("normal");
                     }
                     else if (temperature > 100)
                     {
-                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/heureux.jpg");
+                        pb2.Image = (Image)Properties.Resources.ResourceManager.GetObject("heureux");
                     }
                 }
 

@@ -23,7 +23,7 @@ namespace projet_SAE_24
 
         string projectPath = Application.StartupPath;
 
-        public void Creation_De_Panel(string nomRecherche = "", string couleurRecherche = "", bool allieRecherche = false, bool ennemiRecherche = false)
+        public void Creation_De_Panel(string nomRecherche = "", string couleurRecherche = "", string planeteRecherche = "", bool allieRecherche = false, bool ennemiRecherche = false)
         {
             layEspece.Controls.Clear();
 
@@ -152,7 +152,9 @@ namespace projet_SAE_24
 
                 string couleurEspece = maDB.Tables["Espece"].Rows[i]["couleur"].ToString();
 
-                pb.Image = Image.FromFile(projectPath + "/img/monstres/" + couleurEspece + ".jpg");
+                Image img = (Image)Properties.Resources.ResourceManager.GetObject(couleurEspece);
+
+                pb.Image = img;
 
                 lblNom.Text = "---> " + maDB.Tables["Espece"].Rows[i]["nom"].ToString();
                 lblNom.Font = new Font(lblNom.Font, FontStyle.Bold);
@@ -191,6 +193,11 @@ namespace projet_SAE_24
                     lblOrigine.Text = planete.Substring(0, planete.Length - 1);
                 }
 
+                if (planeteRecherche != "" && !planete.ToLower().Contains(planeteRecherche.ToLower()))
+                {
+                    continue;
+                }
+
                 lblOrigine.Left = 110;
                 lblOrigine.Top = 65;
                 lblOrigine.AutoSize = true;
@@ -218,8 +225,9 @@ namespace projet_SAE_24
             {
                 string couleurRecherche = fenetreFiltre.Couleur;
                 string nomRecherche = fenetreFiltre.NomEspece;
+                string planeteRecherche = fenetreFiltre.Planete;
 
-                Creation_De_Panel(nomRecherche, couleurRecherche, fenetreFiltre.Allie, fenetreFiltre.Ennemi);
+                Creation_De_Panel(nomRecherche, couleurRecherche, planeteRecherche, fenetreFiltre.Allie, fenetreFiltre.Ennemi);
             }
         }
 

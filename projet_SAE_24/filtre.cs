@@ -38,7 +38,6 @@ namespace projet_SAE_24
             {
                 cboPlanete.Items.Add(maDB.Tables["Planete"].Rows[i]["nom"].ToString());
             }
-
         }
 
         public string NomEspece
@@ -49,6 +48,11 @@ namespace projet_SAE_24
         public string Couleur
         {
             get { return cboCouleur.Text; }
+        }
+
+        public string Planete
+        {
+            get { return cboPlanete.Text;  }
         }
 
         public bool Allie
@@ -77,6 +81,7 @@ namespace projet_SAE_24
             rdbAllie.Checked = false;
             rdbEnnemi.Checked = false;
             cboCouleur.Text = string.Empty;
+            cboPlanete.Text = string.Empty;
         }
 
         private void btnValider_Click(object sender, EventArgs e)
