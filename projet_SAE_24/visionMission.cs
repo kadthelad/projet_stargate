@@ -34,6 +34,10 @@ namespace projet_SAE_24
 
         private void visionMission_Load(object sender, EventArgs e)
         {
+            string espece = "";
+            int idEspece;
+            Label lblEspece = new Label();
+
             //Si le nom de la planète est pareil que le nom dans la table Mission, on affiche la ou les missions en cours/terminées
             for (int i = 0; i < maDB.Tables["Mission"].Rows.Count; i++)
             {
@@ -42,25 +46,43 @@ namespace projet_SAE_24
                     string numMission = maDB.Tables["Mission"].Rows[i]["numero"].ToString();
                     Mission miss = new Mission(m_nomPlanete, numMission);
                     layMissions.Controls.Add(miss);
-                    /*Location : 12;12
-                     Margin : 3;3;3;3
-                     Size : 580; 387
-                     */
                 }
             }
 
-            if(layMissions.Controls.Count == 0)
+            for(int i = 0; i < maDB.Tables["Habiter"].Rows.Count; i++)
             {
+                if (maDB.Tables["Habiter"].Rows[i]["nomPlanete"].ToString() == m_nomPlanete)
+                {
+                    idEspece = Convert.ToInt32(maDB.Tables["Habiter"].Rows[i]["idEspece"]);
+                    for (int j = 0; j < maDB.Tables["Espece"].Rows.Count; j++)
+                    {
+                        if (Convert.ToInt32(maDB.Tables["Espece"].Rows[j]["id"]) == idEspece)
+                        {
+                            espece += maDB.Tables["Espece"].Rows[j]["nom"].ToString() + "\n";
+
+                            break;
+                        }
+                    }
+                }
+            }
+
+            lblEspece.Text = espece;
+            lblEspece.Top = 20;
+            lblEspece.Left = 10;
+            lblEspece.AutoSize = true;
+
+            if (layMissions.Controls.Count == 0)
+            {
+                layMissions.Dispose();
+
                 t = new Timer();
                 p = new Panel();
 
                 p.Width = 300;
                 p.Height = 50;
 
-                p.Left = (layMissions.Width - p.Width) / 2;
-                p.Top = (layMissions.Height - p.Height) / 2;
-
-                p.Location = new Point((layMissions.Width - p.Width) / 2, (layMissions.Height - p.Height) / 2);
+                p.Left = (this.ClientSize.Width - p.Width) / 2;
+                p.Top = (this.ClientSize.Height - p.Height) / 2;
 
                 lblMission = new Label();
 
@@ -71,7 +93,8 @@ namespace projet_SAE_24
                 lblMission.Left = p.Width;
 
                 p.Controls.Add(lblMission);
-                layMissions.Controls.Add(p);
+                this.Controls.Add(p);
+                grpEspeces.Controls.Add(lblEspece);
 
                 t.Interval = 50;
                 t.Tick += DeplacerLabel;

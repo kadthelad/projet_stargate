@@ -32,6 +32,7 @@
             this.layMissions = new System.Windows.Forms.FlowLayoutPanel();
             this.btnQuitterFenetre = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.grpEspeces = new System.Windows.Forms.GroupBox();
             this.SuspendLayout();
             // 
             // layMissions
@@ -52,11 +53,21 @@
             this.btnQuitterFenetre.UseVisualStyleBackColor = true;
             this.btnQuitterFenetre.Click += new System.EventHandler(this.btnQuitterFenetre_Click);
             // 
+            // grpEspeces
+            // 
+            this.grpEspeces.Location = new System.Drawing.Point(604, 12);
+            this.grpEspeces.Name = "grpEspeces";
+            this.grpEspeces.Size = new System.Drawing.Size(119, 327);
+            this.grpEspeces.TabIndex = 7;
+            this.grpEspeces.TabStop = false;
+            this.grpEspeces.Text = "Espèces présentes";
+            // 
             // visionMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(729, 406);
+            this.Controls.Add(this.grpEspeces);
             this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.layMissions);
             this.MaximumSize = new System.Drawing.Size(745, 445);
@@ -74,5 +85,6 @@
         private System.Windows.Forms.FlowLayoutPanel layMissions;
         private System.Windows.Forms.Button btnQuitterFenetre;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.GroupBox grpEspeces;
     }
 }
