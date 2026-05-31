@@ -23,6 +23,7 @@ namespace projet_SAE_24
 
         private string m_nomPlanete;
         private Label lblMission;
+        private Label lblEspece;
         private Panel p;
         private Timer t;
         public visionMission(string nomPlanete)
@@ -36,7 +37,7 @@ namespace projet_SAE_24
         {
             string espece = "";
             int idEspece;
-            Label lblEspece = new Label();
+            lblEspece = new Label();
 
             //Si le nom de la planète est pareil que le nom dans la table Mission, on affiche la ou les missions en cours/terminées
             for (int i = 0; i < maDB.Tables["Mission"].Rows.Count; i++)
@@ -71,6 +72,8 @@ namespace projet_SAE_24
             lblEspece.Left = 10;
             lblEspece.AutoSize = true;
 
+            grpEspeces.Controls.Add(lblEspece);
+
             if (layMissions.Controls.Count == 0)
             {
                 layMissions.Dispose();
@@ -86,6 +89,7 @@ namespace projet_SAE_24
 
                 lblMission = new Label();
 
+                lblMission.Font = new Font("Arial", 16, FontStyle.Bold);
                 lblMission.Text = "Pas de mission sur cette planète";
                 lblMission.AutoSize = true;
 
@@ -94,15 +98,27 @@ namespace projet_SAE_24
 
                 p.Controls.Add(lblMission);
                 this.Controls.Add(p);
-                grpEspeces.Controls.Add(lblEspece);
 
                 t.Interval = 50;
-                t.Tick += DeplacerLabel;
+                t.Tick += DeplacerLabelHorizontalement;
+                t.Start();
+            }
+
+            if (espece == string.Empty)
+            {
+                t = new Timer();
+
+                lblEspece.Font = new Font("Arial", 9, FontStyle.Bold);
+                lblEspece.Text = "Pas d'espèce présente";
+                lblEspece.AutoSize = true;
+
+                t.Interval = 50;
+                t.Tick += DeplacerLabelVerticalement;
                 t.Start();
             }
         }
 
-        private void DeplacerLabel(object sender, EventArgs e)
+        private void DeplacerLabelHorizontalement(object sender, EventArgs e)
         {
             lblMission.Left -= 5;
 
@@ -110,6 +126,17 @@ namespace projet_SAE_24
             if (lblMission.Right < 0)
             {
                 lblMission.Left = p.Width;
+            }
+        }
+
+        private void DeplacerLabelVerticalement(object sender, EventArgs e)
+        {
+            lblEspece.Top += 5;
+
+            // Quand le texte sort complètement en bas
+            if (lblEspece.Top > grpEspeces.Bottom)
+            {
+                lblEspece.Top = grpEspeces.Top;
             }
         }
 

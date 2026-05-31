@@ -159,51 +159,7 @@ namespace projet_SAE_24
 
         private void MonPanel_Click(object sender, EventArgs e)
         {
-            string espece = "";
-
-            //Le compteur est là pour voir si il n'y a qu'une seule espèce sur une planète ou plusieurs
-            int compt = 0;
-
             Panel p = (Panel)sender;
-
-            //On prépare déjà les deux textes
-            string debutEspeceSeul = "L'espèce présente sur " + p.Name + " est : ";
-            string debutEspecePlusieurs = "Les espèces présentes sur " + p.Name + " sont : ";
-
-            for (int i = 0; i < maDB.Tables["Habiter"].Rows.Count; i++)
-            {
-                //On garde l'id de l'espèce qui habite sur la planète
-                if (maDB.Tables["Habiter"].Rows[i]["nomPlanete"].ToString() == p.Name)
-                {
-                    string idEspece = maDB.Tables["Habiter"].Rows[i]["idEspece"].ToString();
-
-                    for (int j = 0; j < maDB.Tables["Espece"].Rows.Count; j++)
-                    {
-                        //Si l'id de l'espèce correspond à celui gardé précedemment, on l'ajoute dans espece et on incrémente le compteur
-                        if (maDB.Tables["Espece"].Rows[j]["id"].ToString() == idEspece)
-                        {
-                            espece += maDB.Tables["Espece"].Rows[j]["nom"].ToString() + "/";
-                            compt++;
-                        }
-                    }
-                }
-            }
-
-            //Si espece est vide, on dit qu'il n'y a aucune espèce sur la planète
-            if (espece == string.Empty)
-            {
-                MessageBox.Show(p.Name + " ne contient aucune espèce.");
-            }
-            //Si le compteur est égal à 1, on utilise le texte pour une seule espèce
-            else if(compt == 1)
-            {
-                MessageBox.Show(debutEspeceSeul + espece.Substring(0, espece.Length - 1) + ".");
-            }
-            //Sinon on utilise celui pour plusieurs espèces
-            else
-            {
-                MessageBox.Show(debutEspecePlusieurs + espece.Substring(0, espece.Length - 1) + ".");
-            }
 
             visionMission vm = new visionMission(p.Name);
             vm.ShowDialog();

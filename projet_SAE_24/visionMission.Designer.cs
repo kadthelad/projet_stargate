@@ -45,7 +45,7 @@
             // btnQuitterFenetre
             // 
             this.btnQuitterFenetre.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnQuitterFenetre.Location = new System.Drawing.Point(598, 345);
+            this.btnQuitterFenetre.Location = new System.Drawing.Point(618, 345);
             this.btnQuitterFenetre.Name = "btnQuitterFenetre";
             this.btnQuitterFenetre.Size = new System.Drawing.Size(126, 49);
             this.btnQuitterFenetre.TabIndex = 6;
@@ -55,9 +55,9 @@
             // 
             // grpEspeces
             // 
-            this.grpEspeces.Location = new System.Drawing.Point(604, 12);
+            this.grpEspeces.Location = new System.Drawing.Point(598, 12);
             this.grpEspeces.Name = "grpEspeces";
-            this.grpEspeces.Size = new System.Drawing.Size(119, 327);
+            this.grpEspeces.Size = new System.Drawing.Size(167, 327);
             this.grpEspeces.TabIndex = 7;
             this.grpEspeces.TabStop = false;
             this.grpEspeces.Text = "Espèces présentes";
@@ -66,12 +66,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(729, 406);
+            this.ClientSize = new System.Drawing.Size(775, 406);
             this.Controls.Add(this.grpEspeces);
             this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.layMissions);
-            this.MaximumSize = new System.Drawing.Size(745, 445);
-            this.MinimumSize = new System.Drawing.Size(745, 445);
+            this.MaximumSize = new System.Drawing.Size(791, 445);
+            this.MinimumSize = new System.Drawing.Size(791, 445);
             this.Name = "visionMission";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Missions sur la planète";
