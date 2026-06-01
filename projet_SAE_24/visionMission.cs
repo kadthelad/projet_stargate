@@ -36,6 +36,7 @@ namespace projet_SAE_24
         private void visionMission_Load(object sender, EventArgs e)
         {
             string espece = "";
+            string pourcentage = "";
             int idEspece;
             lblEspece = new Label();
 
@@ -55,11 +56,12 @@ namespace projet_SAE_24
                 if (maDB.Tables["Habiter"].Rows[i]["nomPlanete"].ToString() == m_nomPlanete)
                 {
                     idEspece = Convert.ToInt32(maDB.Tables["Habiter"].Rows[i]["idEspece"]);
+                    pourcentage = maDB.Tables["Habiter"].Rows[i]["pourcentage"].ToString() + " %";
                     for (int j = 0; j < maDB.Tables["Espece"].Rows.Count; j++)
                     {
                         if (Convert.ToInt32(maDB.Tables["Espece"].Rows[j]["id"]) == idEspece)
                         {
-                            espece += maDB.Tables["Espece"].Rows[j]["nom"].ToString() + "\n";
+                            espece += maDB.Tables["Espece"].Rows[j]["nom"].ToString() + " : " + pourcentage + "\n";
 
                             break;
                         }
@@ -71,6 +73,7 @@ namespace projet_SAE_24
             lblEspece.Top = 20;
             lblEspece.Left = 10;
             lblEspece.AutoSize = true;
+            lblEspece.Font = new Font("Arial", 12);
 
             grpEspeces.Controls.Add(lblEspece);
 

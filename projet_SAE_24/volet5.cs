@@ -17,6 +17,7 @@ namespace projet_SAE_24
         public volet5()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         SQLiteConnection maConnec = Connexion.Connec;
@@ -24,8 +25,11 @@ namespace projet_SAE_24
 
         string projectPath = Application.StartupPath;
 
+        private List<Keys> touches = new List<Keys>();
+
         private void volet5_Load(object sender, EventArgs e)
         {
+            //this.Focus();
             foreach (DataRow ligne in maDB.Tables["Planete"].Rows)
             {
                 PictureBox pb1 = new PictureBox();
@@ -168,6 +172,25 @@ namespace projet_SAE_24
         private void btnQuitterFenetre_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void volet5_KeyDown(object sender, KeyEventArgs e)
+        {
+            touches.Add(e.KeyCode);
+
+            List<Keys> konami = new List<Keys>{Keys.Z, Keys.Z, Keys.S, Keys.S, Keys.Q, Keys.D, Keys.Q, Keys.D, Keys.B, Keys.A};
+
+            if (touches.Count > konami.Count)
+            {
+                touches.RemoveAt(0);
+            }
+
+            if (touches.SequenceEqual(konami))
+            {
+                MessageBox.Show("Konami Code activé !");
+                easterEgg ee = new easterEgg();
+                ee.ShowDialog();
+            }
         }
     }
 }

@@ -156,6 +156,8 @@
             this.Controls.Add(this.cboCouleur);
             this.Controls.Add(this.txtNom);
             this.Controls.Add(this.lblNom);
+            this.MaximumSize = new System.Drawing.Size(631, 240);
+            this.MinimumSize = new System.Drawing.Size(631, 240);
             this.Name = "filtre";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Ajout de filtre";

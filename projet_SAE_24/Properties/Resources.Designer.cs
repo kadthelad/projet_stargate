@@ -163,6 +163,16 @@ namespace projet_SAE_24.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap leao_ballon_d_or {
+            get {
+                object obj = ResourceManager.GetObject("leao_ballon_d_or", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Malaria {
             get {
                 object obj = ResourceManager.GetObject("Malaria", resourceCulture);
