@@ -17,6 +17,7 @@ namespace projet_SAE_24
         public volet5()
         {
             InitializeComponent();
+            this.KeyPreview = true;
         }
 
         SQLiteConnection maConnec = Connexion.Connec;
@@ -24,8 +25,11 @@ namespace projet_SAE_24
 
         string projectPath = Application.StartupPath;
 
+        private List<Keys> touches = new List<Keys>();
+
         private void volet5_Load(object sender, EventArgs e)
         {
+            //this.Focus();
             foreach (DataRow ligne in maDB.Tables["Planete"].Rows)
             {
                 PictureBox pb1 = new PictureBox();
@@ -43,11 +47,13 @@ namespace projet_SAE_24
                 string gravite = ligne["gravite"].ToString().Trim();
                 string databaz = "";
 
-                pb1.Image = Image.FromFile(projectPath + "/img/planetes/" + planete + ".png");
+                Image img1 = (Image)Properties.Resources.ResourceManager.GetObject(planete);
+
+                pb1.Image = img1;
                 pb1.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 //Couleur d'arrière-plan non définitive
-                p.BackColor = Color.Magenta;
+                p.BackColor = Color.BurlyWood;
                 p.Width = 300;
                 p.Height = 300;
 
@@ -75,15 +81,15 @@ namespace projet_SAE_24
 
                     if (temperature < 0)
                     {
-                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/enerve.jpg");
+                        pb2.Image = (Image)Properties.Resources.ResourceManager.GetObject("enerve");
                     }
                     else if (temperature >= 0 && temperature <= 100)
                     {
-                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/normal.jpg");
+                        pb2.Image = (Image)Properties.Resources.ResourceManager.GetObject("normal");
                     }
                     else if (temperature > 100)
                     {
-                        pb2.Image = Image.FromFile(projectPath + "/img/thermometre/heureux.jpg");
+                        pb2.Image = (Image)Properties.Resources.ResourceManager.GetObject("heureux");
                     }
                 }
 
@@ -157,56 +163,34 @@ namespace projet_SAE_24
 
         private void MonPanel_Click(object sender, EventArgs e)
         {
-            string espece = "";
-
-            //Le compteur est là pour voir si il n'y a qu'une seule espèce sur une planète ou plusieurs
-            int compt = 0;
-
             Panel p = (Panel)sender;
 
-            //On prépare déjà les deux textes
-            string debutEspeceSeul = "L'espèce présente sur " + p.Name + " est : ";
-            string debutEspecePlusieurs = "Les espèces présentes sur " + p.Name + " sont : ";
-
-            for (int i = 0; i < maDB.Tables["Habiter"].Rows.Count; i++)
-            {
-                //On garde l'id de l'espèce qui habite sur la planète
-                if (maDB.Tables["Habiter"].Rows[i]["nomPlanete"].ToString() == p.Name)
-                {
-                    string idEspece = maDB.Tables["Habiter"].Rows[i]["idEspece"].ToString();
-
-                    for (int j = 0; j < maDB.Tables["Espece"].Rows.Count; j++)
-                    {
-                        //Si l'id de l'espèce correspond à celui gardé précedemment, on l'ajoute dans espece et on incrémente le compteur
-                        if (maDB.Tables["Espece"].Rows[j]["id"].ToString() == idEspece)
-                        {
-                            espece += maDB.Tables["Espece"].Rows[j]["nom"].ToString() + "/";
-                            compt++;
-                        }
-                    }
-                }
-            }
-
-            //Si espece est vide, on dit qu'il n'y a aucune espèce sur la planète
-            if (espece == string.Empty)
-            {
-                MessageBox.Show(p.Name + " ne contient aucune espèce.");
-            }
-            //Si le compteur est égal à 1, on utilise le texte pour une seule espèce
-            else if(compt == 1)
-            {
-                MessageBox.Show(debutEspeceSeul + espece.Substring(0, espece.Length - 1) + ".");
-            }
-            //Sinon on utilise celui pour plusieurs espèces
-            else
-            {
-                MessageBox.Show(debutEspecePlusieurs + espece.Substring(0, espece.Length - 1) + ".");
-            }
+            visionMission vm = new visionMission(p.Name);
+            vm.ShowDialog();
         }
 
         private void btnQuitterFenetre_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void volet5_KeyDown(object sender, KeyEventArgs e)
+        {
+            touches.Add(e.KeyCode);
+
+            List<Keys> konami = new List<Keys>{Keys.Z, Keys.Z, Keys.S, Keys.S, Keys.Q, Keys.D, Keys.Q, Keys.D, Keys.B, Keys.A};
+
+            if (touches.Count > konami.Count)
+            {
+                touches.RemoveAt(0);
+            }
+
+            if (touches.SequenceEqual(konami))
+            {
+                MessageBox.Show("Konami Code activé !");
+                easterEgg ee = new easterEgg();
+                ee.ShowDialog();
+            }
         }
     }
 }

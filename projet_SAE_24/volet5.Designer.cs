@@ -35,7 +35,10 @@
             // layPlanetes
             // 
             this.layPlanetes.AutoScroll = true;
+            this.layPlanetes.BackColor = System.Drawing.Color.Salmon;
             this.layPlanetes.Location = new System.Drawing.Point(12, 12);
+            this.layPlanetes.MaximumSize = new System.Drawing.Size(776, 426);
+            this.layPlanetes.MinimumSize = new System.Drawing.Size(776, 426);
             this.layPlanetes.Name = "layPlanetes";
             this.layPlanetes.Size = new System.Drawing.Size(776, 426);
             this.layPlanetes.TabIndex = 0;
@@ -55,13 +58,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(899, 450);
             this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.layPlanetes);
+            this.MaximumSize = new System.Drawing.Size(915, 489);
+            this.MinimumSize = new System.Drawing.Size(915, 489);
             this.Name = "volet5";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Informations sur les planètes";
             this.Load += new System.EventHandler(this.volet5_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.volet5_KeyDown);
             this.ResumeLayout(false);
 
         }
