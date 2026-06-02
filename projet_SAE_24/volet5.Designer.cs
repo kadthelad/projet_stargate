@@ -35,6 +35,7 @@
             // layPlanetes
             // 
             this.layPlanetes.AutoScroll = true;
+            this.layPlanetes.BackColor = System.Drawing.Color.Salmon;
             this.layPlanetes.Location = new System.Drawing.Point(12, 12);
             this.layPlanetes.MaximumSize = new System.Drawing.Size(776, 426);
             this.layPlanetes.MinimumSize = new System.Drawing.Size(776, 426);
@@ -57,7 +58,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(899, 450);
             this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.layPlanetes);

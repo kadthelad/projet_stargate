@@ -53,7 +53,7 @@ namespace projet_SAE_24
                 pb1.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 //Couleur d'arrière-plan non définitive
-                p.BackColor = Color.Magenta;
+                p.BackColor = Color.BurlyWood;
                 p.Width = 300;
                 p.Height = 300;
 
