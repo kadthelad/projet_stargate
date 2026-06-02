@@ -34,8 +34,8 @@ namespace projet_SAE_24
         private void editeurJournal_Load(object sender, EventArgs e)
         {
 
-            Image contact = Properties.Resources.ajouterContact;
-            btnContact.Image = contact;
+            Image btnontact = Properties.Resources.ajouterContact;
+            btnontact.Image = contact;
             btnContact.Width = contact.Width + 10;
             btnContact.Height = contact.Height + 10;
 
