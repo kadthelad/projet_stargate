@@ -24,6 +24,21 @@ namespace projet_SAE_24
 {
 	public partial class Mission : UserControl
 	{
+		public enum StatusMissionEnum
+		{
+			EN_COURS,
+			EN_PREPARATION,
+			EST_TERMINEE,
+		}
+
+		private StatusMissionEnum _statusMission;
+
+		public StatusMissionEnum StatusMission  // PascalCase pour la propriété
+		{
+			get { return _statusMission; }
+			set { _statusMission = value; }
+		}
+
 		DataSet dsGlobal = MesDatas.DsGlobal;
 		String projectPath = Application.StartupPath; // trouve où est le /bin/Debug
 
@@ -52,6 +67,38 @@ namespace projet_SAE_24
 				lblDateFinEstimee.Text = missionActuelle["dateRetour"].ToString();
 				lblNomChef.Text = nomChef;
 				lblBudget.Text = "Budget : " + missionActuelle["budget"] + "$G";
+
+				// Déterminer si la mission est en cours, terminée ou en préparation
+				String[] dateDepart = missionActuelle["dateDepart"].ToString().Split('-');
+				String[] dateRetour = missionActuelle["dateRetour"].ToString().Split('-');
+				if (DateTime.Compare(DateTime.Now, new DateTime(Convert.ToInt32(dateRetour[0]),
+																Convert.ToInt32(dateRetour[1]),
+																Convert.ToInt32(dateRetour[2])
+																)) > 0) // Mission terminée
+				{
+					_statusMission = StatusMissionEnum.EST_TERMINEE;
+					lblStatusMission.Text = "Est terminée";
+					lblStatusMission.ForeColor = System.Drawing.Color.Red;
+				}
+				else if (DateTime.Compare(DateTime.Now, new DateTime(Convert.ToInt32(dateDepart[0]),
+																	 Convert.ToInt32(dateDepart[1]),
+																	 Convert.ToInt32(dateDepart[2])
+																	)) > 0 &&
+						DateTime.Compare(DateTime.Now, new DateTime(Convert.ToInt32(dateRetour[0]),
+																	Convert.ToInt32(dateRetour[1]),
+																	Convert.ToInt32(dateRetour[2])
+																	)) < 0) // Mission en cours
+				{
+					_statusMission = StatusMissionEnum.EN_COURS;
+					lblStatusMission.Text = "En cours";
+					lblStatusMission.ForeColor = System.Drawing.Color.Green;
+				}
+				else // Mission en préparation
+				{
+					_statusMission = StatusMissionEnum.EN_PREPARATION;
+					lblStatusMission.Text = "En préparation";
+					lblStatusMission.ForeColor = System.Drawing.Color.Yellow;
+				}
 
 				// Chargement de l'image
 				Image img = Image.FromFile(projectPath + "/img/planetes/" + nomPlanete + ".png");

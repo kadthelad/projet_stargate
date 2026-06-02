@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.Design.Serialization;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
@@ -32,71 +33,74 @@ namespace projet_SAE_24
 			dtpDateRetour.MinDate = dtpDateDepart.Value;
 		}
 
-		private void FormADM_Load(object sender, EventArgs e)
+		private bool estDisponible(String matricule)
 		{
-			// Remplissage des ComboBox en mode connecté
+			// On cherche les personnes qui ont des matricules qui apparaissent durant une mission
+			// dans une plage de temps donnée avec les DateTimePickers
 			try
 			{
-				// cboPlanetes
-				SQLiteCommand cd1 = new SQLiteCommand("SELECT nom FROM Planete", Connexion.Connec);
-				cd1.CommandType = CommandType.Text;
-				SQLiteDataReader queryResponse = cd1.ExecuteReader();
+				if (matricule == "")
+				{
+					return false;
+				}
+				String requete = "SELECT c.matriculeMembre " +
+								 "FROM Composer c, Mission m " +
+								 "WHERE c.nomPlanete = m.nomPlanete AND c.numeroMission = m.numero " +
+								 "AND (" +
+									$"('{dtpDateRetour.Value.ToString("yyyy-MM-dd")}' >= m.dateDepart AND '{dtpDateRetour.Value.ToString("yyyy-MM-dd")}' <= m.dateRetour) " +
+									"OR " +
+									$"('{dtpDateDepart.Value.ToString("yyyy-MM-dd")}' <= m.dateRetour AND '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}' >= m.dateDepart) " +
+									"OR " +
+									$"('{dtpDateDepart.Value.ToString("yyyy-MM-dd")}' <= m.dateDepart AND '{dtpDateRetour.Value.ToString("yyyy-MM-dd")}' >= m.dateRetour) " +
+								")";
+
+				SQLiteCommand commande = new SQLiteCommand(requete, Connexion.Connec);
+				commande.CommandType = CommandType.Text;
+				SQLiteDataReader queryResponse = commande.ExecuteReader();
 				while (queryResponse.Read())
 				{
-					cboChoixPlanete.Items.Add(queryResponse.GetValue(0).ToString());
+					if (queryResponse.GetString(0) == matricule)
+					{
+						return false;
+					}
 				}
-
-				// cboChefMission
-				// Je pars du principe que seulement les militaires peuvent être chef de mission DISPONIBLES
-				SQLiteCommand cd2 = new SQLiteCommand("SELECT m.nom || ' ' || m.prenom || ' - ' || mi.grade || ' (Militaire)' as 'Chef', m.matricule " +
-														"FROM Membre m, Militaire mi " +
-														"WHERE m.matricule = mi.matriculeMembre ",
-														Connexion.Connec);
-				cd2.CommandType = CommandType.Text;
-				queryResponse = cd2.ExecuteReader();
-				while (queryResponse.Read())
-				{
-					cboChefMission.Items.Add(queryResponse.GetValue(0).ToString());
-					matricules[queryResponse.GetValue(0).ToString()] = queryResponse.GetValue(1).ToString();
-				}
+				return true;
 			}
-			catch (Exception err)
+			catch (Exception ex)
 			{
-				MessageBox.Show("Erreur lors du chargement des ComboBox!\nPlus de détails: " + err.Message);
-				DialogResult = DialogResult.Cancel; // Quitter la fenêtre en cas de problème
+				MessageBox.Show("Erreur lors de la verification de disponibilite!\nPlus d'informations: " + ex.Message);
 			}
+			return false;
 		}
 
-		// Permet d'échapper les apostrophes pour les requetes SQL
-		private String echApostrophe(String texte)
+		private void verifDispnibiliteTous()
 		{
-			String returnTexte = "";
-			foreach (char ch in texte)
+			if (!matricules.ContainsKey(cboChefMission.Text))
 			{
-				if (ch == '\'')
-				{
-					returnTexte += ch + "'";
-				}
-				else
-				{
-					returnTexte += ch;
-				}
+				return;
 			}
 
-			return returnTexte;
-		}
-
-		private void btnReinitialiser_Click(object sender, EventArgs e)
-		{
-			// Demander confirmation avant de reinitialiser
-			if (btnReinitialiser.Text == TEXTE_RESET_DEFAUT)
+			if (!estDisponible(matricules[cboChefMission.Text]))
 			{
-				btnReinitialiser.Text = TEXTE_RESET_CONFIRMATION;
-				lblWarning.Visible = true;
+				MessageBox.Show($"{cboChefMission.Text} est déjà chef dans une autre mission durant cette plage de temps!");
+				cboChefMission.SelectedIndex = -1;
+				lsbxParticipants.Items.Clear();
 			}
-			else
+
+			try
 			{
-				reinitialiser_volet();
+				foreach (String membre in lsbxParticipants.Items)
+				{
+					if (!estDisponible(matricules[membre]))
+					{
+						MessageBox.Show($"{membre} n'est pas présent durant cette plage de date, il/elle sera retiré.e de la liste des participants.");
+						lsbxParticipants.Items.Remove(membre);
+					}
+				}
+			}
+			catch
+			{
+
 			}
 		}
 		private void reinitialiser_volet()
@@ -129,6 +133,93 @@ namespace projet_SAE_24
 			nudNbCapture.Enabled = false;
 			nudNbCapture.Value = nudNbCapture.Minimum;
 			lsbxCaptures.Items.Clear();
+
+			// Retourner au tab principal
+			tabControl1.SelectedIndex = 0;
+		}
+
+		// Permet d'échapper les apostrophes pour les requetes SQL
+		private String echApostrophe(String texte)
+		{
+			String returnTexte = "";
+			foreach (char ch in texte)
+			{
+				if (ch == '\'')
+				{
+					returnTexte += ch + "'";
+				}
+				else
+				{
+					returnTexte += ch;
+				}
+			}
+
+			return returnTexte;
+		}
+
+		private void FormADM_Load(object sender, EventArgs e)
+		{
+			// Remplissage des ComboBox en mode connecté
+			try
+			{
+				// cboPlanetes
+				SQLiteCommand cd1 = new SQLiteCommand("SELECT nom FROM Planete", Connexion.Connec);
+				cd1.CommandType = CommandType.Text;
+				SQLiteDataReader queryResponse = cd1.ExecuteReader();
+				while (queryResponse.Read())
+				{
+					cboChoixPlanete.Items.Add(queryResponse.GetValue(0).ToString());
+				}
+
+				// cboChefMission
+				// Je pars du principe que seulement les militaires peuvent être chef de mission DISPONIBLES
+				SQLiteCommand cd2 = new SQLiteCommand("SELECT m.nom || ' ' || m.prenom || ' - ' || mi.grade || ' (Militaire)' as 'Chef', m.matricule " +
+														"FROM Membre m, Militaire mi " +
+														"WHERE m.matricule = mi.matriculeMembre ",
+														Connexion.Connec);
+				cd2.CommandType = CommandType.Text;
+				queryResponse = cd2.ExecuteReader();
+				while (queryResponse.Read())
+				{
+					cboChefMission.Items.Add(queryResponse.GetValue(0).ToString());
+					cboAjoutMembre.Items.Add(queryResponse.GetValue(0).ToString());
+					matricules[queryResponse.GetValue(0).ToString()] = queryResponse.GetValue(1).ToString();
+				}
+
+				// cboAjoutMembre
+				// Ajouter les civils
+				SQLiteCommand cd3 = new SQLiteCommand("SELECT m.nom || ' ' || m.prenom || ' - ' || c.Specialite || ' (Civil)' as 'Civil', m.matricule " +
+														"FROM Membre m, Civil c " +
+														"WHERE m.matricule = c.matriculeMembre",
+														Connexion.Connec);
+				cd3.CommandType = CommandType.Text;
+				queryResponse = cd3.ExecuteReader();
+				while (queryResponse.Read())
+				{
+					cboAjoutMembre.Items.Add(queryResponse.GetValue(0).ToString());
+					matricules[queryResponse.GetValue(0).ToString()] = queryResponse.GetValue(1).ToString();
+				}
+			}
+			catch (Exception err)
+			{
+				MessageBox.Show("Erreur lors du chargement des ComboBox!\nPlus de détails: " + err.Message);
+				DialogResult = DialogResult.Cancel; // Quitter la fenêtre en cas de problème
+			}
+		}
+
+
+		private void btnReinitialiser_Click(object sender, EventArgs e)
+		{
+			// Demander confirmation avant de reinitialiser
+			if (btnReinitialiser.Text == TEXTE_RESET_DEFAUT)
+			{
+				btnReinitialiser.Text = TEXTE_RESET_CONFIRMATION;
+				lblWarning.Visible = true;
+			}
+			else
+			{
+				reinitialiser_volet();
+			}
 		}
 
 		private void btnReinitialiser_MouseLeave(object sender, EventArgs e)
@@ -141,6 +232,13 @@ namespace projet_SAE_24
 		private void btnCreerMission_Click(object sender, EventArgs e)
 		{
 			// Vérifications
+			if (btnCreerMission.Text == "Suivant")
+			{
+				tabControl1.SelectedIndex = 1;
+				btnCreerMission.Text = "Créer Mission";
+				return;
+			}
+
 			if (cboChefMission.Text == "" || cboChoixPlanete.Text == "")
 			{
 				MessageBox.Show("Vous ne pouvez pas créer de mission sans planète et sans chef!");
@@ -240,6 +338,13 @@ namespace projet_SAE_24
 		{
 			// Faire en sorte que date retour ne puisse pas être avant date depart
 			dtpDateRetour.MinDate = dtpDateDepart.Value;
+
+			// Vérifier que le chef choisi (et membres de la mission) est présent avant/après cette date
+			verifDispnibiliteTous();
+		}
+		private void dtpDateRetour_ValueChanged(object sender, EventArgs e)
+		{
+			verifDispnibiliteTous();
 		}
 
 		private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -247,6 +352,7 @@ namespace projet_SAE_24
 			// Si un chef n'est pas choisi, on prévient l'utilisateur qu'il ne pourra pas ajouter/retirer de membres pour la mission
 			if (tabControl1.SelectedIndex == 1) // tabDetails
 			{
+				btnCreerMission.Text = "Créer Mission";
 				if (!cboAjoutMembre.Enabled)
 				{
 					MessageBox.Show("Vous n'avez pas asigné de chef pour la mission, vous ne pourrez pas ajouter/retirer de membres pour celle-ci!", "Attention!");
@@ -256,21 +362,10 @@ namespace projet_SAE_24
 					MessageBox.Show("Vous n'avez pas asigné de planete pour la mission, vous ne pourrez pas ajouter d'objectif de capture pour celle-ci!", "Attention!");
 				}
 			}
-		}
-
-		private bool verifDisponibilite(String matricule)
-		{
-			if (matricule == "")
+			else
 			{
-				return false;
+				btnCreerMission.Text = "Suivant";
 			}
-			String requete = "SELECT c.matriculeMembre " +
-								"FROM Composer c, Mission m " +
-								"WHERE c.nomPlanete = m.nomPlanete AND c.numeroMission = m.numero " +
-								$"AND m.dateRetour < '{dtpDateDepart.Value.ToString("yyyy-MM-dd")}' " +
-								$"AND m.date";
-
-			return false;
 		}
 		
 		private void cboChefMission_SelectedIndexChanged(object sender, EventArgs e)
@@ -278,36 +373,20 @@ namespace projet_SAE_24
 			// Si un chef de mission est sélectionné, autoriser l'utilisateur à ajouter/retirer des membrres pour la mission
 			if (cboChefMission.SelectedIndex != -1) // Chef sélectionné
 			{
+				lsbxParticipants.Items.Clear(); // Rafraichir la liste des participants
+
+				if (!estDisponible(matricules[cboChefMission.Text]))
+				{
+					MessageBox.Show($"{cboChefMission.Text} est déjà dans une mission durant cette plage de temps!");
+					cboChefMission.SelectedIndex = -1;
+					return;
+				}
+
 				cboAjoutMembre.Enabled = true;
 
 				lsbxParticipants.Items.Clear();
 				lsbxParticipants.Items.Add(cboChefMission.Text);
-
-				// Charger cboAjoutMembre
-				cboAjoutMembre.Items.Clear();
-
-				// Ajouter les civils
-				SQLiteCommand cd1 = new SQLiteCommand("SELECT m.nom || ' ' || m.prenom || ' - ' || c.Specialite || ' (Civil)' as 'Civil', m.matricule " +
-														"FROM Membre m, Civil c " +
-														"WHERE m.matricule = c.matriculeMembre",
-														Connexion.Connec);
-				cd1.CommandType = CommandType.Text;
-				SQLiteDataReader queryResponse = cd1.ExecuteReader();
-				while (queryResponse.Read())
-				{
-					cboAjoutMembre.Items.Add(queryResponse.GetValue(0).ToString());
-					matricules[queryResponse.GetValue(0).ToString()] = queryResponse.GetValue(1).ToString();
-				}
-
-				// Ajouter les militaires
-				// Vu qu'on a déjà cboChefMission qui contient tous les militaires, suffit de copier les items et de retirer le chef
-				foreach (String militaire in cboChefMission.Items)
-				{
-					if (militaire != cboChefMission.Text)
-					{
-						cboAjoutMembre.Items.Add(militaire);
-					}
-				}
+				cboAjoutMembre.Items.Remove(cboChefMission.Text);
 			}
 			else // Pas de chef sélectionné
 			{
@@ -365,6 +444,10 @@ namespace projet_SAE_24
 			if (lsbxParticipants.Items.Count >= MAX_PARTICIPANTS)
 			{
 				MessageBox.Show("Vous ne pouvez pas ajouter plus de membres pour la mission!");
+			}
+			else if (!estDisponible(matricules[cboAjoutMembre.Text]))
+			{
+				MessageBox.Show("Cette personne est déjà dans une mission durant cette plage de temps!");
 			}
 			else
 			{
@@ -444,5 +527,6 @@ namespace projet_SAE_24
 				lsbxCaptures.Items.Add(especeEnnemi + " ---> " + objectifs_capture[especeEnnemi].ToString());
 			}
 		}
+
 	}
 }
