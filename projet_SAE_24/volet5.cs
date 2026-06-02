@@ -54,6 +54,7 @@ namespace projet_SAE_24
 
                 //Couleur d'arrière-plan non définitive
                 p.BackColor = Color.BurlyWood;
+                p.BorderStyle = BorderStyle.FixedSingle;
                 p.Width = 300;
                 p.Height = 300;
 
@@ -130,7 +131,7 @@ namespace projet_SAE_24
                     {
                         case 1:
                             databaz = "Présence de DataBaz";
-                            lblDataBaz.ForeColor = Color.GreenYellow;
+                            lblDataBaz.ForeColor = Color.Green;
                             break;
                         case 0:
                             databaz = "Pas de DataBaz";

@@ -37,6 +37,7 @@
             // 
             // layMissions
             // 
+            this.layMissions.BackColor = System.Drawing.Color.BurlyWood;
             this.layMissions.Location = new System.Drawing.Point(12, 12);
             this.layMissions.Name = "layMissions";
             this.layMissions.Size = new System.Drawing.Size(580, 387);
@@ -55,6 +56,7 @@
             // 
             // grpEspeces
             // 
+            this.grpEspeces.BackColor = System.Drawing.Color.Salmon;
             this.grpEspeces.Location = new System.Drawing.Point(598, 12);
             this.grpEspeces.Name = "grpEspeces";
             this.grpEspeces.Size = new System.Drawing.Size(167, 327);
@@ -66,6 +68,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(775, 406);
             this.Controls.Add(this.grpEspeces);
             this.Controls.Add(this.btnQuitterFenetre);

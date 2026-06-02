@@ -37,6 +37,7 @@
             // layEspece
             // 
             this.layEspece.AutoScroll = true;
+            this.layEspece.BackColor = System.Drawing.Color.Salmon;
             this.layEspece.Location = new System.Drawing.Point(12, 12);
             this.layEspece.Name = "layEspece";
             this.layEspece.Size = new System.Drawing.Size(644, 426);
@@ -79,6 +80,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.btnPlantes);

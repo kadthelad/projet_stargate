@@ -143,11 +143,14 @@ namespace projet_SAE_24
 
                 p.Width = 250;
                 p.Height = 110;
+                p.BackColor = Color.BurlyWood;
+                p.BorderStyle = BorderStyle.FixedSingle;
+                p.Margin = new Padding(20);
 
                 pb.Width = 100;
                 pb.Height = 100;
-                pb.Left = 0;
-                pb.Top = 0;
+                pb.Left = 5;
+                pb.Top = 4;
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 string couleurEspece = maDB.Tables["Espece"].Rows[i]["couleur"].ToString();
