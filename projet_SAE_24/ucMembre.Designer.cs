@@ -69,7 +69,6 @@
             this.Controls.Add(this.lblPrenom);
             this.Controls.Add(this.pcbPhotoMembre);
             this.Name = "ucMembre";
-            this.Load += new System.EventHandler(this.ucMembre_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pcbPhotoMembre)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -22,8 +22,6 @@ namespace projet_SAE_24
             InitializeComponent();
             m_missioNumero = nbMissionPlanete;
             m_missionPlanete = missionPlanete;
-
-
         }
 
         DataSet monds = MesDatas.DsGlobal;
@@ -35,31 +33,18 @@ namespace projet_SAE_24
 
         private void remplirForm()
         {
-
-            string cheminProjet = Application.StartupPath;
             // ajout de l'icone de journal sur le bouton de journal
-            try
-            {
-                Image img = Image.FromFile(cheminProjet + "/img/icons/journal.png");
-                pcbJournal.Image = img;
-            }
-            catch (Exception error)
-            {
-                Image img = Image.FromFile(cheminProjet + "/img/membres/placeholder.png");
-                pcbJournal.Image = img;
-            }
+            pcbJournal.Image = Properties.Resources.journal;
 
             //ajout de l'image de la planete
-            try
-            {
-                Image img = Image.FromFile(cheminProjet + "/img/planetes/" + m_missionPlanete + ".png");
-                pcbPlanete.Image = img;
-            }
-            catch (Exception error)
-            {
-                Image img = Image.FromFile(cheminProjet + "/img/membres/placeholder.png");
-                pcbPlanete.Image = img;
-            }
+            pcbPlanete.Image = (Image)Properties.Resources.ResourceManager.GetObject(m_missionPlanete);
+
+            //ajout de l'image de retour
+            pcbRetour.Image = Properties.Resources.retour;
+
+            //ajout de l'image de retour
+            pcbModifier.Image = Properties.Resources.crayon;
+
 
             // recuperation de la table des missions
             DataTable tblMission = monds.Tables["Mission"];
@@ -123,8 +108,8 @@ namespace projet_SAE_24
 
             // Création table captures
             DataTable tblObjectifCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}").CopyToDataTable();
-            int haut = 30;
-            int gauche = 30;
+            //int haut = 30;
+            //int gauche = 30;
             foreach (DataRow objectifDeCapture in tblObjectifCapture.Rows)
             {
                 int idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
@@ -135,13 +120,10 @@ namespace projet_SAE_24
                 Label lblObjectif = new Label();
                 string objectifPrises = objectifDeCapture["objectif"].ToString();
                 lblObjectif.Text = $"{nomEnnemie} --> {objectifPrises} prise(s)";
-                lblObjectif.Top = haut;
-                lblObjectif.Left = gauche;
                 lblObjectif.AutoSize = true;
 
-                haut += 20;
 
-                grpObjectifCapture.Controls.Add(lblObjectif);
+                flpCapture.Controls.Add(lblObjectif);
             }
 
             // Création de la table de capture de compte rendu de mission
@@ -170,14 +152,29 @@ namespace projet_SAE_24
                     tauxReussite
                     );
             }
-            tblResultatCapture.TableName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
-            monds.Tables.Add(tblResultatCapture);
+            string tblName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
+            tblResultatCapture.TableName = tblName;
+            if (monds.Tables[tblName] != null)
+            {
+                monds.Tables.Add(tblResultatCapture);
+            }
         }
 
         private void pcbJournal_Click(object sender, EventArgs e)
         {
             Journal journal = new Journal(m_missionPlanete, m_missioNumero);
-            journal.Show();
+            journal.ShowDialog();
+        }
+
+        private void pcbRetour_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pcbModifier_Click(object sender, EventArgs e)
+        {
+            EditeurJournal editeurJournal = new EditeurJournal();
+            editeurJournal.ShowDialog();
         }
     }
 }

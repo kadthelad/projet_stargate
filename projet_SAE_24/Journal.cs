@@ -48,20 +48,7 @@ namespace projet_SAE_24
             rtbEvenement.DataBindings.Add("Text", bsEvenement, "commentaires");
             lblDate.DataBindings.Add("Text", bsEvenement, "dateJ");
 
-
-            // Ajout de l'icon pour le bouton de retour
-            string cheminProjet = Application.StartupPath;
-            try
-            {
-                Image img = Image.FromFile(cheminProjet + "/img/icons/retour.png");
-                pcbRetour.Image = img;
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show("error");
-                Image img = Image.FromFile(cheminProjet + "/img/membres/placeholder.png");
-                pcbRetour.Image = img;
-            }
+                pcbRetour.Image = Properties.Resources.retour;
 
 
 

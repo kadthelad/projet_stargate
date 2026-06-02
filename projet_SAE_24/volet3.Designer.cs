@@ -40,14 +40,16 @@
             this.grpObjectifCapture = new System.Windows.Forms.GroupBox();
             this.pcbJournal = new System.Windows.Forms.PictureBox();
             this.pcbPlanete = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pcbModifier = new System.Windows.Forms.PictureBox();
+            this.pcbRetour = new System.Windows.Forms.PictureBox();
+            this.flpCapture = new System.Windows.Forms.FlowLayoutPanel();
             this.grpFeuilleDeRoute.SuspendLayout();
             this.grpMembres.SuspendLayout();
+            this.grpObjectifCapture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pcbJournal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPlanete)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbModifier)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbRetour)).BeginInit();
             this.SuspendLayout();
             // 
             // lblMisssion
@@ -148,16 +150,17 @@
             // 
             // grpObjectifCapture
             // 
+            this.grpObjectifCapture.Controls.Add(this.flpCapture);
             this.grpObjectifCapture.Location = new System.Drawing.Point(16, 596);
             this.grpObjectifCapture.Name = "grpObjectifCapture";
-            this.grpObjectifCapture.Size = new System.Drawing.Size(887, 90);
+            this.grpObjectifCapture.Size = new System.Drawing.Size(887, 110);
             this.grpObjectifCapture.TabIndex = 9;
             this.grpObjectifCapture.TabStop = false;
             this.grpObjectifCapture.Text = "Objectif de Capture";
             // 
             // pcbJournal
             // 
-            this.pcbJournal.Location = new System.Drawing.Point(909, 596);
+            this.pcbJournal.Location = new System.Drawing.Point(909, 639);
             this.pcbJournal.Name = "pcbJournal";
             this.pcbJournal.Size = new System.Drawing.Size(67, 67);
             this.pcbJournal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -174,31 +177,41 @@
             this.pcbPlanete.TabIndex = 12;
             this.pcbPlanete.TabStop = false;
             // 
-            // pictureBox1
+            // pcbModifier
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(982, 596);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(67, 67);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 13;
-            this.pictureBox1.TabStop = false;
+            this.pcbModifier.Location = new System.Drawing.Point(982, 639);
+            this.pcbModifier.Name = "pcbModifier";
+            this.pcbModifier.Size = new System.Drawing.Size(67, 67);
+            this.pcbModifier.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbModifier.TabIndex = 13;
+            this.pcbModifier.TabStop = false;
+            this.pcbModifier.Click += new System.EventHandler(this.pcbModifier_Click);
             // 
-            // pictureBox2
+            // pcbRetour
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(1055, 596);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(67, 67);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 14;
-            this.pictureBox2.TabStop = false;
+            this.pcbRetour.Location = new System.Drawing.Point(1055, 639);
+            this.pcbRetour.Name = "pcbRetour";
+            this.pcbRetour.Size = new System.Drawing.Size(67, 67);
+            this.pcbRetour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pcbRetour.TabIndex = 14;
+            this.pcbRetour.TabStop = false;
+            this.pcbRetour.Click += new System.EventHandler(this.pcbRetour_Click);
+            // 
+            // flpCapture
+            // 
+            this.flpCapture.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+            this.flpCapture.Location = new System.Drawing.Point(6, 21);
+            this.flpCapture.Name = "flpCapture";
+            this.flpCapture.Size = new System.Drawing.Size(875, 83);
+            this.flpCapture.TabIndex = 0;
             // 
             // Volet3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1135, 718);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pcbRetour);
+            this.Controls.Add(this.pcbModifier);
             this.Controls.Add(this.pcbPlanete);
             this.Controls.Add(this.pcbJournal);
             this.Controls.Add(this.grpObjectifCapture);
@@ -217,10 +230,11 @@
             this.Load += new System.EventHandler(this.recapMission_Load);
             this.grpFeuilleDeRoute.ResumeLayout(false);
             this.grpMembres.ResumeLayout(false);
+            this.grpObjectifCapture.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pcbJournal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbPlanete)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbModifier)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbRetour)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,7 +253,8 @@
         private System.Windows.Forms.GroupBox grpObjectifCapture;
         private System.Windows.Forms.PictureBox pcbJournal;
         private System.Windows.Forms.PictureBox pcbPlanete;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pcbModifier;
+        private System.Windows.Forms.PictureBox pcbRetour;
+        private System.Windows.Forms.FlowLayoutPanel flpCapture;
     }
 }
