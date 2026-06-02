@@ -14,6 +14,7 @@
     <Deterministic>true</Deterministic>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -26,7 +27,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -174,6 +174,12 @@
       <DependentUpon>AdminAccess.cs</DependentUpon>
     </Compile>
     <Compile Include="Connexion.cs" />
+    <Compile Include="filtre.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="filtre.Designer.cs">
+      <DependentUpon>filtre.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -201,8 +207,20 @@
     <Compile Include="volet2.Designer.cs">
       <DependentUpon>volet2.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AdminAccess.resx">
-      <DependentUpon>AdminAccess.cs</DependentUpon>
+    <Compile Include="volet4.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="volet4.Designer.cs">
+      <DependentUpon>volet4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="volet5.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="volet5.Designer.cs">
+      <DependentUpon>volet5.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="filtre.resx">
+      <DependentUpon>filtre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -221,9 +239,16 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="volet2.resx">
       <DependentUpon>volet2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="volet4.resx">
+      <DependentUpon>volet4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="volet5.resx">
+      <DependentUpon>volet5.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
