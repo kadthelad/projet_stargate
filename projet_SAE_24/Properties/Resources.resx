@@ -121,6 +121,9 @@
   <data name="Aina" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\img\planetes\Aina.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ajouterContact" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ajouter.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="Aurae" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\img\planetes\Aurae.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,10 +154,10 @@
   <data name="Kobaia" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\img\planetes\Kobaia.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="La 9ème planète" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\img\planetes\La 9ème planète.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="leao_ballon_d_or" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\leao_ballon_d_or.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="leao_ballon_d_or1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\leao_ballon_d_or.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Malaria" type="System.Resources.ResXFileRef, System.Windows.Forms">
