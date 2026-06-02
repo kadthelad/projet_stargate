@@ -48,7 +48,7 @@ namespace projet_SAE_24
             rtbEvenement.DataBindings.Add("Text", bsEvenement, "commentaires");
             lblDate.DataBindings.Add("Text", bsEvenement, "dateJ");
 
-                pcbRetour.Image = Properties.Resources.retour;
+                pcbRetour.Image = Properties.Resources.fleche_retour;
 
 
 

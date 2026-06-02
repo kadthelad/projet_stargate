@@ -40,7 +40,7 @@ namespace projet_SAE_24
             pcbPlanete.Image = (Image)Properties.Resources.ResourceManager.GetObject(m_missionPlanete);
 
             //ajout de l'image de retour
-            pcbRetour.Image = Properties.Resources.retour;
+            pcbRetour.Image = Properties.Resources.fleche_retour;
 
             //ajout de l'image de retour
             pcbModifier.Image = Properties.Resources.crayon;

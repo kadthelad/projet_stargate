@@ -34,22 +34,6 @@ namespace projet_SAE_24
         private void editeurJournal_Load(object sender, EventArgs e)
         {
 
-            Image btnontact = Properties.Resources.ajouterContact;
-            btnontact.Image = contact;
-            btnContact.Width = contact.Width + 10;
-            btnContact.Height = contact.Height + 10;
-
-            Image depenses = Properties.Resources.depenses;
-            btnDepense.Image = depenses;
-            btnDepense.Width = depenses.Width + 10;
-            btnDepense.Height = depenses.Height + 10;
-
-            Image evenement = Properties.Resources._event;
-            btnEvenement.Image = evenement;
-            btnEvenement.Width = evenement.Width + 10;
-            btnEvenement.Height = evenement.Height + 10;
-
-
         }
 
         private void btnContact_Click(object sender, EventArgs e)
@@ -78,7 +62,7 @@ namespace projet_SAE_24
              m_missioNumero,
              dtpDate.Value,
              txtSomme.Text,
-             TAppreciation
+             rtbAppreciation.Text
                 );
 
         }

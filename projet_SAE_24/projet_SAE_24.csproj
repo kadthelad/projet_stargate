@@ -318,6 +318,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="README.md" />
+    <None Include="Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -429,9 +430,11 @@
     <Content Include="ajouter.png" />
     <Content Include="Aurae.png" />
     <Content Include="depenses.png" />
+    <Content Include="enerve.jpg" />
     <Content Include="fleche-bas.png" />
     <Content Include="fleche-haut.png" />
     <Content Include="fleche_retour.png" />
+    <Content Include="heureux.jpg" />
     <Content Include="Jupiter.png" />
     <Content Include="Kobaia.png" />
     <Content Include="La_9eme_planete.png" />
@@ -441,12 +444,19 @@
     <Content Include="Mercure.png" />
     <Content Include="Muh.png" />
     <Content Include="Neptune.png" />
+    <Content Include="normal.jpg" />
     <Content Include="plan-de-marketing.png" />
     <None Include="Resources\depenses.png" />
     <None Include="Resources\ajouter.png" />
     <None Include="Resources\normal.jpg" />
     <None Include="Resources\heureux.jpg" />
     <None Include="Resources\enerve.jpg" />
+    <None Include="Resources\fleche-haut.png" />
+    <None Include="Resources\fleche-bas.png" />
+    <None Include="Resources\journal.png" />
+    <None Include="Resources\crayon.png" />
+    <None Include="Resources\retour.png" />
+    <None Include="Resources\event.png" />
     <Content Include="Saturne.png" />
     <Content Include="Sckxyss.png" />
     <Content Include="Setna.png" />
