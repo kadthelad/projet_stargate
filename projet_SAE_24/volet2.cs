@@ -133,6 +133,9 @@ namespace projet_SAE_24
 			nudNbCapture.Enabled = false;
 			nudNbCapture.Value = nudNbCapture.Minimum;
 			lsbxCaptures.Items.Clear();
+
+			// Retourner au tab principal
+			tabControl1.SelectedIndex = 0;
 		}
 
 		// Permet d'échapper les apostrophes pour les requetes SQL
@@ -229,6 +232,13 @@ namespace projet_SAE_24
 		private void btnCreerMission_Click(object sender, EventArgs e)
 		{
 			// Vérifications
+			if (btnCreerMission.Text == "Suivant")
+			{
+				tabControl1.SelectedIndex = 1;
+				btnCreerMission.Text = "Créer Mission";
+				return;
+			}
+
 			if (cboChefMission.Text == "" || cboChoixPlanete.Text == "")
 			{
 				MessageBox.Show("Vous ne pouvez pas créer de mission sans planète et sans chef!");
@@ -342,6 +352,7 @@ namespace projet_SAE_24
 			// Si un chef n'est pas choisi, on prévient l'utilisateur qu'il ne pourra pas ajouter/retirer de membres pour la mission
 			if (tabControl1.SelectedIndex == 1) // tabDetails
 			{
+				btnCreerMission.Text = "Créer Mission";
 				if (!cboAjoutMembre.Enabled)
 				{
 					MessageBox.Show("Vous n'avez pas asigné de chef pour la mission, vous ne pourrez pas ajouter/retirer de membres pour celle-ci!", "Attention!");
@@ -350,6 +361,10 @@ namespace projet_SAE_24
 				{
 					MessageBox.Show("Vous n'avez pas asigné de planete pour la mission, vous ne pourrez pas ajouter d'objectif de capture pour celle-ci!", "Attention!");
 				}
+			}
+			else
+			{
+				btnCreerMission.Text = "Suivant";
 			}
 		}
 		

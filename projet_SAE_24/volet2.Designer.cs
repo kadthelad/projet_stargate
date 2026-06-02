@@ -66,6 +66,7 @@
 			this.cboAjoutMembre = new System.Windows.Forms.ComboBox();
 			this.label24 = new System.Windows.Forms.Label();
 			this.lblWarning = new System.Windows.Forms.Label();
+			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
 			this.grpEtape1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudBudget)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudQteTonnes)).BeginInit();
@@ -304,7 +305,7 @@
 			this.btnCreerMission.Name = "btnCreerMission";
 			this.btnCreerMission.Size = new System.Drawing.Size(141, 39);
 			this.btnCreerMission.TabIndex = 4;
-			this.btnCreerMission.Text = "Créer Mission";
+			this.btnCreerMission.Text = "Suivant";
 			this.btnCreerMission.UseVisualStyleBackColor = false;
 			this.btnCreerMission.Click += new System.EventHandler(this.btnCreerMission_Click);
 			// 
@@ -576,5 +577,6 @@
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Button btnAjoutObjectif;
 		private System.Windows.Forms.CheckBox ckbAfficherTousEnnemis;
+		private System.ComponentModel.BackgroundWorker backgroundWorker1;
 	}
 }
