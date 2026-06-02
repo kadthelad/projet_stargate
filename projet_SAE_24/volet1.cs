@@ -149,5 +149,19 @@ namespace projet_SAE_24
 			rdbToutes.Checked = true;
 			Rafraichir_Missions();
 		}
+
+		private void btnRegistreEspece_Click(object sender, EventArgs e)
+		{
+
+			volet4 frmRegistreEspeces = new volet4();
+			frmRegistreEspeces.ShowDialog();
+		}
+
+		private void btnRegistrePlanetes_Click(object sender, EventArgs e)
+		{
+
+			volet5 frmRegistrePlanetes = new volet5();
+			frmRegistrePlanetes.ShowDialog();
+		}
 	}
 }
