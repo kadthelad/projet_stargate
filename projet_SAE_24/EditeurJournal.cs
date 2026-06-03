@@ -29,30 +29,24 @@ namespace projet_SAE_24
 
         DataSet monds = MesDatas.DsGlobal;
 
-        
+
 
         private void editeurJournal_Load(object sender, EventArgs e)
         {
+            //Remplir cboInformateur
+            DataTable tblInformateur = monds.Tables["Informateur"];
+            cboInformateurs.DataSource = tblInformateur;
+            cboInformateurs.DisplayMember = "nom";
+            cboInformateurs.ValueMember = "nomCode";
 
+
+            //Remplir cboTypeDepense
+            DataTable tblTypeDepense = monds.Tables["TypeDepense"];
+            cboTypeDepense.DataSource = tblTypeDepense;
+            cboTypeDepense.DisplayMember = "libelle";
+            cboTypeDepense.ValueMember = "id";
         }
 
-        private void btnContact_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void btnDepense_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnEvenement_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnValider_Click(object sender, EventArgs e)
-        {
-        }
 
         private void btnValiderContact_Click(object sender, EventArgs e)
         {
@@ -60,11 +54,56 @@ namespace projet_SAE_24
             tblContact.Rows.Add(
              m_missionPlanete,
              m_missioNumero,
-             dtpDate.Value,
-             txtSomme.Text,
+             dtpDateContact.Value,
+             Convert.ToInt64(txtSomme.Text),
              rtbAppreciation.Text
                 );
+        }
 
+
+        private void annulerModif_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnValiderDepense_Click(object sender, EventArgs e)
+        {
+
+            DataTable tblDepense = monds.Tables["Depense"];
+
+            int idDepense = 0;
+            foreach (DataRow ligne in tblDepense.Rows)
+            {
+                int id = Convert.ToInt32(ligne["id"]);
+                if (id > idDepense)
+                {
+                    idDepense = id;
+                }
+
+            }
+
+            tblDepense.Rows.Add(
+             m_missionPlanete,
+             m_missioNumero,
+             idDepense,
+             dtpDateDepense.Value,
+             Convert.ToInt32(txtMontantDepense.Text),
+             rtbMotifDepense.Text,
+             cboTypeDepense.SelectedValue
+                );
+        }
+
+        private void btnValiderEvent_Click(object sender, EventArgs e)
+        {
+            DataTable tblDepense = monds.Tables["JournalDeBord"];
+
+
+            tblDepense.Rows.Add(
+             m_missionPlanete,
+             m_missioNumero,
+             dtpDateDepense.Value,
+             rtbCommentaireEvent.Text
+                );
         }
     }
 }
