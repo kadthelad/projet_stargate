@@ -41,8 +41,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabContact = new System.Windows.Forms.TabPage();
             this.grpAjouterContact = new System.Windows.Forms.GroupBox();
+            this.lblDeviseContact = new System.Windows.Forms.Label();
             this.tabDepense = new System.Windows.Forms.TabPage();
             this.grpDepense = new System.Windows.Forms.GroupBox();
+            this.lblDeviseDepense = new System.Windows.Forms.Label();
             this.btnValiderDepense = new System.Windows.Forms.Button();
             this.btnAnnulerDepense = new System.Windows.Forms.Button();
             this.lblTypeDepense = new System.Windows.Forms.Label();
@@ -61,8 +63,6 @@
             this.dtpEvent = new System.Windows.Forms.DateTimePicker();
             this.lblCommentaireEvent = new System.Windows.Forms.Label();
             this.lblDateEvent = new System.Windows.Forms.Label();
-            this.lblDeviseContact = new System.Windows.Forms.Label();
-            this.lblDeviseDepense = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabContact.SuspendLayout();
             this.grpAjouterContact.SuspendLayout();
@@ -90,6 +90,7 @@
             this.btnAnnuler.TabIndex = 8;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
+            this.btnAnnuler.Click += new System.EventHandler(this.annulerModif_Click);
             // 
             // lblInformateur
             // 
@@ -123,6 +124,7 @@
             this.txtSomme.Name = "txtSomme";
             this.txtSomme.Size = new System.Drawing.Size(100, 29);
             this.txtSomme.TabIndex = 4;
+            this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSomme_KeyPress);
             // 
             // dtpDateContact
             // 
@@ -166,9 +168,8 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(652, 541);
+            this.tabControl1.Size = new System.Drawing.Size(449, 438);
             this.tabControl1.TabIndex = 3;
-            this.tabControl1.Click += new System.EventHandler(this.annulerModif_Click);
             // 
             // tabContact
             // 
@@ -176,7 +177,7 @@
             this.tabContact.Location = new System.Drawing.Point(4, 22);
             this.tabContact.Name = "tabContact";
             this.tabContact.Padding = new System.Windows.Forms.Padding(3);
-            this.tabContact.Size = new System.Drawing.Size(644, 515);
+            this.tabContact.Size = new System.Drawing.Size(441, 412);
             this.tabContact.TabIndex = 0;
             this.tabContact.Text = "Nouveau Contact";
             this.tabContact.UseVisualStyleBackColor = true;
@@ -201,13 +202,22 @@
             this.grpAjouterContact.TabIndex = 2;
             this.grpAjouterContact.TabStop = false;
             // 
+            // lblDeviseContact
+            // 
+            this.lblDeviseContact.AutoSize = true;
+            this.lblDeviseContact.Location = new System.Drawing.Point(245, 92);
+            this.lblDeviseContact.Name = "lblDeviseContact";
+            this.lblDeviseContact.Size = new System.Drawing.Size(34, 24);
+            this.lblDeviseContact.TabIndex = 9;
+            this.lblDeviseContact.Text = "$G";
+            // 
             // tabDepense
             // 
             this.tabDepense.Controls.Add(this.grpDepense);
             this.tabDepense.Location = new System.Drawing.Point(4, 22);
             this.tabDepense.Name = "tabDepense";
             this.tabDepense.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDepense.Size = new System.Drawing.Size(644, 515);
+            this.tabDepense.Size = new System.Drawing.Size(369, 412);
             this.tabDepense.TabIndex = 1;
             this.tabDepense.Text = "Nouvelle dépense";
             this.tabDepense.UseVisualStyleBackColor = true;
@@ -232,9 +242,18 @@
             this.grpDepense.TabIndex = 3;
             this.grpDepense.TabStop = false;
             // 
+            // lblDeviseDepense
+            // 
+            this.lblDeviseDepense.AutoSize = true;
+            this.lblDeviseDepense.Location = new System.Drawing.Point(199, 87);
+            this.lblDeviseDepense.Name = "lblDeviseDepense";
+            this.lblDeviseDepense.Size = new System.Drawing.Size(34, 24);
+            this.lblDeviseDepense.TabIndex = 10;
+            this.lblDeviseDepense.Text = "$G";
+            // 
             // btnValiderDepense
             // 
-            this.btnValiderDepense.Location = new System.Drawing.Point(325, 350);
+            this.btnValiderDepense.Location = new System.Drawing.Point(324, 354);
             this.btnValiderDepense.Name = "btnValiderDepense";
             this.btnValiderDepense.Size = new System.Drawing.Size(100, 40);
             this.btnValiderDepense.TabIndex = 8;
@@ -244,7 +263,7 @@
             // 
             // btnAnnulerDepense
             // 
-            this.btnAnnulerDepense.Location = new System.Drawing.Point(219, 350);
+            this.btnAnnulerDepense.Location = new System.Drawing.Point(219, 354);
             this.btnAnnulerDepense.Name = "btnAnnulerDepense";
             this.btnAnnulerDepense.Size = new System.Drawing.Size(100, 40);
             this.btnAnnulerDepense.TabIndex = 8;
@@ -324,7 +343,7 @@
             this.tabEvent.Controls.Add(this.groupBox2);
             this.tabEvent.Location = new System.Drawing.Point(4, 22);
             this.tabEvent.Name = "tabEvent";
-            this.tabEvent.Size = new System.Drawing.Size(644, 515);
+            this.tabEvent.Size = new System.Drawing.Size(369, 412);
             this.tabEvent.TabIndex = 2;
             this.tabEvent.Text = "Nouvel Evenement";
             this.tabEvent.UseVisualStyleBackColor = true;
@@ -337,17 +356,18 @@
             this.groupBox2.Controls.Add(this.dtpEvent);
             this.groupBox2.Controls.Add(this.lblCommentaireEvent);
             this.groupBox2.Controls.Add(this.lblDateEvent);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(341, 408);
+            this.groupBox2.Size = new System.Drawing.Size(430, 400);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             // 
             // btnValiderEvent
             // 
-            this.btnValiderEvent.Location = new System.Drawing.Point(260, 354);
+            this.btnValiderEvent.Location = new System.Drawing.Point(324, 354);
             this.btnValiderEvent.Name = "btnValiderEvent";
-            this.btnValiderEvent.Size = new System.Drawing.Size(75, 23);
+            this.btnValiderEvent.Size = new System.Drawing.Size(100, 40);
             this.btnValiderEvent.TabIndex = 8;
             this.btnValiderEvent.Text = "Valider";
             this.btnValiderEvent.UseVisualStyleBackColor = true;
@@ -355,9 +375,9 @@
             // 
             // btnAnnulerEvent
             // 
-            this.btnAnnulerEvent.Location = new System.Drawing.Point(178, 354);
+            this.btnAnnulerEvent.Location = new System.Drawing.Point(218, 354);
             this.btnAnnulerEvent.Name = "btnAnnulerEvent";
-            this.btnAnnulerEvent.Size = new System.Drawing.Size(75, 23);
+            this.btnAnnulerEvent.Size = new System.Drawing.Size(100, 40);
             this.btnAnnulerEvent.TabIndex = 8;
             this.btnAnnulerEvent.Text = "Annuler";
             this.btnAnnulerEvent.UseVisualStyleBackColor = true;
@@ -365,7 +385,7 @@
             // 
             // rtbCommentaireEvent
             // 
-            this.rtbCommentaireEvent.Location = new System.Drawing.Point(80, 78);
+            this.rtbCommentaireEvent.Location = new System.Drawing.Point(169, 78);
             this.rtbCommentaireEvent.Name = "rtbCommentaireEvent";
             this.rtbCommentaireEvent.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.rtbCommentaireEvent.Size = new System.Drawing.Size(255, 250);
@@ -374,9 +394,9 @@
             // 
             // dtpEvent
             // 
-            this.dtpEvent.Location = new System.Drawing.Point(93, 41);
+            this.dtpEvent.Location = new System.Drawing.Point(169, 43);
             this.dtpEvent.Name = "dtpEvent";
-            this.dtpEvent.Size = new System.Drawing.Size(200, 20);
+            this.dtpEvent.Size = new System.Drawing.Size(200, 29);
             this.dtpEvent.TabIndex = 3;
             // 
             // lblCommentaireEvent
@@ -384,7 +404,7 @@
             this.lblCommentaireEvent.AutoSize = true;
             this.lblCommentaireEvent.Location = new System.Drawing.Point(6, 81);
             this.lblCommentaireEvent.Name = "lblCommentaireEvent";
-            this.lblCommentaireEvent.Size = new System.Drawing.Size(68, 13);
+            this.lblCommentaireEvent.Size = new System.Drawing.Size(123, 24);
             this.lblCommentaireEvent.TabIndex = 2;
             this.lblCommentaireEvent.Text = "Commentaire";
             // 
@@ -393,33 +413,15 @@
             this.lblDateEvent.AutoSize = true;
             this.lblDateEvent.Location = new System.Drawing.Point(6, 47);
             this.lblDateEvent.Name = "lblDateEvent";
-            this.lblDateEvent.Size = new System.Drawing.Size(30, 13);
+            this.lblDateEvent.Size = new System.Drawing.Size(48, 24);
             this.lblDateEvent.TabIndex = 0;
             this.lblDateEvent.Text = "Date";
-            // 
-            // lblDeviseContact
-            // 
-            this.lblDeviseContact.AutoSize = true;
-            this.lblDeviseContact.Location = new System.Drawing.Point(245, 92);
-            this.lblDeviseContact.Name = "lblDeviseContact";
-            this.lblDeviseContact.Size = new System.Drawing.Size(34, 24);
-            this.lblDeviseContact.TabIndex = 9;
-            this.lblDeviseContact.Text = "$G";
-            // 
-            // lblDeviseDepense
-            // 
-            this.lblDeviseDepense.AutoSize = true;
-            this.lblDeviseDepense.Location = new System.Drawing.Point(199, 87);
-            this.lblDeviseDepense.Name = "lblDeviseDepense";
-            this.lblDeviseDepense.Size = new System.Drawing.Size(34, 24);
-            this.lblDeviseDepense.TabIndex = 10;
-            this.lblDeviseDepense.Text = "$G";
             // 
             // EditeurJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 565);
+            this.ClientSize = new System.Drawing.Size(479, 454);
             this.Controls.Add(this.tabControl1);
             this.Name = "EditeurJournal";
             this.Text = "Modifier de modification";

@@ -429,6 +429,8 @@
     <Content Include="enerve.jpg" />
     <Content Include="heureux.jpg" />
     <Content Include="normal.jpg" />
+    <None Include="Resources\civil.png" />
+    <None Include="Resources\Militaire.png" />
     <None Include="Resources\depenses.png" />
     <None Include="Resources\ajouter.png" />
     <None Include="Resources\normal.jpg" />

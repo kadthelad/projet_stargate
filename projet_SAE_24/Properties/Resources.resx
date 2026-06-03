@@ -127,6 +127,9 @@
   <data name="Aurae" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\img\planetes\Aurae.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="civil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\civil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="crayon" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\crayon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -171,6 +174,9 @@
   </data>
   <data name="Mercure" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\img\planetes\Mercure.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="militaire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Militaire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Muh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\img\planetes\Muh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

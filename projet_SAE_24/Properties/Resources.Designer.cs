@@ -103,6 +103,16 @@ namespace projet_SAE_24.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap civil {
+            get {
+                object obj = ResourceManager.GetObject("civil", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap crayon {
             get {
                 object obj = ResourceManager.GetObject("crayon", resourceCulture);
@@ -246,6 +256,16 @@ namespace projet_SAE_24.Properties {
         internal static System.Drawing.Bitmap Mercure {
             get {
                 object obj = ResourceManager.GetObject("Mercure", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap militaire {
+            get {
+                object obj = ResourceManager.GetObject("militaire", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

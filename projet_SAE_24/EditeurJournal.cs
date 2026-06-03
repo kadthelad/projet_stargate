@@ -54,10 +54,11 @@ namespace projet_SAE_24
             tblContact.Rows.Add(
              m_missionPlanete,
              m_missioNumero,
-             dtpDateContact.Value,
+             dtpDateContact.Value.ToString("yyyy-MM-dd"),
              Convert.ToInt64(txtSomme.Text),
              rtbAppreciation.Text
                 );
+            MessageBox.Show(tblContact.Rows.Count.ToString());
         }
 
 
@@ -86,7 +87,7 @@ namespace projet_SAE_24
              m_missionPlanete,
              m_missioNumero,
              idDepense,
-             dtpDateDepense.Value,
+             dtpDateDepense.Value.ToString("yyyy-MM-dd"),
              Convert.ToInt32(txtMontantDepense.Text),
              rtbMotifDepense.Text,
              cboTypeDepense.SelectedValue
@@ -101,9 +102,24 @@ namespace projet_SAE_24
             tblDepense.Rows.Add(
              m_missionPlanete,
              m_missioNumero,
-             dtpDateDepense.Value,
+             dtpDateDepense.Value.ToString("yyyy-MM-dd"),
              rtbCommentaireEvent.Text
                 );
+        }
+
+        private void rtbCommentaireEvent_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSomme_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // On verifie si le charactère saisis est bien un chiffre
+            char keyChar = e.KeyChar;
+            if (!Char.IsDigit(keyChar))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
