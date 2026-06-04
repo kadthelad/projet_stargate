@@ -34,9 +34,9 @@ namespace projet_SAE_24
 			}
 		}
 
-		private void btnMissions_Click(object sender, EventArgs e)
+        private void btnMissions_Click(object sender, EventArgs e)
 		{
-			FormTDB tableauDeBord = new FormTDB();
+			Volet3 tableauDeBord = new Volet3(1, "Sckxyss");
 			tableauDeBord.ShowDialog();
 		}
 

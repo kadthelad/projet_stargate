@@ -180,6 +180,12 @@
     <Compile Include="easterEgg.Designer.cs">
       <DependentUpon>easterEgg.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditeurJournal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditeurJournal.Designer.cs">
+      <DependentUpon>EditeurJournal.cs</DependentUpon>
+    </Compile>
     <Compile Include="filtre.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -191,6 +197,23 @@
     </Compile>
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Journal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Journal.Designer.cs">
+      <DependentUpon>Journal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="ucMembre.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucMembre.Designer.cs">
+      <DependentUpon>ucMembre.cs</DependentUpon>
     </Compile>
     <Compile Include="visionMission.cs">
       <SubType>Form</SubType>
@@ -219,6 +242,12 @@
     <Compile Include="volet2.Designer.cs">
       <DependentUpon>volet2.cs</DependentUpon>
     </Compile>
+    <Compile Include="volet3.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="volet3.Designer.cs">
+      <DependentUpon>volet3.cs</DependentUpon>
+    </Compile>
     <Compile Include="volet4.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,11 +263,20 @@
     <EmbeddedResource Include="easterEgg.resx">
       <DependentUpon>easterEgg.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EditeurJournal.resx">
+      <DependentUpon>EditeurJournal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="filtre.resx">
       <DependentUpon>filtre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Journal.resx">
+      <DependentUpon>Journal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucMembre.resx">
+      <DependentUpon>ucMembre.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="visionMission.resx">
       <DependentUpon>visionMission.cs</DependentUpon>
@@ -251,16 +289,14 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="volet2.resx">
       <DependentUpon>volet2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="volet3.resx">
+      <DependentUpon>volet3.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="volet4.resx">
       <DependentUpon>volet4.cs</DependentUpon>
@@ -269,6 +305,9 @@
       <DependentUpon>volet5.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\Connexion.datasource" />
+    <None Include="Properties\DataSources\MesDatas.datasource" />
+    <None Include="Properties\DataSources\Volet3.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -279,6 +318,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <None Include="README.md" />
+    <None Include="Thumbs.db" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -386,13 +426,23 @@
     <None Include="Resources\leao_ballon_d_or.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\fleche_retour.png" />
-  </ItemGroup>
-  <ItemGroup>
+    <Content Include="plan-de-marketing.png" />
+    <Content Include="enerve.jpg" />
+    <Content Include="heureux.jpg" />
+    <Content Include="normal.jpg" />
+    <None Include="Resources\civil.png" />
+    <None Include="Resources\Militaire.png" />
+    <None Include="Resources\depenses.png" />
+    <None Include="Resources\ajouter.png" />
+    <None Include="Resources\normal.jpg" />
+    <None Include="Resources\heureux.jpg" />
+    <None Include="Resources\enerve.jpg" />
     <None Include="Resources\fleche-haut.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\fleche-bas.png" />
+    <None Include="Resources\journal.png" />
+    <None Include="Resources\crayon.png" />
+    <None Include="Resources\retour.png" />
+    <None Include="Resources\event.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
