@@ -426,6 +426,7 @@
     <None Include="Resources\leao_ballon_d_or.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="plan-de-marketing.png" />
     <Content Include="enerve.jpg" />
     <Content Include="heureux.jpg" />
     <Content Include="normal.jpg" />

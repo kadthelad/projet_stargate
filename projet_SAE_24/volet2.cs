@@ -353,6 +353,8 @@ namespace projet_SAE_24
 			if (tabControl1.SelectedIndex == 1) // tabDetails
 			{
 				btnCreerMission.Text = "Créer Mission";
+				btnRetour.Text = "Retour";
+				btnRetour.ForeColor = Color.Black;
 				if (!cboAjoutMembre.Enabled)
 				{
 					MessageBox.Show("Vous n'avez pas asigné de chef pour la mission, vous ne pourrez pas ajouter/retirer de membres pour celle-ci!", "Attention!");
@@ -528,5 +530,18 @@ namespace projet_SAE_24
 			}
 		}
 
+		private void btnRetour_Click(object sender, EventArgs e)
+		{
+			if (btnRetour.Text == "Retour")
+			{
+				tabControl1.SelectedIndex = 0;
+				btnRetour.Text = "Retour au Tableau de Bord";
+				btnRetour.ForeColor = Color.Red;
+			}
+			else
+			{
+				DialogResult = DialogResult.Abort;
+			}
+		}
 	}
 }
