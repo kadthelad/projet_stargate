@@ -33,7 +33,6 @@
 			this.flpTableauDeBord = new System.Windows.Forms.FlowLayoutPanel();
 			this.btnCreerMission = new System.Windows.Forms.Button();
 			this.panel2 = new System.Windows.Forms.Panel();
-			this.button1 = new System.Windows.Forms.Button();
 			this.btnRegistrePlanetes = new System.Windows.Forms.Button();
 			this.btnRegistreEspece = new System.Windows.Forms.Button();
 			this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
@@ -86,7 +85,7 @@
 			// 
 			this.btnCreerMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.btnCreerMission.ForeColor = System.Drawing.Color.Red;
-			this.btnCreerMission.Location = new System.Drawing.Point(13, 17);
+			this.btnCreerMission.Location = new System.Drawing.Point(132, 19);
 			this.btnCreerMission.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnCreerMission.Name = "btnCreerMission";
 			this.btnCreerMission.Size = new System.Drawing.Size(196, 84);
@@ -98,7 +97,6 @@
 			// panel2
 			// 
 			this.panel2.BackColor = System.Drawing.Color.BurlyWood;
-			this.panel2.Controls.Add(this.button1);
 			this.panel2.Controls.Add(this.btnRegistrePlanetes);
 			this.panel2.Controls.Add(this.btnRegistreEspece);
 			this.panel2.Controls.Add(this.btnCreerMission);
@@ -108,21 +106,10 @@
 			this.panel2.Size = new System.Drawing.Size(901, 124);
 			this.panel2.TabIndex = 2;
 			// 
-			// button1
-			// 
-			this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.button1.Location = new System.Drawing.Point(687, 17);
-			this.button1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(196, 81);
-			this.button1.TabIndex = 5;
-			this.button1.Text = "Placeholder3";
-			this.button1.UseVisualStyleBackColor = true;
-			// 
 			// btnRegistrePlanetes
 			// 
 			this.btnRegistrePlanetes.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnRegistrePlanetes.Location = new System.Drawing.Point(465, 17);
+			this.btnRegistrePlanetes.Location = new System.Drawing.Point(584, 19);
 			this.btnRegistrePlanetes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnRegistrePlanetes.Name = "btnRegistrePlanetes";
 			this.btnRegistrePlanetes.Size = new System.Drawing.Size(196, 81);
@@ -134,7 +121,7 @@
 			// btnRegistreEspece
 			// 
 			this.btnRegistreEspece.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnRegistreEspece.Location = new System.Drawing.Point(241, 17);
+			this.btnRegistreEspece.Location = new System.Drawing.Point(360, 19);
 			this.btnRegistreEspece.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnRegistreEspece.Name = "btnRegistreEspece";
 			this.btnRegistreEspece.Size = new System.Drawing.Size(196, 84);
@@ -309,7 +296,6 @@
 		private System.Windows.Forms.Panel panel2;
 		private System.Windows.Forms.Button btnRegistrePlanetes;
 		private System.Windows.Forms.Button btnRegistreEspece;
-		private System.Windows.Forms.Button button1;
 		private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
 		private System.Windows.Forms.GroupBox groupBox1;
 		private System.Windows.Forms.RadioButton rdbToutes;

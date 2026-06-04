@@ -65,7 +65,7 @@ namespace projet_SAE_24.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap _event {
             get {
-                object obj = ResourceManager.GetObject("_event", resourceCulture);
+                object obj = ResourceManager.GetObject("event", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +103,9 @@ namespace projet_SAE_24.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap crayon {
+        internal static System.Drawing.Bitmap Bleu {
             get {
-                object obj = ResourceManager.GetObject("crayon", resourceCulture);
+                object obj = ResourceManager.GetObject("Bleu", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -113,9 +113,9 @@ namespace projet_SAE_24.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap depenses {
+        internal static System.Drawing.Bitmap crayon {
             get {
-                object obj = ResourceManager.GetObject("depenses", resourceCulture);
+                object obj = ResourceManager.GetObject("crayon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -165,27 +165,7 @@ namespace projet_SAE_24.Properties {
         /// </summary>
         internal static System.Drawing.Bitmap Gris {
             get {
-                object obj = ResourceManager.GetObject("fleche_bas", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap fleche_haut {
-            get {
-                object obj = ResourceManager.GetObject("fleche_haut", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap fleche_retour {
-            get {
-                object obj = ResourceManager.GetObject("fleche_retour", resourceCulture);
+                object obj = ResourceManager.GetObject("Gris", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -196,6 +176,16 @@ namespace projet_SAE_24.Properties {
         internal static System.Drawing.Bitmap heureux {
             get {
                 object obj = ResourceManager.GetObject("heureux", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap journal {
+            get {
+                object obj = ResourceManager.GetObject("journal", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,6 +243,16 @@ namespace projet_SAE_24.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Marron {
+            get {
+                object obj = ResourceManager.GetObject("Marron", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Mars {
             get {
                 object obj = ResourceManager.GetObject("Mars", resourceCulture);
@@ -296,6 +296,36 @@ namespace projet_SAE_24.Properties {
         internal static System.Drawing.Bitmap normal {
             get {
                 object obj = ResourceManager.GetObject("normal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Orange {
+            get {
+                object obj = ResourceManager.GetObject("Orange", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Pourpre {
+            get {
+                object obj = ResourceManager.GetObject("Pourpre", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Rose {
+            get {
+                object obj = ResourceManager.GetObject("Rose", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -356,6 +386,36 @@ namespace projet_SAE_24.Properties {
         internal static System.Drawing.Bitmap Uranus {
             get {
                 object obj = ResourceManager.GetObject("Uranus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vénus {
+            get {
+                object obj = ResourceManager.GetObject("Vénus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Vert {
+            get {
+                object obj = ResourceManager.GetObject("Vert", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Violet {
+            get {
+                object obj = ResourceManager.GetObject("Violet", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
