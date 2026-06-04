@@ -101,8 +101,7 @@ namespace projet_SAE_24
 				}
 
 				// Chargement de l'image
-				Image img = Image.FromFile(projectPath + "/img/planetes/" + nomPlanete + ".png");
-				pictureBox1.Image = img;
+				pictureBox1.Image = (Image)Properties.Resources.ResourceManager.GetObject(nomPlanete);
 			}
 			catch (Exception ex)
 			{
@@ -113,11 +112,6 @@ namespace projet_SAE_24
 		public Mission()
 		{
 			InitializeComponent();
-		}
-
-		private void Mission_Load(object sender, EventArgs e)
-		{
-
 		}
 
 		private void btnPDF_Click(object sender, EventArgs e)
@@ -279,6 +273,12 @@ namespace projet_SAE_24
 			{
 				MessageBox.Show("Erreur lors de la création du PDF!\nPlus d'informations: " + ex.Message);
 			}
+		}
+
+		private void btnDetails_Click(object sender, EventArgs e)
+		{
+			Volet3 frmDetailsMission = new Volet3(Convert.ToInt32(numeroMission), nomPlanete);
+			frmDetailsMission.ShowDialog();
 		}
 	}
 }

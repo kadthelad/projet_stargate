@@ -66,7 +66,7 @@
 			this.cboAjoutMembre = new System.Windows.Forms.ComboBox();
 			this.label24 = new System.Windows.Forms.Label();
 			this.lblWarning = new System.Windows.Forms.Label();
-			this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+			this.btnRetour = new System.Windows.Forms.Button();
 			this.grpEtape1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudBudget)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudQteTonnes)).BeginInit();
@@ -505,11 +505,24 @@
 			this.lblWarning.Text = "Attention! Cela va TOUT reinitialiser!";
 			this.lblWarning.Visible = false;
 			// 
+			// btnRetour
+			// 
+			this.btnRetour.BackColor = System.Drawing.Color.BurlyWood;
+			this.btnRetour.ForeColor = System.Drawing.Color.Red;
+			this.btnRetour.Location = new System.Drawing.Point(180, 665);
+			this.btnRetour.Name = "btnRetour";
+			this.btnRetour.Size = new System.Drawing.Size(141, 50);
+			this.btnRetour.TabIndex = 23;
+			this.btnRetour.Text = "Retour au Tableau de Bord";
+			this.btnRetour.UseVisualStyleBackColor = false;
+			this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
+			// 
 			// FormADM
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(519, 718);
+			this.Controls.Add(this.btnRetour);
 			this.Controls.Add(this.lblWarning);
 			this.Controls.Add(this.tabControl1);
 			this.Controls.Add(this.btnCreerMission);
@@ -577,6 +590,6 @@
 		private System.Windows.Forms.Label label13;
 		private System.Windows.Forms.Button btnAjoutObjectif;
 		private System.Windows.Forms.CheckBox ckbAfficherTousEnnemis;
-		private System.ComponentModel.BackgroundWorker backgroundWorker1;
+		private System.Windows.Forms.Button btnRetour;
 	}
 }
