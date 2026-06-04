@@ -37,15 +37,16 @@
             // 
             // layMissions
             // 
+            this.layMissions.BackColor = System.Drawing.Color.BurlyWood;
             this.layMissions.Location = new System.Drawing.Point(12, 12);
             this.layMissions.Name = "layMissions";
-            this.layMissions.Size = new System.Drawing.Size(580, 387);
+            this.layMissions.Size = new System.Drawing.Size(651, 387);
             this.layMissions.TabIndex = 0;
             // 
             // btnQuitterFenetre
             // 
             this.btnQuitterFenetre.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnQuitterFenetre.Location = new System.Drawing.Point(618, 345);
+            this.btnQuitterFenetre.Location = new System.Drawing.Point(687, 345);
             this.btnQuitterFenetre.Name = "btnQuitterFenetre";
             this.btnQuitterFenetre.Size = new System.Drawing.Size(126, 49);
             this.btnQuitterFenetre.TabIndex = 6;
@@ -55,7 +56,8 @@
             // 
             // grpEspeces
             // 
-            this.grpEspeces.Location = new System.Drawing.Point(598, 12);
+            this.grpEspeces.BackColor = System.Drawing.Color.Salmon;
+            this.grpEspeces.Location = new System.Drawing.Point(669, 12);
             this.grpEspeces.Name = "grpEspeces";
             this.grpEspeces.Size = new System.Drawing.Size(167, 327);
             this.grpEspeces.TabIndex = 7;
@@ -66,12 +68,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(775, 406);
+            this.BackColor = System.Drawing.Color.Firebrick;
+            this.ClientSize = new System.Drawing.Size(843, 406);
             this.Controls.Add(this.grpEspeces);
             this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.layMissions);
-            this.MaximumSize = new System.Drawing.Size(791, 445);
-            this.MinimumSize = new System.Drawing.Size(791, 445);
+            this.MaximumSize = new System.Drawing.Size(859, 445);
+            this.MinimumSize = new System.Drawing.Size(859, 445);
             this.Name = "visionMission";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Missions sur la planète";
