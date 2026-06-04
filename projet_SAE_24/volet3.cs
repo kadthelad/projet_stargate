@@ -173,7 +173,7 @@ namespace projet_SAE_24
 
         private void pcbModifier_Click(object sender, EventArgs e)
         {
-            EditeurJournal editeurJournal = new EditeurJournal();
+            EditeurJournal editeurJournal = new EditeurJournal(m_missioNumero, m_missionPlanete);
             editeurJournal.ShowDialog();
         }
     }

@@ -124,7 +124,7 @@
             this.txtSomme.Name = "txtSomme";
             this.txtSomme.Size = new System.Drawing.Size(100, 29);
             this.txtSomme.TabIndex = 4;
-            this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSomme_KeyPress);
+            this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
             // 
             // dtpDateContact
             // 
@@ -138,9 +138,9 @@
             this.lblAppreciation.AutoSize = true;
             this.lblAppreciation.Location = new System.Drawing.Point(6, 136);
             this.lblAppreciation.Name = "lblAppreciation";
-            this.lblAppreciation.Size = new System.Drawing.Size(127, 24);
+            this.lblAppreciation.Size = new System.Drawing.Size(116, 24);
             this.lblAppreciation.TabIndex = 2;
-            this.lblAppreciation.Text = "Appereciation";
+            this.lblAppreciation.Text = "Appréciation";
             // 
             // Somme
             // 
@@ -217,7 +217,7 @@
             this.tabDepense.Location = new System.Drawing.Point(4, 22);
             this.tabDepense.Name = "tabDepense";
             this.tabDepense.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDepense.Size = new System.Drawing.Size(369, 412);
+            this.tabDepense.Size = new System.Drawing.Size(441, 412);
             this.tabDepense.TabIndex = 1;
             this.tabDepense.Text = "Nouvelle dépense";
             this.tabDepense.UseVisualStyleBackColor = true;
@@ -303,6 +303,7 @@
             this.txtMontantDepense.Name = "txtMontantDepense";
             this.txtMontantDepense.Size = new System.Drawing.Size(100, 29);
             this.txtMontantDepense.TabIndex = 4;
+            this.txtMontantDepense.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
             // 
             // dtpDateDepense
             // 
@@ -343,7 +344,7 @@
             this.tabEvent.Controls.Add(this.groupBox2);
             this.tabEvent.Location = new System.Drawing.Point(4, 22);
             this.tabEvent.Name = "tabEvent";
-            this.tabEvent.Size = new System.Drawing.Size(369, 412);
+            this.tabEvent.Size = new System.Drawing.Size(441, 412);
             this.tabEvent.TabIndex = 2;
             this.tabEvent.Text = "Nouvel Evenement";
             this.tabEvent.UseVisualStyleBackColor = true;

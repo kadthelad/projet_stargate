@@ -48,18 +48,18 @@
             this.lblPrenom.AutoSize = true;
             this.lblPrenom.Location = new System.Drawing.Point(53, 97);
             this.lblPrenom.Name = "lblPrenom";
-            this.lblPrenom.Size = new System.Drawing.Size(35, 13);
+            this.lblPrenom.Size = new System.Drawing.Size(43, 13);
             this.lblPrenom.TabIndex = 1;
-            this.lblPrenom.Text = "label1";
+            this.lblPrenom.Text = "Prénom";
             // 
             // lblNom
             // 
             this.lblNom.AutoSize = true;
             this.lblNom.Location = new System.Drawing.Point(53, 125);
             this.lblNom.Name = "lblNom";
-            this.lblNom.Size = new System.Drawing.Size(35, 13);
+            this.lblNom.Size = new System.Drawing.Size(29, 13);
             this.lblNom.TabIndex = 2;
-            this.lblNom.Text = "label1";
+            this.lblNom.Text = "Nom";
             // 
             // ucMembre
             // 

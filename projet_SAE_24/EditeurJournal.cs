@@ -15,10 +15,7 @@ namespace projet_SAE_24
     {
         readonly int m_missioNumero;
         readonly string m_missionPlanete;
-        public EditeurJournal()
-        {
-            InitializeComponent();
-        }
+        
 
         public EditeurJournal(int nbMissionPlanete, string missionPlanete)
         {
@@ -29,7 +26,23 @@ namespace projet_SAE_24
 
         DataSet monds = MesDatas.DsGlobal;
 
+        private String echApostrophe(String texte)
+        {
+            String returnTexte = "";
+            foreach (char ch in texte)
+            {
+                if (ch == '\'')
+                {
+                    returnTexte += ch + "'";
+                }
+                else
+                {
+                    returnTexte += ch;
+                }
+            }
 
+            return returnTexte;
+        }
 
         private void editeurJournal_Load(object sender, EventArgs e)
         {
@@ -45,20 +58,24 @@ namespace projet_SAE_24
             cboTypeDepense.DataSource = tblTypeDepense;
             cboTypeDepense.DisplayMember = "libelle";
             cboTypeDepense.ValueMember = "id";
+
         }
 
 
         private void btnValiderContact_Click(object sender, EventArgs e)
         {
-            DataTable tblContact = monds.Tables["Contact"];
-            tblContact.Rows.Add(
-             m_missionPlanete,
-             m_missioNumero,
-             dtpDateContact.Value.ToString("yyyy-MM-dd"),
-             Convert.ToInt64(txtSomme.Text),
-             rtbAppreciation.Text
-                );
-            MessageBox.Show(tblContact.Rows.Count.ToString());
+            monds.Tables["Contact"].Rows.Add(
+              m_missionPlanete,
+              m_missioNumero,
+              dtpDateContact.Value.ToString("yyyy-MM-dd"),
+              Convert.ToInt64(txtSomme.Text),
+              echApostrophe(rtbAppreciation.Text),
+              cboInformateurs.SelectedValue
+                 );
+            // Pour debug à enlever
+            DataRow dr = monds.Tables["Contact"].Rows[monds.Tables["Contact"].Rows.Count-1];
+            this.Close();
+
         }
 
 
@@ -83,15 +100,21 @@ namespace projet_SAE_24
 
             }
 
-            tblDepense.Rows.Add(
+            monds.Tables["Depense"].Rows.Add(
              m_missionPlanete,
              m_missioNumero,
              idDepense,
              dtpDateDepense.Value.ToString("yyyy-MM-dd"),
              Convert.ToInt32(txtMontantDepense.Text),
-             rtbMotifDepense.Text,
+             echApostrophe(rtbMotifDepense.Text),
              cboTypeDepense.SelectedValue
                 );
+            MessageBox.Show(monds.Tables["Depense"].Rows.Count.ToString());
+
+            
+
+            this.Close();
+
         }
 
         private void btnValiderEvent_Click(object sender, EventArgs e)
@@ -103,16 +126,12 @@ namespace projet_SAE_24
              m_missionPlanete,
              m_missioNumero,
              dtpDateDepense.Value.ToString("yyyy-MM-dd"),
-             rtbCommentaireEvent.Text
+             echApostrophe(rtbCommentaireEvent.Text)
                 );
+            this.Close();
         }
 
-        private void rtbCommentaireEvent_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtSomme_KeyPress(object sender, KeyPressEventArgs e)
+        private void estUnChiffre(object sender, KeyPressEventArgs e)
         {
             // On verifie si le charactère saisis est bien un chiffre
             char keyChar = e.KeyChar;
