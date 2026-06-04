@@ -367,6 +367,8 @@ namespace projet_SAE_24
 			else
 			{
 				btnCreerMission.Text = "Suivant";
+				btnRetour.Text = "Retour au Tableau de Bord";
+				btnRetour.ForeColor = Color.Red;
 			}
 		}
 		
@@ -469,11 +471,6 @@ namespace projet_SAE_24
 					lsbxParticipants.Items.Remove(lsbxParticipants.SelectedItem);
 				}
 			}
-		}
-
-		private void ckbAfficherTousEnnemis_CheckedChanged(object sender, EventArgs e)
-		{
-			cboChoixPlanete_SelectedIndexChanged(sender, e);
 		}
 
 		private void lsbxCaptures_SelectedIndexChanged(object sender, EventArgs e)

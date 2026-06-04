@@ -43,6 +43,7 @@
             // lblNom
             // 
             this.lblNom.AutoSize = true;
+            this.lblNom.BackColor = System.Drawing.Color.Salmon;
             this.lblNom.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNom.Location = new System.Drawing.Point(33, 36);
             this.lblNom.Name = "lblNom";
@@ -65,10 +66,12 @@
             this.cboCouleur.Name = "cboCouleur";
             this.cboCouleur.Size = new System.Drawing.Size(164, 21);
             this.cboCouleur.TabIndex = 2;
+            this.cboCouleur.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboCouleur_KeyPress);
             // 
             // lblCouleur
             // 
             this.lblCouleur.AutoSize = true;
+            this.lblCouleur.BackColor = System.Drawing.Color.Salmon;
             this.lblCouleur.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCouleur.Location = new System.Drawing.Point(33, 81);
             this.lblCouleur.Name = "lblCouleur";
@@ -79,25 +82,27 @@
             // rdbAllie
             // 
             this.rdbAllie.AutoSize = true;
+            this.rdbAllie.BackColor = System.Drawing.Color.Salmon;
             this.rdbAllie.Location = new System.Drawing.Point(365, 38);
             this.rdbAllie.Name = "rdbAllie";
             this.rdbAllie.Size = new System.Drawing.Size(159, 17);
             this.rdbAllie.TabIndex = 4;
             this.rdbAllie.TabStop = true;
             this.rdbAllie.Text = "Uniquement les races alliées";
-            this.rdbAllie.UseVisualStyleBackColor = true;
+            this.rdbAllie.UseVisualStyleBackColor = false;
             this.rdbAllie.CheckedChanged += new System.EventHandler(this.rdbAllie_CheckedChanged);
             // 
             // rdbEnnemi
             // 
             this.rdbEnnemi.AutoSize = true;
+            this.rdbEnnemi.BackColor = System.Drawing.Color.Salmon;
             this.rdbEnnemi.Location = new System.Drawing.Point(365, 105);
             this.rdbEnnemi.Name = "rdbEnnemi";
             this.rdbEnnemi.Size = new System.Drawing.Size(175, 17);
             this.rdbEnnemi.TabIndex = 5;
             this.rdbEnnemi.TabStop = true;
             this.rdbEnnemi.Text = "Uniquement les races ennemies";
-            this.rdbEnnemi.UseVisualStyleBackColor = true;
+            this.rdbEnnemi.UseVisualStyleBackColor = false;
             this.rdbEnnemi.CheckedChanged += new System.EventHandler(this.rdbEnnemi_CheckedChanged);
             // 
             // btnValider
@@ -125,6 +130,7 @@
             // lblPlanete
             // 
             this.lblPlanete.AutoSize = true;
+            this.lblPlanete.BackColor = System.Drawing.Color.Salmon;
             this.lblPlanete.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlanete.Location = new System.Drawing.Point(33, 132);
             this.lblPlanete.Name = "lblPlanete";
@@ -139,12 +145,13 @@
             this.cboPlanete.Name = "cboPlanete";
             this.cboPlanete.Size = new System.Drawing.Size(164, 21);
             this.cboPlanete.TabIndex = 9;
+            this.cboPlanete.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cboPlanete_KeyPress);
             // 
             // filtre
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.GrayText;
+            this.BackColor = System.Drawing.Color.Salmon;
             this.ClientSize = new System.Drawing.Size(615, 201);
             this.Controls.Add(this.cboPlanete);
             this.Controls.Add(this.lblPlanete);

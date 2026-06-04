@@ -33,7 +33,7 @@ namespace projet_SAE_24
 
 		private StatusMissionEnum _statusMission;
 
-		public StatusMissionEnum StatusMission  // PascalCase pour la propriété
+		public StatusMissionEnum StatusMission
 		{
 			get { return _statusMission; }
 			set { _statusMission = value; }

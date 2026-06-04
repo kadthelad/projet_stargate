@@ -23,8 +23,9 @@ namespace projet_SAE_24
 
         string projectPath = Application.StartupPath;
 
-        public void Creation_De_Panel(string nomRecherche = "", string couleurRecherche = "", string planeteRecherche = "", bool allieRecherche = false, bool ennemiRecherche = false)
+        public int Creation_De_Panel(string nomRecherche = "", string couleurRecherche = "", string planeteRecherche = "", bool allieRecherche = false, bool ennemiRecherche = false)
         {
+            int nbEspeces = 0;
             layEspece.Controls.Clear();
 
             //Boucle pour afficher toutes les espèces du DataSet
@@ -143,11 +144,14 @@ namespace projet_SAE_24
 
                 p.Width = 250;
                 p.Height = 110;
+                p.BackColor = Color.BurlyWood;
+                p.BorderStyle = BorderStyle.FixedSingle;
+                p.Margin = new Padding(20);
 
                 pb.Width = 100;
                 pb.Height = 100;
-                pb.Left = 0;
-                pb.Top = 0;
+                pb.Left = 5;
+                pb.Top = 4;
                 pb.SizeMode = PictureBoxSizeMode.StretchImage;
 
                 string couleurEspece = maDB.Tables["Espece"].Rows[i]["couleur"].ToString();
@@ -208,7 +212,10 @@ namespace projet_SAE_24
                 p.Controls.Add(lblOrigine);
 
                 layEspece.Controls.Add(p);
+                nbEspeces++;
             }
+
+            return nbEspeces;
         }
 
         private void volet4_Load(object sender, EventArgs e)
@@ -227,17 +234,24 @@ namespace projet_SAE_24
                 string nomRecherche = fenetreFiltre.NomEspece;
                 string planeteRecherche = fenetreFiltre.Planete;
 
-                Creation_De_Panel(nomRecherche, couleurRecherche, planeteRecherche, fenetreFiltre.Allie, fenetreFiltre.Ennemi);
+                int nb = Creation_De_Panel(nomRecherche, couleurRecherche, planeteRecherche, fenetreFiltre.Allie, fenetreFiltre.Ennemi);
+
+                if (nb == 0)
+                { 
+                    MessageBox.Show("Aucune espèce ne correspond aux filtres sélectionnés.","Recherche", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    Creation_De_Panel();
+                }
             }
         }
 
         //Afficher le volet sur les planètes
-        private void btnPlantes_Click(object sender, EventArgs e)
+        /*private void btnPlantes_Click(object sender, EventArgs e)
         {
             volet5 fenetrePlanete = new volet5();
 
             fenetrePlanete.ShowDialog();
-        }
+        }*/
 
         //Fermer la fenêtre
         private void button1_Click(object sender, EventArgs e)
