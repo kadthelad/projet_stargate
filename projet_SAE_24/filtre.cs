@@ -110,5 +110,41 @@ namespace projet_SAE_24
             if (e.KeyChar == 'µ')
                 e.Handled = true;
         }
+
+        private void cboCouleur_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsLetter(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsSeparator(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsPunctuation(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsSymbol(e.KeyChar))
+                e.Handled = true;
+        }
+
+        private void cboPlanete_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsLetter(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsSeparator(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsPunctuation(e.KeyChar))
+                e.Handled = true;
+
+            if (char.IsSymbol(e.KeyChar))
+                e.Handled = true;
+        }
     }
 }

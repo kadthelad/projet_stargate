@@ -385,6 +385,15 @@
   <ItemGroup>
     <None Include="Resources\leao_ballon_d_or.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche_retour.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche-haut.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fleche-bas.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets" Condition="Exists('..\packages\Stub.System.Data.SQLite.Core.NetFramework.1.0.119.0\build\net46\Stub.System.Data.SQLite.Core.NetFramework.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
