@@ -17,11 +17,13 @@ namespace projet_SAE_24
     {
         readonly int m_missioNumero;
         readonly string m_missionPlanete;
+        int m_depenseTotal;
         public Volet3(int nbMissionPlanete, string missionPlanete)
         {
             InitializeComponent();
             m_missioNumero = nbMissionPlanete;
             m_missionPlanete = missionPlanete;
+
         }
 
         DataSet monds = MesDatas.DsGlobal;
@@ -68,13 +70,14 @@ namespace projet_SAE_24
 
             // pour sold restant
             DataTable tblDepenses = monds.Tables["Depense"];
-            DataTable tblTotalDepenses = tblDepenses.Select("numeroMission = " + m_missioNumero.ToString()).CopyToDataTable();
+            DataTable tblTotalDepenses = tblDepenses.Select($"numeroMission = {m_missioNumero} and nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
 
-            double depenseTotal = 0;
+            int depenseTotal = 0;
             foreach (DataRow ligne in tblTotalDepenses.Rows)
             {
-                depenseTotal += Convert.ToDouble(ligne["montant"]);
+                depenseTotal += Convert.ToInt32(ligne["montant"]);
             }
+            m_depenseTotal = depenseTotal;
             lblSoldeRestant.Text += depenseTotal.ToString();
 
             // pour les membres
@@ -188,17 +191,8 @@ namespace projet_SAE_24
         private void pcbModifier_Click(object sender, EventArgs e)
         {
             EditeurJournal editeurJournal = new EditeurJournal(m_missioNumero, m_missionPlanete);
+            editeurJournal.MontantRestant = m_depenseTotal;
             editeurJournal.ShowDialog();
-        }
-
-        private void lblSoldeRestant_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rtbFeuilleDeRoute_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
         }
     }
 }

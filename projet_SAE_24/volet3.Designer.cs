@@ -56,7 +56,7 @@
             // 
             this.lblMisssion.AutoSize = true;
             this.lblMisssion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMisssion.Location = new System.Drawing.Point(558, 42);
+            this.lblMisssion.Location = new System.Drawing.Point(153, 12);
             this.lblMisssion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMisssion.Name = "lblMisssion";
             this.lblMisssion.Size = new System.Drawing.Size(93, 20);
@@ -66,11 +66,11 @@
             // grpFeuilleDeRoute
             // 
             this.grpFeuilleDeRoute.Controls.Add(this.rtbFeuilleDeRoute);
-            this.grpFeuilleDeRoute.Location = new System.Drawing.Point(18, 214);
+            this.grpFeuilleDeRoute.Location = new System.Drawing.Point(14, 139);
             this.grpFeuilleDeRoute.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.grpFeuilleDeRoute.Name = "grpFeuilleDeRoute";
             this.grpFeuilleDeRoute.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.grpFeuilleDeRoute.Size = new System.Drawing.Size(1255, 168);
+            this.grpFeuilleDeRoute.Size = new System.Drawing.Size(621, 174);
             this.grpFeuilleDeRoute.TabIndex = 3;
             this.grpFeuilleDeRoute.TabStop = false;
             this.grpFeuilleDeRoute.Text = "Feuille de route";
@@ -78,19 +78,20 @@
             // rtbFeuilleDeRoute
             // 
             this.rtbFeuilleDeRoute.BackColor = System.Drawing.SystemColors.Menu;
+            this.rtbFeuilleDeRoute.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbFeuilleDeRoute.Location = new System.Drawing.Point(0, 26);
             this.rtbFeuilleDeRoute.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.rtbFeuilleDeRoute.Name = "rtbFeuilleDeRoute";
-            this.rtbFeuilleDeRoute.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(1244, 140);
+            this.rtbFeuilleDeRoute.ReadOnly = true;
+            this.rtbFeuilleDeRoute.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
+            this.rtbFeuilleDeRoute.Size = new System.Drawing.Size(611, 140);
             this.rtbFeuilleDeRoute.TabIndex = 1;
             this.rtbFeuilleDeRoute.Text = "";
-            this.rtbFeuilleDeRoute.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.rtbFeuilleDeRoute_KeyPress);
             // 
             // grpMembres
             // 
             this.grpMembres.Controls.Add(this.flpMembres);
-            this.grpMembres.Location = new System.Drawing.Point(18, 416);
+            this.grpMembres.Location = new System.Drawing.Point(14, 313);
             this.grpMembres.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.grpMembres.Name = "grpMembres";
             this.grpMembres.Padding = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -111,7 +112,7 @@
             // 
             this.lblDateRetour.AutoSize = true;
             this.lblDateRetour.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateRetour.Location = new System.Drawing.Point(15, 184);
+            this.lblDateRetour.Location = new System.Drawing.Point(315, 69);
             this.lblDateRetour.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDateRetour.Name = "lblDateRetour";
             this.lblDateRetour.Size = new System.Drawing.Size(203, 24);
@@ -122,7 +123,7 @@
             // 
             this.lblDateDepart.AutoSize = true;
             this.lblDateDepart.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateDepart.Location = new System.Drawing.Point(15, 137);
+            this.lblDateDepart.Location = new System.Drawing.Point(315, 38);
             this.lblDateDepart.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblDateDepart.Name = "lblDateDepart";
             this.lblDateDepart.Size = new System.Drawing.Size(143, 24);
@@ -133,7 +134,7 @@
             // 
             this.lblBudget.AutoSize = true;
             this.lblBudget.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBudget.Location = new System.Drawing.Point(854, 137);
+            this.lblBudget.Location = new System.Drawing.Point(854, 38);
             this.lblBudget.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblBudget.Name = "lblBudget";
             this.lblBudget.Size = new System.Drawing.Size(85, 24);
@@ -145,7 +146,7 @@
             this.lblSoldeRestant.AutoSize = true;
             this.lblSoldeRestant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSoldeRestant.ForeColor = System.Drawing.Color.Red;
-            this.lblSoldeRestant.Location = new System.Drawing.Point(854, 182);
+            this.lblSoldeRestant.Location = new System.Drawing.Point(854, 69);
             this.lblSoldeRestant.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSoldeRestant.Name = "lblSoldeRestant";
             this.lblSoldeRestant.Size = new System.Drawing.Size(238, 24);
@@ -155,9 +156,9 @@
             // grpObjectifCapture
             // 
             this.grpObjectifCapture.Controls.Add(this.flpCapture);
-            this.grpObjectifCapture.Location = new System.Drawing.Point(19, 630);
+            this.grpObjectifCapture.Location = new System.Drawing.Point(643, 139);
             this.grpObjectifCapture.Name = "grpObjectifCapture";
-            this.grpObjectifCapture.Size = new System.Drawing.Size(998, 124);
+            this.grpObjectifCapture.Size = new System.Drawing.Size(630, 174);
             this.grpObjectifCapture.TabIndex = 9;
             this.grpObjectifCapture.TabStop = false;
             this.grpObjectifCapture.Text = "Objectif de Capture";
@@ -167,12 +168,12 @@
             this.flpCapture.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpCapture.Location = new System.Drawing.Point(7, 24);
             this.flpCapture.Name = "flpCapture";
-            this.flpCapture.Size = new System.Drawing.Size(984, 93);
+            this.flpCapture.Size = new System.Drawing.Size(608, 142);
             this.flpCapture.TabIndex = 0;
             // 
             // pcbJournal
             // 
-            this.pcbJournal.Location = new System.Drawing.Point(1036, 679);
+            this.pcbJournal.Location = new System.Drawing.Point(1036, 527);
             this.pcbJournal.Name = "pcbJournal";
             this.pcbJournal.Size = new System.Drawing.Size(75, 75);
             this.pcbJournal.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -182,7 +183,7 @@
             // 
             // pcbPlanete
             // 
-            this.pcbPlanete.Location = new System.Drawing.Point(404, 16);
+            this.pcbPlanete.Location = new System.Drawing.Point(12, 12);
             this.pcbPlanete.Name = "pcbPlanete";
             this.pcbPlanete.Size = new System.Drawing.Size(133, 120);
             this.pcbPlanete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -191,7 +192,7 @@
             // 
             // pcbModifier
             // 
-            this.pcbModifier.Location = new System.Drawing.Point(1117, 679);
+            this.pcbModifier.Location = new System.Drawing.Point(1117, 527);
             this.pcbModifier.Name = "pcbModifier";
             this.pcbModifier.Size = new System.Drawing.Size(75, 75);
             this.pcbModifier.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -201,7 +202,7 @@
             // 
             // pcbRetour
             // 
-            this.pcbRetour.Location = new System.Drawing.Point(1198, 679);
+            this.pcbRetour.Location = new System.Drawing.Point(1198, 527);
             this.pcbRetour.Name = "pcbRetour";
             this.pcbRetour.Size = new System.Drawing.Size(75, 75);
             this.pcbRetour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -213,12 +214,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1278, 761);
+            this.ClientSize = new System.Drawing.Size(1284, 615);
             this.Controls.Add(this.pcbRetour);
+            this.Controls.Add(this.grpObjectifCapture);
             this.Controls.Add(this.pcbModifier);
             this.Controls.Add(this.pcbPlanete);
             this.Controls.Add(this.pcbJournal);
-            this.Controls.Add(this.grpObjectifCapture);
             this.Controls.Add(this.lblSoldeRestant);
             this.Controls.Add(this.lblBudget);
             this.Controls.Add(this.lblDateDepart);
@@ -228,6 +229,8 @@
             this.Controls.Add(this.lblMisssion);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.MaximumSize = new System.Drawing.Size(1300, 654);
+            this.MinimumSize = new System.Drawing.Size(1300, 654);
             this.Name = "Volet3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "recapMission";

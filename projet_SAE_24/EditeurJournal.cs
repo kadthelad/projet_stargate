@@ -15,13 +15,19 @@ namespace projet_SAE_24
     {
         readonly int m_missioNumero;
         readonly string m_missionPlanete;
-        
+        int m_montantRestant = 0;
 
         public EditeurJournal(int nbMissionPlanete, string missionPlanete)
         {
             InitializeComponent();
             m_missioNumero = nbMissionPlanete;
             m_missionPlanete = missionPlanete;
+        }
+
+        public int MontantRestant
+        {
+            get { return m_montantRestant; }
+            set { m_montantRestant = value; }
         }
 
         DataSet monds = MesDatas.DsGlobal;
@@ -73,7 +79,7 @@ namespace projet_SAE_24
               cboInformateurs.SelectedValue
                  );
             // Pour debug à enlever
-            DataRow dr = monds.Tables["Contact"].Rows[monds.Tables["Contact"].Rows.Count-1];
+            DataRow dr = monds.Tables["Contact"].Rows[monds.Tables["Contact"].Rows.Count - 1];
             this.Close();
 
         }
@@ -100,18 +106,25 @@ namespace projet_SAE_24
 
             }
 
-            monds.Tables["Depense"].Rows.Add(
-             m_missionPlanete,
-             m_missioNumero,
-             idDepense,
-             dtpDateDepense.Value.ToString("yyyy-MM-dd"),
-             Convert.ToInt32(txtMontantDepense.Text),
-             echApostrophe(rtbMotifDepense.Text),
-             cboTypeDepense.SelectedValue
-                );
+            int montantDepense = Convert.ToInt32(txtMontantDepense.Text);
+            // faire affichage erreur pas assez d'argent
+            if (montantDepense > m_montantRestant)
+            {
+            }
+
+
+                monds.Tables["Depense"].Rows.Add(
+                 m_missionPlanete,
+                 m_missioNumero,
+                 idDepense,
+                 dtpDateDepense.Value.ToString("yyyy-MM-dd"),
+                 Convert.ToInt32(txtMontantDepense.Text),
+                 echApostrophe(rtbMotifDepense.Text),
+                 cboTypeDepense.SelectedValue
+                    );
             MessageBox.Show(monds.Tables["Depense"].Rows.Count.ToString());
 
-            
+
 
             this.Close();
 
