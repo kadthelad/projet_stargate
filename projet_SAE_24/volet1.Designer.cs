@@ -224,6 +224,7 @@
 			// 
 			// cboFiltre
 			// 
+			this.cboFiltre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cboFiltre.FormattingEnabled = true;
 			this.cboFiltre.Location = new System.Drawing.Point(224, 149);
