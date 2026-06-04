@@ -78,8 +78,6 @@ namespace projet_SAE_24
               echApostrophe(rtbAppreciation.Text),
               cboInformateurs.SelectedValue
                  );
-            // Pour debug à enlever
-            DataRow dr = monds.Tables["Contact"].Rows[monds.Tables["Contact"].Rows.Count - 1];
             this.Close();
 
         }
@@ -122,7 +120,6 @@ namespace projet_SAE_24
                  echApostrophe(rtbMotifDepense.Text),
                  cboTypeDepense.SelectedValue
                     );
-            MessageBox.Show(monds.Tables["Depense"].Rows.Count.ToString());
 
 
 

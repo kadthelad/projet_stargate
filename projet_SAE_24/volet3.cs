@@ -70,44 +70,52 @@ namespace projet_SAE_24
 
             // pour sold restant
             DataTable tblDepenses = monds.Tables["Depense"];
-            DataTable tblTotalDepenses = tblDepenses.Select($"numeroMission = {m_missioNumero} and nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
+            DataRow[] lignesDepense = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
 
-            int depenseTotal = 0;
-            foreach (DataRow ligne in tblTotalDepenses.Rows)
+            if (lignesDepense.Length > 0)
             {
-                depenseTotal += Convert.ToInt32(ligne["montant"]);
+                DataTable tblTotalDepenses = lignesDepense.CopyToDataTable();
+                int depenseTotal = 0;
+                foreach (DataRow ligne in tblTotalDepenses.Rows)
+                {
+                    depenseTotal += Convert.ToInt32(ligne["montant"]);
+                }
+                m_depenseTotal = depenseTotal;
+                lblSoldeRestant.Text += depenseTotal.ToString();
             }
-            m_depenseTotal = depenseTotal;
-            lblSoldeRestant.Text += depenseTotal.ToString();
-
-            // pour les membres
-            DataTable membresDeLaMission = monds.Tables["Composer"].Select($"numeroMission = {m_missioNumero} AND nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
-            foreach (DataRow membreMission in membresDeLaMission.Rows)
+            else
             {
-                string matriculeMembre = membreMission["matriculeMembre"].ToString();
-                string typeMembre = matriculeMembre.Substring(0, 1);
-                switch (typeMembre)
-                {
-                    case "C":
-                        typeMembre = "civil";
-                        break;
-                    case "M":
-                        typeMembre = "militaire";
-                        break;
-                }
-
-                DataTable tableMembre = monds.Tables["Membre"];
-                string nomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Nom"].ToString();
-                string prenomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Prenom"].ToString();
-                ucMembre membre = new ucMembre(nomMembre, prenomMembre, typeMembre);
-
-                if (matriculeChef == matriculeMembre)
-                {
-                    membre.definirChef();
-                }
-
-                flpMembres.Controls.Add(membre);
+                lblSoldeRestant.Text += ligneDeLaMission["budget"].ToString();
             }
+
+                // pour les membres
+                DataTable membresDeLaMission = monds.Tables["Composer"].Select($"numeroMission = {m_missioNumero} AND nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
+                foreach (DataRow membreMission in membresDeLaMission.Rows)
+                {
+                    string matriculeMembre = membreMission["matriculeMembre"].ToString();
+                    string typeMembre = matriculeMembre.Substring(0, 1);
+                    switch (typeMembre)
+                    {
+                        case "C":
+                            typeMembre = "civil";
+                            break;
+                        case "M":
+                            typeMembre = "militaire";
+                            break;
+                    }
+
+                    DataTable tableMembre = monds.Tables["Membre"];
+                    string nomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Nom"].ToString();
+                    string prenomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Prenom"].ToString();
+                    ucMembre membre = new ucMembre(nomMembre, prenomMembre, typeMembre);
+
+                    if (matriculeChef == matriculeMembre)
+                    {
+                        membre.definirChef();
+                    }
+
+                    flpMembres.Controls.Add(membre);
+                }
 
             // Création table captures
             DataRow[] lignesObjectifCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");

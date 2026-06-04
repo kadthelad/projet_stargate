@@ -48,7 +48,7 @@ namespace projet_SAE_24
             rtbEvenement.DataBindings.Add("Text", bsEvenement, "commentaires");
             lblDate.DataBindings.Add("Text", bsEvenement, "dateJ");
 
-                pcbRetour.Image = Properties.Resources.fleche_retour;
+            pcbRetour.Image = Properties.Resources.fleche_retour;
 
 
 
@@ -62,23 +62,26 @@ namespace projet_SAE_24
             DataTable tblInformateurs = monds.Tables["Informateurs"];
 
             int sommeVerse = 0;
-            DataTable tblContactMissionChoisis = monds.Tables["Contact"]
-                .Select($"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'")
-                .CopyToDataTable();
-            foreach (DataRow ligne in tblContactMissionChoisis.Rows)
+            DataRow[] lignesContactMissionChoisis = monds.Tables["Contact"].Select($"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'");
+            if (lignesContactMissionChoisis.Length > 0)
             {
-                var test = ligne["nomCodeInformateur"];
-                sommeVerse += Convert.ToInt32(ligne["sommeVersee"]);
-                string codeInformateur = ligne["nomCodeInformateur"].ToString();                
-                DataTable tblInformateur = monds.Tables["Informateur"].Select($"nomCode = '{codeInformateur}'").CopyToDataTable();
-                string nomInformateur = tblInformateur.Rows[0]["nom"].ToString();
-                tblContactsInformateurs.Rows.Add(
-                    ligne["dateC"],
-                    ligne["sommeVersee"],
-                    ligne["appreciation"],
-                    nomInformateur
-                    );
+                DataTable tblContactMissionChoisis = lignesContactMissionChoisis.CopyToDataTable();
+                foreach (DataRow ligne in tblContactMissionChoisis.Rows)
+                {
+                    var test = ligne["nomCodeInformateur"];
+                    sommeVerse += Convert.ToInt32(ligne["sommeVersee"]);
+                    string codeInformateur = ligne["nomCodeInformateur"].ToString();
+                    DataTable tblInformateur = monds.Tables["Informateur"].Select($"nomCode = '{codeInformateur}'").CopyToDataTable();
+                    string nomInformateur = tblInformateur.Rows[0]["nom"].ToString();
+                    tblContactsInformateurs.Rows.Add(
+                        ligne["dateC"],
+                        ligne["sommeVersee"],
+                        ligne["appreciation"],
+                        nomInformateur
+                        );
+                }
             }
+
 
             // Affichage table contacts
             dgvContacts.DataSource = tblContactsInformateurs;
@@ -96,33 +99,37 @@ namespace projet_SAE_24
 
 
             int sommeDepense = 0;
-            DataTable tblDepenseMissionChoisis = monds.Tables["Depense"]
-                .Select($"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'")
-                .CopyToDataTable();
-            foreach (DataRow ligne in tblDepenseMissionChoisis.Rows)
+            DataRow[] lignesDepenseMissionChoisis = monds.Tables["Depense"].Select($"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'");
+
+            if (lignesDepenseMissionChoisis.Length > 0)
             {
-                sommeDepense += Convert.ToInt32(ligne["Montant"]);
-                string libelleDepense = ligne["idTypeDepense"].ToString();
-                tblDepenses.Rows.Add(
-                ligne["id"],
-                ligne["dateD"],
-                ligne["motif"],
-                ligne["montant"],
-                libelleDepense
-                    );
+
+                DataTable tblDepenseMissionChoisis = lignesDepenseMissionChoisis.CopyToDataTable();
+            foreach (DataRow ligne in tblDepenseMissionChoisis.Rows)
+                {
+                    sommeDepense += Convert.ToInt32(ligne["Montant"]);
+                    string libelleDepense = ligne["idTypeDepense"].ToString();
+                    tblDepenses.Rows.Add(
+                    ligne["id"],
+                    ligne["dateD"],
+                    ligne["motif"],
+                    ligne["montant"],
+                    libelleDepense
+                        );
+                }
             }
+
 
             // Affichage table dépenses
             dgvDepenses.DataSource = tblDepenses;
 
             //Affichage dépenses total
             lblTotalDepenses.Text += sommeDepense;
-            MessageBox.Show(tblDepenses.Rows.Count.ToString());
         }
 
         public void creerPDF()
         {
-           
+
 
         }
 
@@ -191,7 +198,6 @@ namespace projet_SAE_24
 
             foreach (DataRow lignecapture in tblBilanCapture.Rows)
             {
-                MessageBox.Show(lignecapture["nomEspece"].ToString());
                 table.AddCell(lignecapture["nomEspece"].ToString());
                 table.AddCell(lignecapture["objectifInitial"].ToString());
                 table.AddCell(lignecapture["resultatFinal"].ToString());
@@ -203,7 +209,7 @@ namespace projet_SAE_24
             document.Close();
             pdf.Close();
             writer.Close();
-            
+
         }
     }
 }
