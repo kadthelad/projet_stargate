@@ -16,7 +16,7 @@ namespace projet_SAE_24
 		{
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new FormTDB());
+			Application.Run(new Form1());
 		}
 	}
 }

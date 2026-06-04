@@ -54,6 +54,7 @@ namespace projet_SAE_24
 
                 //Couleur d'arrière-plan non définitive
                 p.BackColor = Color.BurlyWood;
+                p.BorderStyle = BorderStyle.FixedSingle;
                 p.Width = 300;
                 p.Height = 300;
 
@@ -130,7 +131,7 @@ namespace projet_SAE_24
                     {
                         case 1:
                             databaz = "Présence de DataBaz";
-                            lblDataBaz.ForeColor = Color.GreenYellow;
+                            lblDataBaz.ForeColor = Color.Green;
                             break;
                         case 0:
                             databaz = "Pas de DataBaz";
@@ -158,12 +159,28 @@ namespace projet_SAE_24
 
                 //Comme le Panel a été généré dynamiquement, on est obligé de faire un événement dynamiquement pour pouvoir l'utiliser
                 p.Click += MonPanel_Click;
+
+                foreach (Control c in p.Controls)
+                {
+                    c.Click += MonPanel_Click;
+                }
             }
         }
 
         private void MonPanel_Click(object sender, EventArgs e)
         {
-            Panel p = (Panel)sender;
+            Control c = (Control)sender;
+
+            Panel p;
+
+            if (c is Panel)
+            {
+                p = (Panel)c;
+            }
+            else
+            {
+                p = (Panel)c.Parent;
+            }
 
             visionMission vm = new visionMission(p.Name);
             vm.ShowDialog();

@@ -130,6 +130,13 @@
   <data name="Bleu" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Bleu.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="civil" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\civil.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="crayon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\crayon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+
   <data name="enerve" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\enerve.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -137,7 +144,16 @@
     <value>..\Resources\fleche-bas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fleche_haut" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\..\..\..\..\Downloads\fleche-haut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\fleche-haut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fleche_retour" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fleche_retour.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fleche_bas" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fleche-bas.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="fleche_haut" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\fleche-haut.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="fleche_retour" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fleche_retour.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -171,6 +187,9 @@
   </data>
   <data name="Mercure" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\img\planetes\Mercure.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="militaire" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Militaire.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Muh" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\bin\Debug\img\planetes\Muh.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -212,7 +231,7 @@
     <value>..\Resources\Vert.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Vénus" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\bin\Debug\img\planetes\Vénus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <value>..\Resources\Venus.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Violet" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Violet.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>

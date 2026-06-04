@@ -107,24 +107,34 @@ namespace projet_SAE_24
             }
 
             // Création table captures
-            DataTable tblObjectifCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}").CopyToDataTable();
-            //int haut = 30;
-            //int gauche = 30;
-            foreach (DataRow objectifDeCapture in tblObjectifCapture.Rows)
+            DataRow[] lignesObjectifCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
+            if (lignesObjectifCapture.Length > 0)
             {
-                int idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
-                string nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
+                DataTable tblObjectifCapture = lignesObjectifCapture.CopyToDataTable();
+                foreach (DataRow objectifDeCapture in tblObjectifCapture.Rows)
+                {
+                    int idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
+                    string nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
 
 
 
-                Label lblObjectif = new Label();
-                string objectifPrises = objectifDeCapture["objectif"].ToString();
-                lblObjectif.Text = $"{nomEnnemie} --> {objectifPrises} prise(s)";
-                lblObjectif.AutoSize = true;
+                    Label lblObjectif = new Label();
+                    string objectifPrises = objectifDeCapture["objectif"].ToString();
+                    lblObjectif.Text = $"{nomEnnemie} --> {objectifPrises} prise(s)";
+                    lblObjectif.AutoSize = true;
 
 
-                flpCapture.Controls.Add(lblObjectif);
+                    flpCapture.Controls.Add(lblObjectif);
+                }
             }
+            else
+            {
+                Label lblPasDeCapture = new Label();
+                lblPasDeCapture.Text = "Pas de capture";
+                lblPasDeCapture.AutoSize = true;
+                flpCapture.Controls.Add(lblPasDeCapture);
+            }
+
 
             // Création de la table de capture de compte rendu de mission
             DataTable tblResultatCapture = new DataTable();
@@ -135,28 +145,32 @@ namespace projet_SAE_24
             tblResultatCapture.Columns.Add("resultatFinal");
             tblResultatCapture.Columns.Add("tauxReussite");
 
-            DataTable tblCapture = monds.Tables["Capturer"];
-            for (int i = 0; i < tblObjectifCapture.Rows.Count; i++)
+            if (lignesObjectifCapture.Length > 0)
             {
-                DataRow ligneObjectif = tblObjectifCapture.Rows[i];
-                DataRow ligneResultat = tblCapture.Rows[i];
-                string nomEspece = monds.Tables["Espece"].Select($"id = {ligneObjectif["idEspeceEnnemi"]}")[0]["nom"].ToString();
-                int objectifInital = Convert.ToInt32(ligneObjectif["objectif"]);
-                int resultatFinal = Convert.ToInt32(ligneResultat["nombre"]);
-                double tauxReussite = objectifInital / resultatFinal;
+                DataTable tblObjectifCapture = lignesObjectifCapture.CopyToDataTable();
+                DataTable tblCapture = monds.Tables["Capturer"];
+                for (int i = 0; i < tblObjectifCapture.Rows.Count; i++)
+                {
+                    DataRow ligneObjectif = tblObjectifCapture.Rows[i];
+                    DataRow ligneResultat = tblCapture.Rows[i];
+                    string nomEspece = monds.Tables["Espece"].Select($"id = {ligneObjectif["idEspeceEnnemi"]}")[0]["nom"].ToString();
+                    int objectifInital = Convert.ToInt32(ligneObjectif["objectif"]);
+                    int resultatFinal = Convert.ToInt32(ligneResultat["nombre"]);
+                    double tauxReussite = objectifInital / resultatFinal;
 
-                tblResultatCapture.Rows.Add(
-                    nomEspece,
-                    objectifInital,
-                    resultatFinal,
-                    tauxReussite
-                    );
-            }
-            string tblName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
-            tblResultatCapture.TableName = tblName;
-            if (monds.Tables[tblName] != null)
-            {
-                monds.Tables.Add(tblResultatCapture);
+                    tblResultatCapture.Rows.Add(
+                        nomEspece,
+                        objectifInital,
+                        resultatFinal,
+                        tauxReussite
+                        );
+                }
+                string tblName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
+                tblResultatCapture.TableName = tblName;
+                if (monds.Tables[tblName] != null)
+                {
+                    monds.Tables.Add(tblResultatCapture);
+                }
             }
         }
 
@@ -173,8 +187,18 @@ namespace projet_SAE_24
 
         private void pcbModifier_Click(object sender, EventArgs e)
         {
-            EditeurJournal editeurJournal = new EditeurJournal();
+            EditeurJournal editeurJournal = new EditeurJournal(m_missioNumero, m_missionPlanete);
             editeurJournal.ShowDialog();
+        }
+
+        private void lblSoldeRestant_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rtbFeuilleDeRoute_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = true;
         }
     }
 }

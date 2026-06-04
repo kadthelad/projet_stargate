@@ -67,9 +67,11 @@ namespace projet_SAE_24
                 .CopyToDataTable();
             foreach (DataRow ligne in tblContactMissionChoisis.Rows)
             {
+                var test = ligne["nomCodeInformateur"];
                 sommeVerse += Convert.ToInt32(ligne["sommeVersee"]);
-                string codeInformateur = ligne["nomCodeInformateur"].ToString();
-                string nomInformateur = monds.Tables["Informateur"].Select($"nomCode = '{codeInformateur}'")[0]["nom"].ToString();
+                string codeInformateur = ligne["nomCodeInformateur"].ToString();                
+                DataTable tblInformateur = monds.Tables["Informateur"].Select($"nomCode = '{codeInformateur}'").CopyToDataTable();
+                string nomInformateur = tblInformateur.Rows[0]["nom"].ToString();
                 tblContactsInformateurs.Rows.Add(
                     ligne["dateC"],
                     ligne["sommeVersee"],
@@ -115,6 +117,7 @@ namespace projet_SAE_24
 
             //Affichage dépenses total
             lblTotalDepenses.Text += sommeDepense;
+            MessageBox.Show(tblDepenses.Rows.Count.ToString());
         }
 
         public void creerPDF()

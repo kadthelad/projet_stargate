@@ -34,38 +34,49 @@
             this.cboInformateurs = new System.Windows.Forms.ComboBox();
             this.rtbAppreciation = new System.Windows.Forms.RichTextBox();
             this.txtSomme = new System.Windows.Forms.TextBox();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
+            this.dtpDateContact = new System.Windows.Forms.DateTimePicker();
             this.lblAppreciation = new System.Windows.Forms.Label();
             this.Somme = new System.Windows.Forms.Label();
             this.lblDate = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabContact = new System.Windows.Forms.TabPage();
-            this.ajouterContact = new System.Windows.Forms.GroupBox();
+            this.grpAjouterContact = new System.Windows.Forms.GroupBox();
+            this.lblDeviseContact = new System.Windows.Forms.Label();
             this.tabDepense = new System.Windows.Forms.TabPage();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.grpDepense = new System.Windows.Forms.GroupBox();
+            this.lblDeviseDepense = new System.Windows.Forms.Label();
+            this.btnValiderDepense = new System.Windows.Forms.Button();
+            this.btnAnnulerDepense = new System.Windows.Forms.Button();
+            this.lblTypeDepense = new System.Windows.Forms.Label();
+            this.cboTypeDepense = new System.Windows.Forms.ComboBox();
+            this.rtbMotifDepense = new System.Windows.Forms.RichTextBox();
+            this.txtMontantDepense = new System.Windows.Forms.TextBox();
+            this.dtpDateDepense = new System.Windows.Forms.DateTimePicker();
+            this.lblMotifDepense = new System.Windows.Forms.Label();
+            this.lblMontantDepense = new System.Windows.Forms.Label();
+            this.lblDateDepense = new System.Windows.Forms.Label();
             this.tabEvent = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnValiderEvent = new System.Windows.Forms.Button();
+            this.btnAnnulerEvent = new System.Windows.Forms.Button();
+            this.rtbCommentaireEvent = new System.Windows.Forms.RichTextBox();
+            this.dtpEvent = new System.Windows.Forms.DateTimePicker();
+            this.lblCommentaireEvent = new System.Windows.Forms.Label();
+            this.lblDateEvent = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabContact.SuspendLayout();
-            this.ajouterContact.SuspendLayout();
+            this.grpAjouterContact.SuspendLayout();
             this.tabDepense.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.grpDepense.SuspendLayout();
+            this.tabEvent.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnValiderContact
             // 
-            this.btnValiderContact.Location = new System.Drawing.Point(260, 354);
+            this.btnValiderContact.Location = new System.Drawing.Point(324, 354);
             this.btnValiderContact.Name = "btnValiderContact";
-            this.btnValiderContact.Size = new System.Drawing.Size(75, 23);
+            this.btnValiderContact.Size = new System.Drawing.Size(100, 40);
             this.btnValiderContact.TabIndex = 8;
             this.btnValiderContact.Text = "Valider";
             this.btnValiderContact.UseVisualStyleBackColor = true;
@@ -73,67 +84,70 @@
             // 
             // btnAnnuler
             // 
-            this.btnAnnuler.Location = new System.Drawing.Point(178, 354);
+            this.btnAnnuler.Location = new System.Drawing.Point(221, 354);
             this.btnAnnuler.Name = "btnAnnuler";
-            this.btnAnnuler.Size = new System.Drawing.Size(75, 23);
+            this.btnAnnuler.Size = new System.Drawing.Size(100, 40);
             this.btnAnnuler.TabIndex = 8;
             this.btnAnnuler.Text = "Annuler";
             this.btnAnnuler.UseVisualStyleBackColor = true;
+            this.btnAnnuler.Click += new System.EventHandler(this.annulerModif_Click);
             // 
             // lblInformateur
             // 
             this.lblInformateur.AutoSize = true;
-            this.lblInformateur.Location = new System.Drawing.Point(6, 272);
+            this.lblInformateur.Location = new System.Drawing.Point(6, 277);
             this.lblInformateur.Name = "lblInformateur";
-            this.lblInformateur.Size = new System.Drawing.Size(60, 13);
+            this.lblInformateur.Size = new System.Drawing.Size(104, 24);
             this.lblInformateur.TabIndex = 7;
             this.lblInformateur.Text = "Informateur";
             // 
             // cboInformateurs
             // 
             this.cboInformateurs.FormattingEnabled = true;
-            this.cboInformateurs.Location = new System.Drawing.Point(97, 272);
+            this.cboInformateurs.Location = new System.Drawing.Point(139, 277);
             this.cboInformateurs.Name = "cboInformateurs";
-            this.cboInformateurs.Size = new System.Drawing.Size(156, 21);
+            this.cboInformateurs.Size = new System.Drawing.Size(223, 32);
             this.cboInformateurs.TabIndex = 6;
             // 
             // rtbAppreciation
             // 
-            this.rtbAppreciation.Location = new System.Drawing.Point(97, 132);
+            this.rtbAppreciation.Location = new System.Drawing.Point(139, 136);
             this.rtbAppreciation.Name = "rtbAppreciation";
+            this.rtbAppreciation.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
             this.rtbAppreciation.Size = new System.Drawing.Size(223, 119);
             this.rtbAppreciation.TabIndex = 5;
             this.rtbAppreciation.Text = "";
             // 
             // txtSomme
             // 
-            this.txtSomme.Location = new System.Drawing.Point(93, 81);
+            this.txtSomme.Location = new System.Drawing.Point(139, 89);
             this.txtSomme.Name = "txtSomme";
-            this.txtSomme.Size = new System.Drawing.Size(100, 20);
+            this.txtSomme.Size = new System.Drawing.Size(100, 29);
             this.txtSomme.TabIndex = 4;
+            this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
             // 
-            // dtpDate
+            // dtpDateContact
             // 
-            this.dtpDate.Location = new System.Drawing.Point(93, 41);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(200, 20);
-            this.dtpDate.TabIndex = 3;
+            this.dtpDateContact.Location = new System.Drawing.Point(139, 47);
+            this.dtpDateContact.Name = "dtpDateContact";
+            this.dtpDateContact.Size = new System.Drawing.Size(200, 29);
+            this.dtpDateContact.TabIndex = 3;
             // 
             // lblAppreciation
             // 
             this.lblAppreciation.AutoSize = true;
-            this.lblAppreciation.Location = new System.Drawing.Point(6, 131);
+            this.lblAppreciation.Location = new System.Drawing.Point(6, 136);
             this.lblAppreciation.Name = "lblAppreciation";
-            this.lblAppreciation.Size = new System.Drawing.Size(72, 13);
+            this.lblAppreciation.Size = new System.Drawing.Size(116, 24);
             this.lblAppreciation.TabIndex = 2;
-            this.lblAppreciation.Text = "Appereciation";
+            this.lblAppreciation.Text = "Appréciation";
             // 
             // Somme
             // 
             this.Somme.AutoSize = true;
-            this.Somme.Location = new System.Drawing.Point(6, 84);
+            this.Somme.Location = new System.Drawing.Point(6, 89);
             this.Somme.Name = "Somme";
-            this.Somme.Size = new System.Drawing.Size(42, 13);
+            this.Somme.Size = new System.Drawing.Size(76, 24);
             this.Somme.TabIndex = 1;
             this.Somme.Text = "Somme";
             // 
@@ -142,7 +156,7 @@
             this.lblDate.AutoSize = true;
             this.lblDate.Location = new System.Drawing.Point(6, 47);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(30, 13);
+            this.lblDate.Size = new System.Drawing.Size(48, 24);
             this.lblDate.TabIndex = 0;
             this.lblDate.Text = "Date";
             // 
@@ -154,184 +168,281 @@
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(652, 541);
+            this.tabControl1.Size = new System.Drawing.Size(449, 438);
             this.tabControl1.TabIndex = 3;
             // 
             // tabContact
             // 
-            this.tabContact.Controls.Add(this.ajouterContact);
+            this.tabContact.Controls.Add(this.grpAjouterContact);
             this.tabContact.Location = new System.Drawing.Point(4, 22);
             this.tabContact.Name = "tabContact";
             this.tabContact.Padding = new System.Windows.Forms.Padding(3);
-            this.tabContact.Size = new System.Drawing.Size(644, 515);
+            this.tabContact.Size = new System.Drawing.Size(441, 412);
             this.tabContact.TabIndex = 0;
             this.tabContact.Text = "Nouveau Contact";
             this.tabContact.UseVisualStyleBackColor = true;
             // 
-            // ajouterContact
+            // grpAjouterContact
             // 
-            this.ajouterContact.Controls.Add(this.btnValiderContact);
-            this.ajouterContact.Controls.Add(this.btnAnnuler);
-            this.ajouterContact.Controls.Add(this.lblInformateur);
-            this.ajouterContact.Controls.Add(this.cboInformateurs);
-            this.ajouterContact.Controls.Add(this.rtbAppreciation);
-            this.ajouterContact.Controls.Add(this.txtSomme);
-            this.ajouterContact.Controls.Add(this.dtpDate);
-            this.ajouterContact.Controls.Add(this.lblAppreciation);
-            this.ajouterContact.Controls.Add(this.Somme);
-            this.ajouterContact.Controls.Add(this.lblDate);
-            this.ajouterContact.Location = new System.Drawing.Point(6, 6);
-            this.ajouterContact.Name = "ajouterContact";
-            this.ajouterContact.Size = new System.Drawing.Size(341, 408);
-            this.ajouterContact.TabIndex = 2;
-            this.ajouterContact.TabStop = false;
-            this.ajouterContact.Text = "groupBox2";
+            this.grpAjouterContact.Controls.Add(this.lblDeviseContact);
+            this.grpAjouterContact.Controls.Add(this.btnValiderContact);
+            this.grpAjouterContact.Controls.Add(this.btnAnnuler);
+            this.grpAjouterContact.Controls.Add(this.lblInformateur);
+            this.grpAjouterContact.Controls.Add(this.cboInformateurs);
+            this.grpAjouterContact.Controls.Add(this.rtbAppreciation);
+            this.grpAjouterContact.Controls.Add(this.txtSomme);
+            this.grpAjouterContact.Controls.Add(this.dtpDateContact);
+            this.grpAjouterContact.Controls.Add(this.lblAppreciation);
+            this.grpAjouterContact.Controls.Add(this.Somme);
+            this.grpAjouterContact.Controls.Add(this.lblDate);
+            this.grpAjouterContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpAjouterContact.Location = new System.Drawing.Point(6, 6);
+            this.grpAjouterContact.Name = "grpAjouterContact";
+            this.grpAjouterContact.Size = new System.Drawing.Size(430, 400);
+            this.grpAjouterContact.TabIndex = 2;
+            this.grpAjouterContact.TabStop = false;
+            // 
+            // lblDeviseContact
+            // 
+            this.lblDeviseContact.AutoSize = true;
+            this.lblDeviseContact.Location = new System.Drawing.Point(245, 92);
+            this.lblDeviseContact.Name = "lblDeviseContact";
+            this.lblDeviseContact.Size = new System.Drawing.Size(34, 24);
+            this.lblDeviseContact.TabIndex = 9;
+            this.lblDeviseContact.Text = "$G";
             // 
             // tabDepense
             // 
-            this.tabDepense.Controls.Add(this.groupBox1);
+            this.tabDepense.Controls.Add(this.grpDepense);
             this.tabDepense.Location = new System.Drawing.Point(4, 22);
             this.tabDepense.Name = "tabDepense";
             this.tabDepense.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDepense.Size = new System.Drawing.Size(644, 515);
+            this.tabDepense.Size = new System.Drawing.Size(441, 412);
             this.tabDepense.TabIndex = 1;
             this.tabDepense.Text = "Nouvelle dépense";
             this.tabDepense.UseVisualStyleBackColor = true;
             // 
-            // groupBox1
+            // grpDepense
             // 
-            this.groupBox1.Controls.Add(this.button1);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.richTextBox1);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Location = new System.Drawing.Point(6, 6);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(341, 408);
-            this.groupBox1.TabIndex = 3;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox2";
+            this.grpDepense.Controls.Add(this.lblDeviseDepense);
+            this.grpDepense.Controls.Add(this.btnValiderDepense);
+            this.grpDepense.Controls.Add(this.btnAnnulerDepense);
+            this.grpDepense.Controls.Add(this.lblTypeDepense);
+            this.grpDepense.Controls.Add(this.cboTypeDepense);
+            this.grpDepense.Controls.Add(this.rtbMotifDepense);
+            this.grpDepense.Controls.Add(this.txtMontantDepense);
+            this.grpDepense.Controls.Add(this.dtpDateDepense);
+            this.grpDepense.Controls.Add(this.lblMotifDepense);
+            this.grpDepense.Controls.Add(this.lblMontantDepense);
+            this.grpDepense.Controls.Add(this.lblDateDepense);
+            this.grpDepense.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.grpDepense.Location = new System.Drawing.Point(6, 6);
+            this.grpDepense.Name = "grpDepense";
+            this.grpDepense.Size = new System.Drawing.Size(430, 400);
+            this.grpDepense.TabIndex = 3;
+            this.grpDepense.TabStop = false;
             // 
-            // button1
+            // lblDeviseDepense
             // 
-            this.button1.Location = new System.Drawing.Point(260, 354);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 8;
-            this.button1.Text = "Valider";
-            this.button1.UseVisualStyleBackColor = true;
+            this.lblDeviseDepense.AutoSize = true;
+            this.lblDeviseDepense.Location = new System.Drawing.Point(199, 87);
+            this.lblDeviseDepense.Name = "lblDeviseDepense";
+            this.lblDeviseDepense.Size = new System.Drawing.Size(34, 24);
+            this.lblDeviseDepense.TabIndex = 10;
+            this.lblDeviseDepense.Text = "$G";
             // 
-            // button2
+            // btnValiderDepense
             // 
-            this.button2.Location = new System.Drawing.Point(178, 354);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "Annuler";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnValiderDepense.Location = new System.Drawing.Point(324, 354);
+            this.btnValiderDepense.Name = "btnValiderDepense";
+            this.btnValiderDepense.Size = new System.Drawing.Size(100, 40);
+            this.btnValiderDepense.TabIndex = 8;
+            this.btnValiderDepense.Text = "Valider";
+            this.btnValiderDepense.UseVisualStyleBackColor = true;
+            this.btnValiderDepense.Click += new System.EventHandler(this.btnValiderDepense_Click);
             // 
-            // label1
+            // btnAnnulerDepense
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 272);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(60, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Informateur";
+            this.btnAnnulerDepense.Location = new System.Drawing.Point(219, 354);
+            this.btnAnnulerDepense.Name = "btnAnnulerDepense";
+            this.btnAnnulerDepense.Size = new System.Drawing.Size(100, 40);
+            this.btnAnnulerDepense.TabIndex = 8;
+            this.btnAnnulerDepense.Text = "Annuler";
+            this.btnAnnulerDepense.UseVisualStyleBackColor = true;
+            this.btnAnnulerDepense.Click += new System.EventHandler(this.annulerModif_Click);
             // 
-            // comboBox1
+            // lblTypeDepense
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(97, 272);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(156, 21);
-            this.comboBox1.TabIndex = 6;
+            this.lblTypeDepense.AutoSize = true;
+            this.lblTypeDepense.Location = new System.Drawing.Point(6, 274);
+            this.lblTypeDepense.Name = "lblTypeDepense";
+            this.lblTypeDepense.Size = new System.Drawing.Size(160, 24);
+            this.lblTypeDepense.TabIndex = 7;
+            this.lblTypeDepense.Text = "Type de dépense";
             // 
-            // richTextBox1
+            // cboTypeDepense
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(97, 132);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(223, 119);
-            this.richTextBox1.TabIndex = 5;
-            this.richTextBox1.Text = "";
+            this.cboTypeDepense.FormattingEnabled = true;
+            this.cboTypeDepense.Location = new System.Drawing.Point(172, 274);
+            this.cboTypeDepense.Name = "cboTypeDepense";
+            this.cboTypeDepense.Size = new System.Drawing.Size(156, 32);
+            this.cboTypeDepense.TabIndex = 6;
             // 
-            // textBox1
+            // rtbMotifDepense
             // 
-            this.textBox1.Location = new System.Drawing.Point(93, 81);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 4;
+            this.rtbMotifDepense.Location = new System.Drawing.Point(97, 134);
+            this.rtbMotifDepense.Name = "rtbMotifDepense";
+            this.rtbMotifDepense.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.rtbMotifDepense.Size = new System.Drawing.Size(223, 119);
+            this.rtbMotifDepense.TabIndex = 5;
+            this.rtbMotifDepense.Text = "";
             // 
-            // dateTimePicker1
+            // txtMontantDepense
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(93, 41);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
-            this.dateTimePicker1.TabIndex = 3;
+            this.txtMontantDepense.Location = new System.Drawing.Point(93, 83);
+            this.txtMontantDepense.Name = "txtMontantDepense";
+            this.txtMontantDepense.Size = new System.Drawing.Size(100, 29);
+            this.txtMontantDepense.TabIndex = 4;
+            this.txtMontantDepense.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
             // 
-            // label2
+            // dtpDateDepense
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 131);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(72, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Appereciation";
+            this.dtpDateDepense.Location = new System.Drawing.Point(93, 43);
+            this.dtpDateDepense.Name = "dtpDateDepense";
+            this.dtpDateDepense.Size = new System.Drawing.Size(200, 29);
+            this.dtpDateDepense.TabIndex = 3;
             // 
-            // label3
+            // lblMotifDepense
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 84);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 13);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "label3";
+            this.lblMotifDepense.AutoSize = true;
+            this.lblMotifDepense.Location = new System.Drawing.Point(6, 133);
+            this.lblMotifDepense.Name = "lblMotifDepense";
+            this.lblMotifDepense.Size = new System.Drawing.Size(49, 24);
+            this.lblMotifDepense.TabIndex = 2;
+            this.lblMotifDepense.Text = "Motif";
             // 
-            // label4
+            // lblMontantDepense
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 47);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(30, 13);
-            this.label4.TabIndex = 0;
-            this.label4.Text = "Date";
+            this.lblMontantDepense.AutoSize = true;
+            this.lblMontantDepense.Location = new System.Drawing.Point(6, 86);
+            this.lblMontantDepense.Name = "lblMontantDepense";
+            this.lblMontantDepense.Size = new System.Drawing.Size(77, 24);
+            this.lblMontantDepense.TabIndex = 1;
+            this.lblMontantDepense.Text = "Montant";
+            // 
+            // lblDateDepense
+            // 
+            this.lblDateDepense.AutoSize = true;
+            this.lblDateDepense.Location = new System.Drawing.Point(6, 49);
+            this.lblDateDepense.Name = "lblDateDepense";
+            this.lblDateDepense.Size = new System.Drawing.Size(48, 24);
+            this.lblDateDepense.TabIndex = 0;
+            this.lblDateDepense.Text = "Date";
             // 
             // tabEvent
             // 
+            this.tabEvent.Controls.Add(this.groupBox2);
             this.tabEvent.Location = new System.Drawing.Point(4, 22);
             this.tabEvent.Name = "tabEvent";
-            this.tabEvent.Size = new System.Drawing.Size(644, 515);
+            this.tabEvent.Size = new System.Drawing.Size(441, 412);
             this.tabEvent.TabIndex = 2;
             this.tabEvent.Text = "Nouvel Evenement";
             this.tabEvent.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.btnValiderEvent);
+            this.groupBox2.Controls.Add(this.btnAnnulerEvent);
+            this.groupBox2.Controls.Add(this.rtbCommentaireEvent);
+            this.groupBox2.Controls.Add(this.dtpEvent);
+            this.groupBox2.Controls.Add(this.lblCommentaireEvent);
+            this.groupBox2.Controls.Add(this.lblDateEvent);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(3, 3);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(430, 400);
+            this.groupBox2.TabIndex = 4;
+            this.groupBox2.TabStop = false;
+            // 
+            // btnValiderEvent
+            // 
+            this.btnValiderEvent.Location = new System.Drawing.Point(324, 354);
+            this.btnValiderEvent.Name = "btnValiderEvent";
+            this.btnValiderEvent.Size = new System.Drawing.Size(100, 40);
+            this.btnValiderEvent.TabIndex = 8;
+            this.btnValiderEvent.Text = "Valider";
+            this.btnValiderEvent.UseVisualStyleBackColor = true;
+            this.btnValiderEvent.Click += new System.EventHandler(this.btnValiderEvent_Click);
+            // 
+            // btnAnnulerEvent
+            // 
+            this.btnAnnulerEvent.Location = new System.Drawing.Point(218, 354);
+            this.btnAnnulerEvent.Name = "btnAnnulerEvent";
+            this.btnAnnulerEvent.Size = new System.Drawing.Size(100, 40);
+            this.btnAnnulerEvent.TabIndex = 8;
+            this.btnAnnulerEvent.Text = "Annuler";
+            this.btnAnnulerEvent.UseVisualStyleBackColor = true;
+            this.btnAnnulerEvent.Click += new System.EventHandler(this.annulerModif_Click);
+            // 
+            // rtbCommentaireEvent
+            // 
+            this.rtbCommentaireEvent.Location = new System.Drawing.Point(169, 78);
+            this.rtbCommentaireEvent.Name = "rtbCommentaireEvent";
+            this.rtbCommentaireEvent.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.rtbCommentaireEvent.Size = new System.Drawing.Size(255, 250);
+            this.rtbCommentaireEvent.TabIndex = 5;
+            this.rtbCommentaireEvent.Text = "";
+            // 
+            // dtpEvent
+            // 
+            this.dtpEvent.Location = new System.Drawing.Point(169, 43);
+            this.dtpEvent.Name = "dtpEvent";
+            this.dtpEvent.Size = new System.Drawing.Size(200, 29);
+            this.dtpEvent.TabIndex = 3;
+            // 
+            // lblCommentaireEvent
+            // 
+            this.lblCommentaireEvent.AutoSize = true;
+            this.lblCommentaireEvent.Location = new System.Drawing.Point(6, 81);
+            this.lblCommentaireEvent.Name = "lblCommentaireEvent";
+            this.lblCommentaireEvent.Size = new System.Drawing.Size(123, 24);
+            this.lblCommentaireEvent.TabIndex = 2;
+            this.lblCommentaireEvent.Text = "Commentaire";
+            // 
+            // lblDateEvent
+            // 
+            this.lblDateEvent.AutoSize = true;
+            this.lblDateEvent.Location = new System.Drawing.Point(6, 47);
+            this.lblDateEvent.Name = "lblDateEvent";
+            this.lblDateEvent.Size = new System.Drawing.Size(48, 24);
+            this.lblDateEvent.TabIndex = 0;
+            this.lblDateEvent.Text = "Date";
             // 
             // EditeurJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(676, 565);
+            this.ClientSize = new System.Drawing.Size(479, 454);
             this.Controls.Add(this.tabControl1);
             this.Name = "EditeurJournal";
             this.Text = "Modifier de modification";
             this.Load += new System.EventHandler(this.editeurJournal_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabContact.ResumeLayout(false);
-            this.ajouterContact.ResumeLayout(false);
-            this.ajouterContact.PerformLayout();
+            this.grpAjouterContact.ResumeLayout(false);
+            this.grpAjouterContact.PerformLayout();
             this.tabDepense.ResumeLayout(false);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.grpDepense.ResumeLayout(false);
+            this.grpDepense.PerformLayout();
+            this.tabEvent.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.DateTimePicker dtpDate;
+        private System.Windows.Forms.DateTimePicker dtpDateContact;
         private System.Windows.Forms.Label lblAppreciation;
         private System.Windows.Forms.Label Somme;
         private System.Windows.Forms.Label lblDate;
@@ -343,19 +454,28 @@
         private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabContact;
-        private System.Windows.Forms.GroupBox ajouterContact;
+        private System.Windows.Forms.GroupBox grpAjouterContact;
         private System.Windows.Forms.TabPage tabDepense;
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox grpDepense;
+        private System.Windows.Forms.Button btnValiderDepense;
+        private System.Windows.Forms.Button btnAnnulerDepense;
+        private System.Windows.Forms.RichTextBox rtbMotifDepense;
+        private System.Windows.Forms.TextBox txtMontantDepense;
+        private System.Windows.Forms.DateTimePicker dtpDateDepense;
+        private System.Windows.Forms.Label lblMotifDepense;
+        private System.Windows.Forms.Label lblMontantDepense;
+        private System.Windows.Forms.Label lblDateDepense;
         private System.Windows.Forms.TabPage tabEvent;
+        private System.Windows.Forms.Label lblTypeDepense;
+        private System.Windows.Forms.ComboBox cboTypeDepense;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Button btnValiderEvent;
+        private System.Windows.Forms.Button btnAnnulerEvent;
+        private System.Windows.Forms.RichTextBox rtbCommentaireEvent;
+        private System.Windows.Forms.DateTimePicker dtpEvent;
+        private System.Windows.Forms.Label lblCommentaireEvent;
+        private System.Windows.Forms.Label lblDateEvent;
+        private System.Windows.Forms.Label lblDeviseContact;
+        private System.Windows.Forms.Label lblDeviseDepense;
     }
 }
