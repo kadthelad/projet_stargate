@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnValiderContact = new System.Windows.Forms.Button();
             this.btnAnnuler = new System.Windows.Forms.Button();
             this.lblInformateur = new System.Windows.Forms.Label();
@@ -63,6 +64,7 @@
             this.dtpEvent = new System.Windows.Forms.DateTimePicker();
             this.lblCommentaireEvent = new System.Windows.Forms.Label();
             this.lblDateEvent = new System.Windows.Forms.Label();
+            this.errSomme = new System.Windows.Forms.ErrorProvider(this.components);
             this.tabControl1.SuspendLayout();
             this.tabContact.SuspendLayout();
             this.grpAjouterContact.SuspendLayout();
@@ -70,6 +72,7 @@
             this.grpDepense.SuspendLayout();
             this.tabEvent.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errSomme)).BeginInit();
             this.SuspendLayout();
             // 
             // btnValiderContact
@@ -205,7 +208,7 @@
             // lblDeviseContact
             // 
             this.lblDeviseContact.AutoSize = true;
-            this.lblDeviseContact.Location = new System.Drawing.Point(245, 92);
+            this.lblDeviseContact.Location = new System.Drawing.Point(305, 92);
             this.lblDeviseContact.Name = "lblDeviseContact";
             this.lblDeviseContact.Size = new System.Drawing.Size(34, 24);
             this.lblDeviseContact.TabIndex = 9;
@@ -245,7 +248,7 @@
             // lblDeviseDepense
             // 
             this.lblDeviseDepense.AutoSize = true;
-            this.lblDeviseDepense.Location = new System.Drawing.Point(199, 87);
+            this.lblDeviseDepense.Location = new System.Drawing.Point(259, 86);
             this.lblDeviseDepense.Name = "lblDeviseDepense";
             this.lblDeviseDepense.Size = new System.Drawing.Size(34, 24);
             this.lblDeviseDepense.TabIndex = 10;
@@ -418,6 +421,10 @@
             this.lblDateEvent.TabIndex = 0;
             this.lblDateEvent.Text = "Date";
             // 
+            // errSomme
+            // 
+            this.errSomme.ContainerControl = this;
+            // 
             // EditeurJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -437,6 +444,7 @@
             this.tabEvent.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.errSomme)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -477,5 +485,6 @@
         private System.Windows.Forms.Label lblDateEvent;
         private System.Windows.Forms.Label lblDeviseContact;
         private System.Windows.Forms.Label lblDeviseDepense;
+        private System.Windows.Forms.ErrorProvider errSomme;
     }
 }

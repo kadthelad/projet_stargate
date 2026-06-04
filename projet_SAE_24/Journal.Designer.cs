@@ -144,6 +144,7 @@
             this.dgvContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvContacts.Location = new System.Drawing.Point(6, 19);
             this.dgvContacts.Name = "dgvContacts";
+            this.dgvContacts.ReadOnly = true;
             this.dgvContacts.Size = new System.Drawing.Size(402, 131);
             this.dgvContacts.TabIndex = 0;
             // 
@@ -162,6 +163,7 @@
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDepenses.Location = new System.Drawing.Point(6, 19);
             this.dgvDepenses.Name = "dgvDepenses";
+            this.dgvDepenses.ReadOnly = true;
             this.dgvDepenses.Size = new System.Drawing.Size(482, 298);
             this.dgvDepenses.TabIndex = 0;
             // 

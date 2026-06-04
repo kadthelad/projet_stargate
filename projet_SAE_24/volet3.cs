@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Diagnostics;
+using Org.BouncyCastle.Utilities.Encoders;
 
 
 namespace projet_SAE_24
@@ -17,7 +18,7 @@ namespace projet_SAE_24
     {
         readonly int m_missioNumero;
         readonly string m_missionPlanete;
-        int m_depenseTotal;
+        int m_montantRestant = 0;
         public Volet3(int nbMissionPlanete, string missionPlanete)
         {
             InitializeComponent();
@@ -66,56 +67,69 @@ namespace projet_SAE_24
             rtbFeuilleDeRoute.Text = ligneDeLaMission["feuilleDeRoute"].ToString();
 
             // pour le budget
-            lblBudget.Text += ligneDeLaMission["budget"].ToString();
+            int budget = Convert.ToInt32(ligneDeLaMission["budget"]);
+            lblBudget.Text += budget.ToString();
+
 
             // pour sold restant
-            DataTable tblDepenses = monds.Tables["Depense"];
-            DataRow[] lignesDepense = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
-
+            //DataTable tblDepenses = monds.Tables["Depense"];
+            int depenseTotal = 0;
+            DataRow[] lignesDepense = monds.Tables["Depense"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
+            DataRow[] lignesContact = monds.Tables["Contact"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
+            // à continuer 
             if (lignesDepense.Length > 0)
             {
                 DataTable tblTotalDepenses = lignesDepense.CopyToDataTable();
-                int depenseTotal = 0;
                 foreach (DataRow ligne in tblTotalDepenses.Rows)
                 {
                     depenseTotal += Convert.ToInt32(ligne["montant"]);
                 }
-                m_depenseTotal = depenseTotal;
-                lblSoldeRestant.Text += depenseTotal.ToString();
             }
-            else
+            
+
+            if(lignesContact.Length > 0)
             {
-                lblSoldeRestant.Text += ligneDeLaMission["budget"].ToString();
+                DataTable tblTotalContact = lignesContact.CopyToDataTable();
+                foreach (DataRow ligne in tblTotalContact.Rows)
+                {
+                    depenseTotal += Convert.ToInt32(ligne["sommeVersee"]);
+                }
             }
 
-                // pour les membres
-                DataTable membresDeLaMission = monds.Tables["Composer"].Select($"numeroMission = {m_missioNumero} AND nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
-                foreach (DataRow membreMission in membresDeLaMission.Rows)
+            //Quand on a calculer toutes les dépenses
+            m_montantRestant = budget - depenseTotal;
+            lblSoldeRestant.Text += (budget - depenseTotal).ToString();
+
+
+
+            // pour les membres
+            DataTable membresDeLaMission = monds.Tables["Composer"].Select($"numeroMission = {m_missioNumero} AND nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
+            foreach (DataRow membreMission in membresDeLaMission.Rows)
+            {
+                string matriculeMembre = membreMission["matriculeMembre"].ToString();
+                string typeMembre = matriculeMembre.Substring(0, 1);
+                switch (typeMembre)
                 {
-                    string matriculeMembre = membreMission["matriculeMembre"].ToString();
-                    string typeMembre = matriculeMembre.Substring(0, 1);
-                    switch (typeMembre)
-                    {
-                        case "C":
-                            typeMembre = "civil";
-                            break;
-                        case "M":
-                            typeMembre = "militaire";
-                            break;
-                    }
-
-                    DataTable tableMembre = monds.Tables["Membre"];
-                    string nomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Nom"].ToString();
-                    string prenomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Prenom"].ToString();
-                    ucMembre membre = new ucMembre(nomMembre, prenomMembre, typeMembre);
-
-                    if (matriculeChef == matriculeMembre)
-                    {
-                        membre.definirChef();
-                    }
-
-                    flpMembres.Controls.Add(membre);
+                    case "C":
+                        typeMembre = "civil";
+                        break;
+                    case "M":
+                        typeMembre = "militaire";
+                        break;
                 }
+
+                DataTable tableMembre = monds.Tables["Membre"];
+                string nomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Nom"].ToString();
+                string prenomMembre = tableMembre.Select($"matricule = '{matriculeMembre}'").CopyToDataTable().Rows[0]["Prenom"].ToString();
+                ucMembre membre = new ucMembre(nomMembre, prenomMembre, typeMembre);
+
+                if (matriculeChef == matriculeMembre)
+                {
+                    membre.definirChef();
+                }
+
+                flpMembres.Controls.Add(membre);
+            }
 
             // Création table captures
             DataRow[] lignesObjectifCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
@@ -199,7 +213,7 @@ namespace projet_SAE_24
         private void pcbModifier_Click(object sender, EventArgs e)
         {
             EditeurJournal editeurJournal = new EditeurJournal(m_missioNumero, m_missionPlanete);
-            editeurJournal.MontantRestant = m_depenseTotal;
+            editeurJournal.MontantRestant = m_montantRestant;
             editeurJournal.ShowDialog();
         }
     }

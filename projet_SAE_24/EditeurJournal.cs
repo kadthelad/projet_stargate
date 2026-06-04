@@ -70,15 +70,23 @@ namespace projet_SAE_24
 
         private void btnValiderContact_Click(object sender, EventArgs e)
         {
-            monds.Tables["Contact"].Rows.Add(
-              m_missionPlanete,
-              m_missioNumero,
-              dtpDateContact.Value.ToString("yyyy-MM-dd"),
-              Convert.ToInt64(txtSomme.Text),
-              echApostrophe(rtbAppreciation.Text),
-              cboInformateurs.SelectedValue
-                 );
-            this.Close();
+            int sommeContact = Convert.ToInt32(txtSomme.Text);
+            if (sommeContact > m_montantRestant)
+            {
+                errSomme.SetError(txtSomme, "Pas assez d'argent");
+            }
+            else
+            {
+                monds.Tables["Contact"].Rows.Add(
+                  m_missionPlanete,
+                  m_missioNumero,
+                  dtpDateContact.Value.ToString("yyyy-MM-dd"),
+                  sommeContact,
+                  echApostrophe(rtbAppreciation.Text),
+                  cboInformateurs.SelectedValue
+                     );
+                this.Close();
+            }
 
         }
 
@@ -108,23 +116,21 @@ namespace projet_SAE_24
             // faire affichage erreur pas assez d'argent
             if (montantDepense > m_montantRestant)
             {
+                errSomme.SetError(txtMontantDepense, "Pas assez de $G");
             }
-
-
+            else
+            {
                 monds.Tables["Depense"].Rows.Add(
                  m_missionPlanete,
                  m_missioNumero,
                  idDepense,
                  dtpDateDepense.Value.ToString("yyyy-MM-dd"),
-                 Convert.ToInt32(txtMontantDepense.Text),
+                 montantDepense,
                  echApostrophe(rtbMotifDepense.Text),
                  cboTypeDepense.SelectedValue
                     );
-
-
-
-            this.Close();
-
+                this.Close();
+            }
         }
 
         private void btnValiderEvent_Click(object sender, EventArgs e)
@@ -147,7 +153,10 @@ namespace projet_SAE_24
             char keyChar = e.KeyChar;
             if (!Char.IsDigit(keyChar))
             {
-                e.Handled = true;
+                if (keyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                }
             }
         }
     }
