@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.lblBudget = new System.Windows.Forms.Label();
 			this.lblDateDepart = new System.Windows.Forms.Label();
 			this.lblNomChef = new System.Windows.Forms.Label();
@@ -37,18 +36,9 @@
 			this.btnPDF = new System.Windows.Forms.Button();
 			this.lblStatusMission = new System.Windows.Forms.Label();
 			this.btnDetails = new System.Windows.Forms.Button();
+			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			this.SuspendLayout();
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.Location = new System.Drawing.Point(15, 18);
-			this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(164, 149);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-			this.pictureBox1.TabIndex = 0;
-			this.pictureBox1.TabStop = false;
 			// 
 			// lblBudget
 			// 
@@ -102,20 +92,21 @@
 			// 
 			// btnPDF
 			// 
+			this.btnPDF.BackColor = System.Drawing.Color.White;
 			this.btnPDF.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnPDF.Location = new System.Drawing.Point(752, 59);
+			this.btnPDF.Image = global::projet_SAE_24.Properties.Resources.pdf;
+			this.btnPDF.Location = new System.Drawing.Point(755, 42);
 			this.btnPDF.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnPDF.Name = "btnPDF";
 			this.btnPDF.Size = new System.Drawing.Size(87, 82);
 			this.btnPDF.TabIndex = 6;
-			this.btnPDF.Text = "PDF";
-			this.btnPDF.UseVisualStyleBackColor = true;
+			this.btnPDF.UseVisualStyleBackColor = false;
 			this.btnPDF.Click += new System.EventHandler(this.btnPDF_Click);
 			// 
 			// lblStatusMission
 			// 
 			this.lblStatusMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lblStatusMission.Location = new System.Drawing.Point(592, 18);
+			this.lblStatusMission.Location = new System.Drawing.Point(595, 10);
 			this.lblStatusMission.Name = "lblStatusMission";
 			this.lblStatusMission.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
 			this.lblStatusMission.Size = new System.Drawing.Size(233, 30);
@@ -124,15 +115,27 @@
 			// 
 			// btnDetails
 			// 
+			this.btnDetails.BackColor = System.Drawing.Color.White;
 			this.btnDetails.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnDetails.Location = new System.Drawing.Point(659, 59);
+			this.btnDetails.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.btnDetails.Image = global::projet_SAE_24.Properties.Resources.loupe;
+			this.btnDetails.Location = new System.Drawing.Point(662, 42);
 			this.btnDetails.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnDetails.Name = "btnDetails";
 			this.btnDetails.Size = new System.Drawing.Size(87, 82);
 			this.btnDetails.TabIndex = 8;
-			this.btnDetails.Text = "Détails";
-			this.btnDetails.UseVisualStyleBackColor = true;
+			this.btnDetails.UseVisualStyleBackColor = false;
 			this.btnDetails.Click += new System.EventHandler(this.btnDetails_Click);
+			// 
+			// pictureBox1
+			// 
+			this.pictureBox1.Location = new System.Drawing.Point(15, 18);
+			this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+			this.pictureBox1.Name = "pictureBox1";
+			this.pictureBox1.Size = new System.Drawing.Size(164, 149);
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox1.TabIndex = 0;
+			this.pictureBox1.TabStop = false;
 			// 
 			// Mission
 			// 

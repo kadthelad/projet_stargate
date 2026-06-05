@@ -67,6 +67,7 @@
 			this.label24 = new System.Windows.Forms.Label();
 			this.lblWarning = new System.Windows.Forms.Label();
 			this.btnRetour = new System.Windows.Forms.Button();
+			this.ckbVerifTravailEns = new System.Windows.Forms.CheckBox();
 			this.grpEtape1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.nudBudget)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.nudQteTonnes)).BeginInit();
@@ -119,7 +120,7 @@
 			this.grpEtape1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.grpEtape1.Name = "grpEtape1";
 			this.grpEtape1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.grpEtape1.Size = new System.Drawing.Size(634, 588);
+			this.grpEtape1.Size = new System.Drawing.Size(634, 689);
 			this.grpEtape1.TabIndex = 2;
 			this.grpEtape1.TabStop = false;
 			this.grpEtape1.Text = "1 - Informations de la mission";
@@ -127,7 +128,7 @@
 			// label12
 			// 
 			this.label12.AutoSize = true;
-			this.label12.Location = new System.Drawing.Point(379, 531);
+			this.label12.Location = new System.Drawing.Point(379, 643);
 			this.label12.Name = "label12";
 			this.label12.Size = new System.Drawing.Size(44, 29);
 			this.label12.TabIndex = 20;
@@ -136,7 +137,7 @@
 			// label11
 			// 
 			this.label11.AutoSize = true;
-			this.label11.Location = new System.Drawing.Point(339, 494);
+			this.label11.Location = new System.Drawing.Point(339, 606);
 			this.label11.Name = "label11";
 			this.label11.Size = new System.Drawing.Size(101, 29);
 			this.label11.TabIndex = 19;
@@ -149,7 +150,7 @@
             0,
             0,
             0});
-			this.nudBudget.Location = new System.Drawing.Point(272, 529);
+			this.nudBudget.Location = new System.Drawing.Point(272, 641);
 			this.nudBudget.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.nudBudget.Maximum = new decimal(new int[] {
             100000000,
@@ -163,7 +164,7 @@
 			// 
 			// nudQteTonnes
 			// 
-			this.nudQteTonnes.Location = new System.Drawing.Point(272, 492);
+			this.nudQteTonnes.Location = new System.Drawing.Point(272, 604);
 			this.nudQteTonnes.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.nudQteTonnes.Name = "nudQteTonnes";
 			this.nudQteTonnes.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -173,7 +174,7 @@
 			// label9
 			// 
 			this.label9.AutoSize = true;
-			this.label9.Location = new System.Drawing.Point(147, 531);
+			this.label9.Location = new System.Drawing.Point(147, 643);
 			this.label9.Name = "label9";
 			this.label9.Size = new System.Drawing.Size(108, 29);
 			this.label9.TabIndex = 14;
@@ -182,7 +183,7 @@
 			// label8
 			// 
 			this.label8.AutoSize = true;
-			this.label8.Location = new System.Drawing.Point(18, 494);
+			this.label8.Location = new System.Drawing.Point(18, 606);
 			this.label8.Name = "label8";
 			this.label8.Size = new System.Drawing.Size(237, 29);
 			this.label8.TabIndex = 13;
@@ -190,17 +191,17 @@
 			// 
 			// rtbFeuilleRoute
 			// 
-			this.rtbFeuilleRoute.Location = new System.Drawing.Point(21, 300);
+			this.rtbFeuilleRoute.Location = new System.Drawing.Point(21, 319);
 			this.rtbFeuilleRoute.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.rtbFeuilleRoute.Name = "rtbFeuilleRoute";
-			this.rtbFeuilleRoute.Size = new System.Drawing.Size(419, 188);
+			this.rtbFeuilleRoute.Size = new System.Drawing.Size(500, 251);
 			this.rtbFeuilleRoute.TabIndex = 11;
 			this.rtbFeuilleRoute.Text = "";
 			// 
 			// label6
 			// 
 			this.label6.AutoSize = true;
-			this.label6.Location = new System.Drawing.Point(16, 269);
+			this.label6.Location = new System.Drawing.Point(16, 288);
 			this.label6.Name = "label6";
 			this.label6.Size = new System.Drawing.Size(200, 29);
 			this.label6.TabIndex = 10;
@@ -288,7 +289,7 @@
 			// 
 			this.btnReinitialiser.BackColor = System.Drawing.Color.IndianRed;
 			this.btnReinitialiser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnReinitialiser.Location = new System.Drawing.Point(97, 667);
+			this.btnReinitialiser.Location = new System.Drawing.Point(97, 767);
 			this.btnReinitialiser.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnReinitialiser.Name = "btnReinitialiser";
 			this.btnReinitialiser.Size = new System.Drawing.Size(137, 39);
@@ -302,7 +303,7 @@
 			// 
 			this.btnCreerMission.BackColor = System.Drawing.Color.PaleTurquoise;
 			this.btnCreerMission.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.btnCreerMission.Location = new System.Drawing.Point(463, 668);
+			this.btnCreerMission.Location = new System.Drawing.Point(463, 768);
 			this.btnCreerMission.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.btnCreerMission.Name = "btnCreerMission";
 			this.btnCreerMission.Size = new System.Drawing.Size(141, 39);
@@ -319,7 +320,7 @@
 			this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
 			this.tabControl1.Name = "tabControl1";
 			this.tabControl1.SelectedIndex = 0;
-			this.tabControl1.Size = new System.Drawing.Size(656, 635);
+			this.tabControl1.Size = new System.Drawing.Size(656, 733);
 			this.tabControl1.TabIndex = 21;
 			this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
 			// 
@@ -331,7 +332,7 @@
 			this.tabInfos.Margin = new System.Windows.Forms.Padding(4);
 			this.tabInfos.Name = "tabInfos";
 			this.tabInfos.Padding = new System.Windows.Forms.Padding(4);
-			this.tabInfos.Size = new System.Drawing.Size(648, 606);
+			this.tabInfos.Size = new System.Drawing.Size(648, 704);
 			this.tabInfos.TabIndex = 0;
 			this.tabInfos.Text = "1 -Informations";
 			// 
@@ -343,12 +344,13 @@
 			this.tabDetails.Margin = new System.Windows.Forms.Padding(4);
 			this.tabDetails.Name = "tabDetails";
 			this.tabDetails.Padding = new System.Windows.Forms.Padding(4);
-			this.tabDetails.Size = new System.Drawing.Size(648, 606);
+			this.tabDetails.Size = new System.Drawing.Size(648, 704);
 			this.tabDetails.TabIndex = 1;
 			this.tabDetails.Text = "2 - Détails";
 			// 
 			// groupBox1
 			// 
+			this.groupBox1.Controls.Add(this.ckbVerifTravailEns);
 			this.groupBox1.Controls.Add(this.ckbAfficherTousEnnemis);
 			this.groupBox1.Controls.Add(this.btnAjoutObjectif);
 			this.groupBox1.Controls.Add(this.label13);
@@ -366,7 +368,7 @@
 			this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.groupBox1.Name = "groupBox1";
 			this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-			this.groupBox1.Size = new System.Drawing.Size(636, 588);
+			this.groupBox1.Size = new System.Drawing.Size(636, 691);
 			this.groupBox1.TabIndex = 3;
 			this.groupBox1.TabStop = false;
 			this.groupBox1.Text = "2 - Détails de la mission";
@@ -374,7 +376,7 @@
 			// ckbAfficherTousEnnemis
 			// 
 			this.ckbAfficherTousEnnemis.AutoSize = true;
-			this.ckbAfficherTousEnnemis.Location = new System.Drawing.Point(14, 380);
+			this.ckbAfficherTousEnnemis.Location = new System.Drawing.Point(20, 476);
 			this.ckbAfficherTousEnnemis.Name = "ckbAfficherTousEnnemis";
 			this.ckbAfficherTousEnnemis.Size = new System.Drawing.Size(302, 33);
 			this.ckbAfficherTousEnnemis.TabIndex = 33;
@@ -386,7 +388,7 @@
 			// 
 			this.btnAjoutObjectif.Enabled = false;
 			this.btnAjoutObjectif.ForeColor = System.Drawing.Color.Blue;
-			this.btnAjoutObjectif.Location = new System.Drawing.Point(396, 378);
+			this.btnAjoutObjectif.Location = new System.Drawing.Point(402, 474);
 			this.btnAjoutObjectif.Margin = new System.Windows.Forms.Padding(4);
 			this.btnAjoutObjectif.Name = "btnAjoutObjectif";
 			this.btnAjoutObjectif.Size = new System.Drawing.Size(205, 40);
@@ -398,7 +400,7 @@
 			// label13
 			// 
 			this.label13.AutoSize = true;
-			this.label13.Location = new System.Drawing.Point(485, 338);
+			this.label13.Location = new System.Drawing.Point(491, 434);
 			this.label13.Name = "label13";
 			this.label13.Size = new System.Drawing.Size(64, 29);
 			this.label13.TabIndex = 31;
@@ -408,7 +410,7 @@
 			// 
 			this.lsbxCaptures.FormattingEnabled = true;
 			this.lsbxCaptures.ItemHeight = 29;
-			this.lsbxCaptures.Location = new System.Drawing.Point(20, 419);
+			this.lsbxCaptures.Location = new System.Drawing.Point(26, 515);
 			this.lsbxCaptures.Name = "lsbxCaptures";
 			this.lsbxCaptures.Size = new System.Drawing.Size(588, 149);
 			this.lsbxCaptures.TabIndex = 30;
@@ -418,9 +420,9 @@
 			// 
 			this.lsbxParticipants.FormattingEnabled = true;
 			this.lsbxParticipants.ItemHeight = 29;
-			this.lsbxParticipants.Location = new System.Drawing.Point(22, 113);
+			this.lsbxParticipants.Location = new System.Drawing.Point(27, 188);
 			this.lsbxParticipants.Name = "lsbxParticipants";
-			this.lsbxParticipants.Size = new System.Drawing.Size(587, 178);
+			this.lsbxParticipants.Size = new System.Drawing.Size(587, 207);
 			this.lsbxParticipants.TabIndex = 29;
 			this.lsbxParticipants.SelectedIndexChanged += new System.EventHandler(this.lsbxParticipants_SelectedIndexChanged);
 			// 
@@ -428,7 +430,7 @@
 			// 
 			this.label15.AutoSize = true;
 			this.label15.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label15.Location = new System.Drawing.Point(123, 306);
+			this.label15.Location = new System.Drawing.Point(129, 402);
 			this.label15.Name = "label15";
 			this.label15.Size = new System.Drawing.Size(214, 27);
 			this.label15.TabIndex = 25;
@@ -438,7 +440,7 @@
 			// 
 			this.label14.AutoSize = true;
 			this.label14.Font = new System.Drawing.Font("Microsoft YaHei UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label14.Location = new System.Drawing.Point(86, 42);
+			this.label14.Location = new System.Drawing.Point(129, 55);
 			this.label14.Name = "label14";
 			this.label14.Size = new System.Drawing.Size(270, 27);
 			this.label14.TabIndex = 24;
@@ -447,7 +449,7 @@
 			// nudNbCapture
 			// 
 			this.nudNbCapture.Enabled = false;
-			this.nudNbCapture.Location = new System.Drawing.Point(556, 336);
+			this.nudNbCapture.Location = new System.Drawing.Point(562, 432);
 			this.nudNbCapture.Margin = new System.Windows.Forms.Padding(4);
 			this.nudNbCapture.Name = "nudNbCapture";
 			this.nudNbCapture.Size = new System.Drawing.Size(59, 34);
@@ -459,7 +461,7 @@
 			this.cboObjectifCapture.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboObjectifCapture.Enabled = false;
 			this.cboObjectifCapture.FormattingEnabled = true;
-			this.cboObjectifCapture.Location = new System.Drawing.Point(249, 335);
+			this.cboObjectifCapture.Location = new System.Drawing.Point(255, 431);
 			this.cboObjectifCapture.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.cboObjectifCapture.Name = "cboObjectifCapture";
 			this.cboObjectifCapture.Size = new System.Drawing.Size(230, 37);
@@ -469,7 +471,7 @@
 			// label22
 			// 
 			this.label22.AutoSize = true;
-			this.label22.Location = new System.Drawing.Point(9, 338);
+			this.label22.Location = new System.Drawing.Point(15, 434);
 			this.label22.Name = "label22";
 			this.label22.Size = new System.Drawing.Size(234, 29);
 			this.label22.TabIndex = 4;
@@ -480,7 +482,7 @@
 			this.cboAjoutMembre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboAjoutMembre.Enabled = false;
 			this.cboAjoutMembre.FormattingEnabled = true;
-			this.cboAjoutMembre.Location = new System.Drawing.Point(256, 71);
+			this.cboAjoutMembre.Location = new System.Drawing.Point(262, 146);
 			this.cboAjoutMembre.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
 			this.cboAjoutMembre.Name = "cboAjoutMembre";
 			this.cboAjoutMembre.Size = new System.Drawing.Size(359, 37);
@@ -490,7 +492,7 @@
 			// label24
 			// 
 			this.label24.AutoSize = true;
-			this.label24.Location = new System.Drawing.Point(15, 74);
+			this.label24.Location = new System.Drawing.Point(21, 149);
 			this.label24.Name = "label24";
 			this.label24.Size = new System.Drawing.Size(235, 29);
 			this.label24.TabIndex = 0;
@@ -500,7 +502,7 @@
 			// 
 			this.lblWarning.AutoSize = true;
 			this.lblWarning.ForeColor = System.Drawing.Color.BurlyWood;
-			this.lblWarning.Location = new System.Drawing.Point(72, 652);
+			this.lblWarning.Location = new System.Drawing.Point(72, 752);
 			this.lblWarning.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
 			this.lblWarning.Name = "lblWarning";
 			this.lblWarning.Size = new System.Drawing.Size(221, 16);
@@ -512,7 +514,7 @@
 			// 
 			this.btnRetour.BackColor = System.Drawing.Color.BurlyWood;
 			this.btnRetour.ForeColor = System.Drawing.Color.Red;
-			this.btnRetour.Location = new System.Drawing.Point(240, 668);
+			this.btnRetour.Location = new System.Drawing.Point(240, 768);
 			this.btnRetour.Name = "btnRetour";
 			this.btnRetour.Size = new System.Drawing.Size(217, 38);
 			this.btnRetour.TabIndex = 23;
@@ -520,12 +522,23 @@
 			this.btnRetour.UseVisualStyleBackColor = false;
 			this.btnRetour.Click += new System.EventHandler(this.btnRetour_Click);
 			// 
+			// ckbVerifTravailEns
+			// 
+			this.ckbVerifTravailEns.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.ckbVerifTravailEns.Location = new System.Drawing.Point(34, 85);
+			this.ckbVerifTravailEns.Name = "ckbVerifTravailEns";
+			this.ckbVerifTravailEns.RightToLeft = System.Windows.Forms.RightToLeft.No;
+			this.ckbVerifTravailEns.Size = new System.Drawing.Size(587, 65);
+			this.ckbVerifTravailEns.TabIndex = 34;
+			this.ckbVerifTravailEns.Text = "Vérifier si le membre ajouté à déjà travaillé avec quelqu\'un du groupe";
+			this.ckbVerifTravailEns.UseVisualStyleBackColor = true;
+			// 
 			// FormADM
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.Firebrick;
-			this.ClientSize = new System.Drawing.Size(685, 718);
+			this.ClientSize = new System.Drawing.Size(685, 818);
 			this.Controls.Add(this.btnRetour);
 			this.Controls.Add(this.lblWarning);
 			this.Controls.Add(this.tabControl1);
@@ -593,5 +606,6 @@
 		private System.Windows.Forms.Button btnAjoutObjectif;
 		private System.Windows.Forms.CheckBox ckbAfficherTousEnnemis;
 		private System.Windows.Forms.Button btnRetour;
+		private System.Windows.Forms.CheckBox ckbVerifTravailEns;
 	}
 }
