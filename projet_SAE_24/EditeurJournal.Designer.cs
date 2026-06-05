@@ -150,6 +150,7 @@
             this.dtpDateContact.Name = "dtpDateContact";
             this.dtpDateContact.Size = new System.Drawing.Size(200, 29);
             this.dtpDateContact.TabIndex = 3;
+            this.dtpDateContact.ValueChanged += new System.EventHandler(this.dtpDateContact_ValueChanged);
             // 
             // lblAppreciation
             // 
@@ -528,6 +529,7 @@
             this.ClientSize = new System.Drawing.Size(506, 454);
             this.Controls.Add(this.tabControl1);
             this.Name = "EditeurJournal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Modifier de modification";
             this.Load += new System.EventHandler(this.editeurJournal_Load);
             this.tabControl1.ResumeLayout(false);

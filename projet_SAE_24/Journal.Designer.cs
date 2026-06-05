@@ -252,6 +252,7 @@
             this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Journal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Journal de Bord";
             this.Load += new System.EventHandler(this.Journal_Load);
             this.grpEvenement.ResumeLayout(false);

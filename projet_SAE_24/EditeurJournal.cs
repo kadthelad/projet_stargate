@@ -72,6 +72,20 @@ namespace projet_SAE_24
             cboEspece.DataSource = tblEspece;
             cboEspece.DisplayMember = "nom";
             cboEspece.ValueMember = "id";
+
+            // Bloqué les dates selectionables entre le debut et la fin de la mission.
+            DataTable tblMission = monds.Tables["Mission"];
+            DataRow ligneMission = tblMission.Select($"nomPlanete = '{m_missionPlanete}' AND numero = {m_missioNumero}").CopyToDataTable().Rows[0];
+            DateTime dateMissionDepart = DateTime.Parse(ligneMission["dateDepart"].ToString());
+            DateTime dateMissionRetour = DateTime.Parse(ligneMission["dateRetour"].ToString());
+            dtpDateContact.MinDate = dateMissionDepart;
+            dtpDateContact.MaxDate = dateMissionRetour;
+
+            dtpDateDepense.MinDate = dateMissionDepart;
+            dtpDateDepense.MaxDate = dateMissionRetour;
+            
+            dtpEvent.MinDate = dateMissionDepart;
+            dtpEvent.MaxDate = dateMissionRetour;
         }
 
 
@@ -187,6 +201,7 @@ namespace projet_SAE_24
                 monds.Tables["Capturer"].Rows[indexLigneEspecePresente]["nombre"] = nbDejaCapturer + Convert.ToInt32(txtNombreCapture.Text);
             }
             MessageBox.Show(monds.Tables["Capturer"].Rows.Count.ToString());
+            this.Close();
         }
 
         private void estUnChiffre(object sender, KeyPressEventArgs e)
@@ -200,6 +215,10 @@ namespace projet_SAE_24
                     e.Handled = true;
                 }
             }
+        }
+
+        private void dtpDateContact_ValueChanged(object sender, EventArgs e)
+        {
         }
     }
 }

@@ -101,7 +101,9 @@ namespace projet_SAE_24
 
 
 
-            // pour les membres
+            // Ajout des membres
+
+            flpMembres.Controls.Clear();
             DataTable membresDeLaMission = monds.Tables["Composer"].Select($"numeroMission = {m_missioNumero} AND nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
             foreach (DataRow membreMission in membresDeLaMission.Rows)
             {
@@ -238,6 +240,8 @@ namespace projet_SAE_24
         private void pcbJournal_Click(object sender, EventArgs e)
         {
             Journal journal = new Journal(m_missionPlanete, m_missioNumero);
+            journal.MaximumSize = journal.Size;
+            journal.MinimumSize = journal.Size;
             journal.ShowDialog();
         }
 
@@ -249,6 +253,8 @@ namespace projet_SAE_24
         private void pcbModifier_Click(object sender, EventArgs e)
         {
             EditeurJournal editeurJournal = new EditeurJournal(m_missioNumero, m_missionPlanete);
+            editeurJournal.MaximumSize = editeurJournal.Size;
+            editeurJournal.MinimumSize = editeurJournal.Size;
             editeurJournal.MontantRestant = m_montantRestant;
             editeurJournal.ShowDialog();
             remplirForm();
