@@ -74,6 +74,7 @@ namespace projet_SAE_24
                     lblBienveillance.Text = "Bienveillance : " + bienveillance;
                     lblInstrumentMusique.Text = instrument;
                     lblInstrumentMusique.ForeColor = Color.Green;
+                    lblInstrumentMusique.Font = new Font("Microsoft Sans Serif", 9);
 
                     lblBienveillance.Left = 110;
                     lblBienveillance.Top = 50;
@@ -142,7 +143,7 @@ namespace projet_SAE_24
 
                 string planete = "";
 
-                p.Width = 250;
+                p.Width = 270;
                 p.Height = 110;
                 p.BackColor = Color.BurlyWood;
                 p.BorderStyle = BorderStyle.FixedSingle;

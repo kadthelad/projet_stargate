@@ -79,6 +79,7 @@ namespace projet_SAE_24
                 {
                     int temperature = Convert.ToInt32(ligne["temperature"]);
                     lblTemperature.Text = temperature.ToString() + "°";
+                    lblTemperature.Left = pb2.Right + 10;
 
                     if (temperature < 0)
                     {
@@ -92,6 +93,14 @@ namespace projet_SAE_24
                     {
                         pb2.Image = (Image)Properties.Resources.ResourceManager.GetObject("heureux");
                     }
+
+                    p.Controls.Add(pb2);
+                }
+                else
+                {
+                    pb2.Dispose();
+                    lblTemperature.Left = lblNomPlanete.Left;
+                    lblTemperature.Text = "Température inconnue";
                 }
 
                 pb2.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -103,14 +112,13 @@ namespace projet_SAE_24
                 pb2.Top = lblNomPlanete.Bottom + 10;
 
                 lblTemperature.AutoSize = true;
-                lblTemperature.Left = pb2.Right + 10;
                 lblTemperature.Top = pb2.Top;
                 lblTemperature.Font = new Font("Arial", 16);
 
                 //Gravité vide = on affiche rien
                 if(gravite == "")
                 {
-                    lblGravite.Text = "";
+                    lblGravite.Text = "Gravité inconnue";
                 }
                 else
                 {
@@ -141,16 +149,22 @@ namespace projet_SAE_24
                             databaz = "";
                             break;
                     }
+
+                    lblDataBaz.Left = pb1.Width / 2;
                 }
-                
+                else
+                {
+                    databaz = "Présence de DataBaz inconnue";
+                    lblDataBaz.ForeColor = Color.Cornsilk;
+                    lblDataBaz.Left = pb1.Width / 2 - 60;
+                }
+
                 lblDataBaz.Text = databaz;
                 lblDataBaz.AutoSize = true;
                 lblDataBaz.Top = lblGravite.Bottom + 5;
-                lblDataBaz.Left = pb1.Width / 2;
                 lblDataBaz.Font = new Font("Arial", 14);
 
                 p.Controls.Add(pb1);
-                p.Controls.Add(pb2);
                 p.Controls.Add(lblNomPlanete);
                 p.Controls.Add(lblTemperature);
                 p.Controls.Add(lblGravite);

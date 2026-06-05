@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Asn1.Ocsp;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,7 +52,7 @@ namespace projet_SAE_24
                 }
             }
 
-            for(int i = 0; i < maDB.Tables["Habiter"].Rows.Count; i++)
+            for (int i = 0; i < maDB.Tables["Habiter"].Rows.Count; i++)
             {
                 if (maDB.Tables["Habiter"].Rows[i]["nomPlanete"].ToString() == m_nomPlanete)
                 {
@@ -146,6 +147,21 @@ namespace projet_SAE_24
         private void btnQuitterFenetre_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnRequete_Click(object sender, EventArgs e)
+        {
+            string requete1 = @"SELECT COUNT(*)
+                               FROM Mission
+                               WHERE nomPlanete = @nomPlanete";
+
+            SQLiteCommand cd = new SQLiteCommand(requete1, Connexion.Connec);
+
+            cd.Parameters.AddWithValue("@nomPlanete", m_nomPlanete);
+
+            int resultat = Convert.ToInt32(cd.ExecuteScalar());
+
+            MessageBox.Show("Sur la planète " + m_nomPlanete +", il y a eu " + resultat + " mission(s)");
         }
     }
 }

@@ -223,6 +223,16 @@ namespace projet_SAE_24.Properties {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap La_9ème_planète {
+            get {
+                object obj = ResourceManager.GetObject("La 9ème planète", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap leao_ballon_d_or {
             get {
                 object obj = ResourceManager.GetObject("leao_ballon_d_or", resourceCulture);
