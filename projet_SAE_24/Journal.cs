@@ -104,7 +104,9 @@ namespace projet_SAE_24
                 foreach (DataRow ligne in tblDepenseMissionChoisis.Rows)
                 {
                     sommeDepense += Convert.ToInt32(ligne["Montant"]);
-                    string libelleDepense = ligne["idTypeDepense"].ToString();
+                    int idDepense = Convert.ToInt32(ligne["idTypeDepense"]);
+                    DataTable tblTypeDepense = monds.Tables["TypeDepense"];
+                    string libelleDepense = tblTypeDepense.Select($"id={idDepense}")[0]["libelle"].ToString();
                     tblDepenses.Rows.Add(
                     ligne["id"],
                     ligne["dateD"],
@@ -170,24 +172,8 @@ namespace projet_SAE_24
 
             document.Add(new Paragraph("\n")); // Pour ajouter un espace entre le titre et les infos
 
-            bool tblEstPresent = true;
-            DataTable tblBilanCapture = new DataTable();
-            try
-            {
-                tblBilanCapture = monds.Tables[$"BilanCapture{m_missionPlanete}-{m_missionNumero}"];
-                if(tblBilanCapture == null)
-                {
-                    tblEstPresent = false;
-                }
-            }
-            catch
-            {
-                tblEstPresent = false;
+            DataTable tblBilanCapture = monds.Tables[$"BilanCapture{m_missionPlanete}-{m_missionNumero}"];
 
-            }
-
-            if (tblEstPresent)
-            {
 
                 // Tableau des captures
                 Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 2, 2, 2 }));
@@ -210,11 +196,6 @@ namespace projet_SAE_24
                     table.AddCell(lignecapture["tauxReussite"].ToString());
                 }
                 document.Add(table); // Ajouter le tableau sur le pdf
-            }
-            else
-            {
-                document.Add(new Paragraph("Pas de capture").SetTextAlignment(TextAlignment.CENTER));
-            }
 
             // Fermeture 
             document.Close();

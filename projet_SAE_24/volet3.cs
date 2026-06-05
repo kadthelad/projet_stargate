@@ -187,49 +187,29 @@ namespace projet_SAE_24
             tblResultatCapture.Columns.Add("resultatFinal");
             tblResultatCapture.Columns.Add("tauxReussite");
 
-            if (lignesObjectifCapture.Length > 0 || lignesCapture.Length > 0)
+            for (int i = 0; i < lignesCapture.Length; i++)
             {
-                for (int i = 0; i < lignesObjectifCapture.Length; i++)
-                {
-                    DataRow ligneObjectif = null;
-                    DataRow ligneResultat = null;
-                    if (lignesObjectifCapture.Length - 1 >= i)
-                    {
-                        ligneObjectif = lignesObjectifCapture[i];
-                    }
+                DataRow ligneResultat = lignesCapture[i];
+                DataRow ligneObjectif = lignesObjectifCapture[i];
 
-                    if(lignesCapture.Length - 1 >= i)
-                    {
+                int idEspece = Convert.ToInt32(ligneObjectif["idEspeceEnnemi"]);
+                string nomEspece = monds.Tables["Espece"].Select($"id = {idEspece}")[0]["nom"].ToString();
+                int objectifInital = Convert.ToInt32(ligneObjectif["objectif"]);
+                int resultatFinal = 0;
+                double tauxReussite = 100;
 
-                     ligneResultat = lignesCapture[i];
-                    }
+                resultatFinal = Convert.ToInt32(ligneResultat["nombre"]);
+                tauxReussite = objectifInital / resultatFinal;
 
-                    int idEspece = Convert.ToInt32(ligneObjectif["idEspeceEnnemi"]);
-                    string nomEspece = monds.Tables["Espece"].Select($"id = {idEspece}")[0]["nom"].ToString();
-                    int objectifInital = Convert.ToInt32(ligneObjectif["objectif"]);
-                    int resultatFinal = 0;
-                    double tauxReussite = 100;
-
-                    if (ligneResultat != null)
-                    {
-                        resultatFinal = Convert.ToInt32(ligneResultat["nombre"]);
-                         tauxReussite = objectifInital / resultatFinal;
-                    }
-
-                    tblResultatCapture.Rows.Add(
-                        nomEspece,
-                        objectifInital,
-                        resultatFinal,
-                        tauxReussite
-                        );
-                }
-                string tblName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
-                tblResultatCapture.TableName = tblName;
-                if (monds.Tables[tblName] != null)
-                {
-                    monds.Tables.Add(tblResultatCapture);
-                }
+                tblResultatCapture.Rows.Add(
+                    nomEspece,
+                    objectifInital,
+                    resultatFinal,
+                    tauxReussite
+                    );
             }
+            string tblName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
+            tblResultatCapture.TableName = tblName;
         }
 
         private void pcbJournal_Click(object sender, EventArgs e)

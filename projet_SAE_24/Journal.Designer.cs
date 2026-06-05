@@ -215,10 +215,10 @@
             // 
             // pcbRetour
             // 
-            this.pcbRetour.Location = new System.Drawing.Point(1600, 685);
+            this.pcbRetour.Location = new System.Drawing.Point(1677, 766);
             this.pcbRetour.Margin = new System.Windows.Forms.Padding(6);
             this.pcbRetour.Name = "pcbRetour";
-            this.pcbRetour.Size = new System.Drawing.Size(123, 124);
+            this.pcbRetour.Size = new System.Drawing.Size(50, 50);
             this.pcbRetour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbRetour.TabIndex = 5;
             this.pcbRetour.TabStop = false;
