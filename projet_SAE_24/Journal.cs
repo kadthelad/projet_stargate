@@ -25,7 +25,7 @@ namespace projet_SAE_24
         readonly int m_missionNumero;
         readonly string m_missionPlanete;
         DataSet monds = MesDatas.DsGlobal;
-       
+
         public Journal(string nomPlanete, int numeroMission)
         {
             InitializeComponent();
@@ -69,8 +69,10 @@ namespace projet_SAE_24
                     string codeInformateur = ligne["nomCodeInformateur"].ToString();
                     DataTable tblInformateur = monds.Tables["Informateur"].Select($"nomCode = '{codeInformateur}'").CopyToDataTable();
                     string nomInformateur = tblInformateur.Rows[0]["nom"].ToString();
+                    string dateFormate = DateTime.Parse(ligne["dateC"].ToString()).ToString("yyyy - MM - dd");
+
                     tblContactsInformateurs.Rows.Add(
-                        ligne["dateC"],
+                        dateFormate,
                         ligne["sommeVersee"],
                         ligne["appreciation"],
                         nomInformateur
@@ -107,9 +109,10 @@ namespace projet_SAE_24
                     int idDepense = Convert.ToInt32(ligne["idTypeDepense"]);
                     DataTable tblTypeDepense = monds.Tables["TypeDepense"];
                     string libelleDepense = tblTypeDepense.Select($"id={idDepense}")[0]["libelle"].ToString();
+                    string dateFormate = DateTime.Parse(ligne["dateD"].ToString()).ToString("yyyy - MM - dd");
                     tblDepenses.Rows.Add(
                     ligne["id"],
-                    ligne["dateD"],
+                    dateFormate,
                     ligne["motif"],
                     ligne["montant"],
                     libelleDepense
@@ -175,18 +178,21 @@ namespace projet_SAE_24
             DataTable tblBilanCapture = monds.Tables[$"BilanCapture{m_missionPlanete}-{m_missionNumero}"];
 
 
-                // Tableau des captures
-                Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 2, 2, 2 }));
-                table.SetWidth(UnitValue.CreatePercentValue(100));
+            // Tableau des captures
+            Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 2, 2, 2 }));
+            table.SetWidth(UnitValue.CreatePercentValue(100));
 
-                // En-tetes du tableau
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Nom de l'espèce").SetFont(fontBold)));
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Objectif initial").SetFont(fontBold)));
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Nombre de captures réalisées").SetFont(fontBold)));
-                table.AddHeaderCell(new Cell().Add(new Paragraph("Taux de reussite (en %)").SetFont(fontBold)));
+            // En-tetes du tableau
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Nom de l'espèce").SetFont(fontBold)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Objectif initial").SetFont(fontBold)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Nombre de captures réalisées").SetFont(fontBold)));
+            table.AddHeaderCell(new Cell().Add(new Paragraph("Taux de reussite (en %)").SetFont(fontBold)));
 
-                // Remplir le tableau avec les données du DataSet...
-                // On recupere la table BilanCapture pour la mission selectioné 
+            // Remplir le tableau avec les données du DataSet...
+            // On recupere la table BilanCapture pour la mission selectioné 
+
+            if (tblBilanCapture.Rows.Count > 0)
+            {
 
                 foreach (DataRow lignecapture in tblBilanCapture.Rows)
                 {
@@ -196,6 +202,11 @@ namespace projet_SAE_24
                     table.AddCell(lignecapture["tauxReussite"].ToString());
                 }
                 document.Add(table); // Ajouter le tableau sur le pdf
+            }
+            else
+            {
+                document.Add(new Paragraph("Pas de capture\n").SetTextAlignment(TextAlignment.CENTER));
+            }
 
             // Fermeture 
             document.Close();

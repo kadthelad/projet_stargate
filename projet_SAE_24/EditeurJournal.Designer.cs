@@ -34,7 +34,6 @@
             this.lblInformateur = new System.Windows.Forms.Label();
             this.cboInformateurs = new System.Windows.Forms.ComboBox();
             this.rtbAppreciation = new System.Windows.Forms.RichTextBox();
-            this.txtSomme = new System.Windows.Forms.TextBox();
             this.dtpDateContact = new System.Windows.Forms.DateTimePicker();
             this.lblAppreciation = new System.Windows.Forms.Label();
             this.Somme = new System.Windows.Forms.Label();
@@ -72,6 +71,7 @@
             this.lblEspeceCapture = new System.Windows.Forms.Label();
             this.cboEspece = new System.Windows.Forms.ComboBox();
             this.errSomme = new System.Windows.Forms.ErrorProvider(this.components);
+            this.txtSomme = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabContact.SuspendLayout();
             this.grpAjouterContact.SuspendLayout();
@@ -132,16 +132,6 @@
             this.rtbAppreciation.TabIndex = 5;
             this.rtbAppreciation.Text = "";
             // 
-            // txtSomme
-            // 
-            this.txtSomme.BackColor = System.Drawing.Color.BurlyWood;
-            this.txtSomme.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtSomme.Location = new System.Drawing.Point(139, 89);
-            this.txtSomme.Name = "txtSomme";
-            this.txtSomme.Size = new System.Drawing.Size(100, 22);
-            this.txtSomme.TabIndex = 4;
-            this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
-            // 
             // dtpDateContact
             // 
             this.dtpDateContact.CalendarMonthBackground = System.Drawing.Color.BurlyWood;
@@ -150,7 +140,6 @@
             this.dtpDateContact.Name = "dtpDateContact";
             this.dtpDateContact.Size = new System.Drawing.Size(317, 29);
             this.dtpDateContact.TabIndex = 3;
-            this.dtpDateContact.ValueChanged += new System.EventHandler(this.dtpDateContact_ValueChanged);
             // 
             // lblAppreciation
             // 
@@ -526,6 +515,16 @@
             // 
             this.errSomme.ContainerControl = this;
             // 
+            // txtSomme
+            // 
+            this.txtSomme.BackColor = System.Drawing.Color.BurlyWood;
+            this.txtSomme.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSomme.Location = new System.Drawing.Point(139, 89);
+            this.txtSomme.Name = "txtSomme";
+            this.txtSomme.Size = new System.Drawing.Size(100, 22);
+            this.txtSomme.TabIndex = 4;
+            this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
+            // 
             // EditeurJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -562,7 +561,6 @@
         private System.Windows.Forms.Label lblInformateur;
         private System.Windows.Forms.ComboBox cboInformateurs;
         private System.Windows.Forms.RichTextBox rtbAppreciation;
-        private System.Windows.Forms.TextBox txtSomme;
         private System.Windows.Forms.Button btnValiderContact;
         private System.Windows.Forms.Button btnAnnuler;
         private System.Windows.Forms.TabControl tabControl1;
@@ -598,5 +596,6 @@
         private System.Windows.Forms.ComboBox cboEspece;
         private System.Windows.Forms.TextBox txtNombreCapture;
         private System.Windows.Forms.Label lblNbCapture;
+        private System.Windows.Forms.TextBox txtSomme;
     }
 }

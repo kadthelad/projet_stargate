@@ -158,12 +158,15 @@
             // 
             // dgvContacts
             // 
+            this.dgvContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvContacts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvContacts.BackgroundColor = System.Drawing.Color.Salmon;
             this.dgvContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvContacts.Location = new System.Drawing.Point(11, 35);
             this.dgvContacts.Margin = new System.Windows.Forms.Padding(6);
             this.dgvContacts.Name = "dgvContacts";
             this.dgvContacts.ReadOnly = true;
+            this.dgvContacts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvContacts.Size = new System.Drawing.Size(737, 242);
             this.dgvContacts.TabIndex = 0;
             // 
@@ -182,12 +185,15 @@
             // 
             // dgvDepenses
             // 
+            this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dgvDepenses.BackgroundColor = System.Drawing.Color.Salmon;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDepenses.Location = new System.Drawing.Point(11, 35);
             this.dgvDepenses.Margin = new System.Windows.Forms.Padding(6);
             this.dgvDepenses.Name = "dgvDepenses";
             this.dgvDepenses.ReadOnly = true;
+            this.dgvDepenses.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dgvDepenses.Size = new System.Drawing.Size(874, 541);
             this.dgvDepenses.TabIndex = 0;
             // 

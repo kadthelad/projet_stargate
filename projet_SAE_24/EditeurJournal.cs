@@ -88,8 +88,64 @@ namespace projet_SAE_24
             dtpEvent.MaxDate = dateMissionRetour;
         }
 
-
+        private void annulerModif_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
         private void btnValiderContact_Click(object sender, EventArgs e)
+        {
+            appliquerContact();
+        }
+
+
+       
+
+        private void btnValiderDepense_Click(object sender, EventArgs e)
+        {
+            appliquerDepense();
+        }
+
+        private void btnValiderEvent_Click(object sender, EventArgs e)
+        {
+            appliquerEvent();
+        }
+
+        private void btnValiderCapture_Click(object sender, EventArgs e)
+        {
+            appliquerCapture();
+        }
+
+        private void estUnChiffre(object sender, KeyPressEventArgs e)
+        {
+            // On verifie si le charactère saisis est bien un chiffre
+            char keyChar = e.KeyChar;
+            if (!Char.IsDigit(keyChar))
+            {
+                if (keyChar != (char)Keys.Back)
+                {
+                    e.Handled = true;
+                }
+            }
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                string txtName = ((TextBox)sender).Name;
+                if (txtName== "txtSomme")
+                {
+                    appliquerContact();
+                }
+                else if(txtName == "txtMontantDepense")
+                {
+                    appliquerDepense();
+                }
+                else if(txtName == "txtNombreCapture")
+                {
+                    appliquerCapture();
+                }
+            }
+        }
+
+   
+        private void appliquerContact()
         {
             int sommeContact = Convert.ToInt32(txtSomme.Text);
             if (sommeContact > m_montantRestant)
@@ -108,16 +164,9 @@ namespace projet_SAE_24
                      );
                 this.Close();
             }
-
         }
 
-
-        private void annulerModif_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnValiderDepense_Click(object sender, EventArgs e)
+        private void appliquerDepense()
         {
 
             DataTable tblDepense = monds.Tables["Depense"];
@@ -154,8 +203,9 @@ namespace projet_SAE_24
             }
         }
 
-        private void btnValiderEvent_Click(object sender, EventArgs e)
+        private void appliquerEvent()
         {
+
             DataTable tblDepense = monds.Tables["JournalDeBord"];
 
 
@@ -168,7 +218,7 @@ namespace projet_SAE_24
             this.Close();
         }
 
-        private void btnValiderCapture_Click(object sender, EventArgs e)
+        private void appliquerCapture()
         {
             bool especeDejaPresente = false;
             int indexLigneEspecePresente = 0;
@@ -203,25 +253,6 @@ namespace projet_SAE_24
             this.Close();
         }
 
-        private void estUnChiffre(object sender, KeyPressEventArgs e)
-        {
-            // On verifie si le charactère saisis est bien un chiffre
-            char keyChar = e.KeyChar;
-            if (!Char.IsDigit(keyChar))
-            {
-                if (keyChar != (char)Keys.Back)
-                {
-                    e.Handled = true;
-                }
-            }
-            if (e.KeyChar == (char)Keys.Return)
-            {
-                MessageBox.Show("Enter");
-            }
-        }
 
-        private void dtpDateContact_ValueChanged(object sender, EventArgs e)
-        {
-        }
     }
 }
