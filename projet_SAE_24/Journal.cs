@@ -212,6 +212,9 @@ namespace projet_SAE_24
             document.Close();
             pdf.Close();
             writer.Close();
+
+            // Ne pas enlever
+            MessageBox.Show("Pdf généré dans : " + cheminPdf);
         }
     }
 }
