@@ -65,13 +65,13 @@
             this.lblCommentaireEvent = new System.Windows.Forms.Label();
             this.lblDateEvent = new System.Windows.Forms.Label();
             this.tabCapture = new System.Windows.Forms.TabPage();
+            this.txtNombreCapture = new System.Windows.Forms.TextBox();
+            this.lblNbCapture = new System.Windows.Forms.Label();
             this.btnValiderCapture = new System.Windows.Forms.Button();
             this.btnAnnulerCapture = new System.Windows.Forms.Button();
             this.lblEspeceCapture = new System.Windows.Forms.Label();
             this.cboEspece = new System.Windows.Forms.ComboBox();
             this.errSomme = new System.Windows.Forms.ErrorProvider(this.components);
-            this.lblNbCapture = new System.Windows.Forms.Label();
-            this.txtNombreCapture = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabContact.SuspendLayout();
             this.grpAjouterContact.SuspendLayout();
@@ -85,7 +85,7 @@
             // 
             // btnValiderContact
             // 
-            this.btnValiderContact.Location = new System.Drawing.Point(324, 354);
+            this.btnValiderContact.Location = new System.Drawing.Point(356, 354);
             this.btnValiderContact.Name = "btnValiderContact";
             this.btnValiderContact.Size = new System.Drawing.Size(100, 40);
             this.btnValiderContact.TabIndex = 8;
@@ -95,7 +95,7 @@
             // 
             // btnAnnuler
             // 
-            this.btnAnnuler.Location = new System.Drawing.Point(221, 354);
+            this.btnAnnuler.Location = new System.Drawing.Point(253, 354);
             this.btnAnnuler.Name = "btnAnnuler";
             this.btnAnnuler.Size = new System.Drawing.Size(100, 40);
             this.btnAnnuler.TabIndex = 8;
@@ -114,6 +114,7 @@
             // 
             // cboInformateurs
             // 
+            this.cboInformateurs.BackColor = System.Drawing.Color.BurlyWood;
             this.cboInformateurs.FormattingEnabled = true;
             this.cboInformateurs.Location = new System.Drawing.Point(139, 277);
             this.cboInformateurs.Name = "cboInformateurs";
@@ -122,23 +123,29 @@
             // 
             // rtbAppreciation
             // 
+            this.rtbAppreciation.BackColor = System.Drawing.Color.BurlyWood;
+            this.rtbAppreciation.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbAppreciation.Location = new System.Drawing.Point(139, 136);
             this.rtbAppreciation.Name = "rtbAppreciation";
-            this.rtbAppreciation.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.rtbAppreciation.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.rtbAppreciation.Size = new System.Drawing.Size(223, 119);
             this.rtbAppreciation.TabIndex = 5;
             this.rtbAppreciation.Text = "";
             // 
             // txtSomme
             // 
+            this.txtSomme.BackColor = System.Drawing.Color.BurlyWood;
+            this.txtSomme.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtSomme.Location = new System.Drawing.Point(139, 89);
             this.txtSomme.Name = "txtSomme";
-            this.txtSomme.Size = new System.Drawing.Size(100, 29);
+            this.txtSomme.Size = new System.Drawing.Size(100, 22);
             this.txtSomme.TabIndex = 4;
             this.txtSomme.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
             // 
             // dtpDateContact
             // 
+            this.dtpDateContact.CalendarMonthBackground = System.Drawing.Color.BurlyWood;
+            this.dtpDateContact.CalendarTitleBackColor = System.Drawing.Color.BurlyWood;
             this.dtpDateContact.Location = new System.Drawing.Point(139, 47);
             this.dtpDateContact.Name = "dtpDateContact";
             this.dtpDateContact.Size = new System.Drawing.Size(200, 29);
@@ -177,22 +184,24 @@
             this.tabControl1.Controls.Add(this.tabDepense);
             this.tabControl1.Controls.Add(this.tabEvent);
             this.tabControl1.Controls.Add(this.tabCapture);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(455, 438);
+            this.tabControl1.Size = new System.Drawing.Size(482, 438);
             this.tabControl1.TabIndex = 3;
             // 
             // tabContact
             // 
+            this.tabContact.BackColor = System.Drawing.Color.Firebrick;
             this.tabContact.Controls.Add(this.grpAjouterContact);
-            this.tabContact.Location = new System.Drawing.Point(4, 22);
+            this.tabContact.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabContact.Location = new System.Drawing.Point(4, 25);
             this.tabContact.Name = "tabContact";
             this.tabContact.Padding = new System.Windows.Forms.Padding(3);
-            this.tabContact.Size = new System.Drawing.Size(441, 412);
+            this.tabContact.Size = new System.Drawing.Size(474, 409);
             this.tabContact.TabIndex = 0;
             this.tabContact.Text = "Nouveau Contact";
-            this.tabContact.UseVisualStyleBackColor = true;
             // 
             // grpAjouterContact
             // 
@@ -210,7 +219,7 @@
             this.grpAjouterContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpAjouterContact.Location = new System.Drawing.Point(6, 6);
             this.grpAjouterContact.Name = "grpAjouterContact";
-            this.grpAjouterContact.Size = new System.Drawing.Size(430, 400);
+            this.grpAjouterContact.Size = new System.Drawing.Size(470, 400);
             this.grpAjouterContact.TabIndex = 2;
             this.grpAjouterContact.TabStop = false;
             // 
@@ -225,14 +234,15 @@
             // 
             // tabDepense
             // 
+            this.tabDepense.BackColor = System.Drawing.Color.Firebrick;
             this.tabDepense.Controls.Add(this.grpDepense);
-            this.tabDepense.Location = new System.Drawing.Point(4, 22);
+            this.tabDepense.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabDepense.Location = new System.Drawing.Point(4, 25);
             this.tabDepense.Name = "tabDepense";
             this.tabDepense.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDepense.Size = new System.Drawing.Size(441, 412);
+            this.tabDepense.Size = new System.Drawing.Size(474, 409);
             this.tabDepense.TabIndex = 1;
             this.tabDepense.Text = "Nouvelle dépense";
-            this.tabDepense.UseVisualStyleBackColor = true;
             // 
             // grpDepense
             // 
@@ -250,7 +260,7 @@
             this.grpDepense.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpDepense.Location = new System.Drawing.Point(6, 6);
             this.grpDepense.Name = "grpDepense";
-            this.grpDepense.Size = new System.Drawing.Size(430, 400);
+            this.grpDepense.Size = new System.Drawing.Size(470, 400);
             this.grpDepense.TabIndex = 3;
             this.grpDepense.TabStop = false;
             // 
@@ -265,7 +275,7 @@
             // 
             // btnValiderDepense
             // 
-            this.btnValiderDepense.Location = new System.Drawing.Point(324, 354);
+            this.btnValiderDepense.Location = new System.Drawing.Point(356, 354);
             this.btnValiderDepense.Name = "btnValiderDepense";
             this.btnValiderDepense.Size = new System.Drawing.Size(100, 40);
             this.btnValiderDepense.TabIndex = 8;
@@ -275,7 +285,7 @@
             // 
             // btnAnnulerDepense
             // 
-            this.btnAnnulerDepense.Location = new System.Drawing.Point(219, 354);
+            this.btnAnnulerDepense.Location = new System.Drawing.Point(251, 354);
             this.btnAnnulerDepense.Name = "btnAnnulerDepense";
             this.btnAnnulerDepense.Size = new System.Drawing.Size(100, 40);
             this.btnAnnulerDepense.TabIndex = 8;
@@ -294,6 +304,7 @@
             // 
             // cboTypeDepense
             // 
+            this.cboTypeDepense.BackColor = System.Drawing.Color.BurlyWood;
             this.cboTypeDepense.FormattingEnabled = true;
             this.cboTypeDepense.Location = new System.Drawing.Point(172, 274);
             this.cboTypeDepense.Name = "cboTypeDepense";
@@ -302,15 +313,17 @@
             // 
             // rtbMotifDepense
             // 
+            this.rtbMotifDepense.BackColor = System.Drawing.Color.BurlyWood;
             this.rtbMotifDepense.Location = new System.Drawing.Point(97, 134);
             this.rtbMotifDepense.Name = "rtbMotifDepense";
-            this.rtbMotifDepense.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
+            this.rtbMotifDepense.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.rtbMotifDepense.Size = new System.Drawing.Size(223, 119);
             this.rtbMotifDepense.TabIndex = 5;
             this.rtbMotifDepense.Text = "";
             // 
             // txtMontantDepense
             // 
+            this.txtMontantDepense.BackColor = System.Drawing.Color.BurlyWood;
             this.txtMontantDepense.Location = new System.Drawing.Point(93, 83);
             this.txtMontantDepense.Name = "txtMontantDepense";
             this.txtMontantDepense.Size = new System.Drawing.Size(100, 29);
@@ -353,13 +366,14 @@
             // 
             // tabEvent
             // 
+            this.tabEvent.BackColor = System.Drawing.Color.Firebrick;
             this.tabEvent.Controls.Add(this.groupBox2);
-            this.tabEvent.Location = new System.Drawing.Point(4, 22);
+            this.tabEvent.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.tabEvent.Location = new System.Drawing.Point(4, 25);
             this.tabEvent.Name = "tabEvent";
-            this.tabEvent.Size = new System.Drawing.Size(441, 412);
+            this.tabEvent.Size = new System.Drawing.Size(474, 409);
             this.tabEvent.TabIndex = 2;
             this.tabEvent.Text = "Nouvel Evenement";
-            this.tabEvent.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -372,13 +386,13 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(3, 3);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(430, 400);
+            this.groupBox2.Size = new System.Drawing.Size(470, 400);
             this.groupBox2.TabIndex = 4;
             this.groupBox2.TabStop = false;
             // 
             // btnValiderEvent
             // 
-            this.btnValiderEvent.Location = new System.Drawing.Point(324, 354);
+            this.btnValiderEvent.Location = new System.Drawing.Point(364, 354);
             this.btnValiderEvent.Name = "btnValiderEvent";
             this.btnValiderEvent.Size = new System.Drawing.Size(100, 40);
             this.btnValiderEvent.TabIndex = 8;
@@ -388,7 +402,7 @@
             // 
             // btnAnnulerEvent
             // 
-            this.btnAnnulerEvent.Location = new System.Drawing.Point(218, 354);
+            this.btnAnnulerEvent.Location = new System.Drawing.Point(258, 354);
             this.btnAnnulerEvent.Name = "btnAnnulerEvent";
             this.btnAnnulerEvent.Size = new System.Drawing.Size(100, 40);
             this.btnAnnulerEvent.TabIndex = 8;
@@ -398,6 +412,7 @@
             // 
             // rtbCommentaireEvent
             // 
+            this.rtbCommentaireEvent.BackColor = System.Drawing.Color.BurlyWood;
             this.rtbCommentaireEvent.Location = new System.Drawing.Point(169, 78);
             this.rtbCommentaireEvent.Name = "rtbCommentaireEvent";
             this.rtbCommentaireEvent.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
@@ -432,23 +447,41 @@
             // 
             // tabCapture
             // 
+            this.tabCapture.BackColor = System.Drawing.Color.Firebrick;
             this.tabCapture.Controls.Add(this.txtNombreCapture);
             this.tabCapture.Controls.Add(this.lblNbCapture);
             this.tabCapture.Controls.Add(this.btnValiderCapture);
             this.tabCapture.Controls.Add(this.btnAnnulerCapture);
             this.tabCapture.Controls.Add(this.lblEspeceCapture);
             this.tabCapture.Controls.Add(this.cboEspece);
+            this.tabCapture.Cursor = System.Windows.Forms.Cursors.Hand;
             this.tabCapture.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabCapture.Location = new System.Drawing.Point(4, 22);
+            this.tabCapture.Location = new System.Drawing.Point(4, 25);
             this.tabCapture.Name = "tabCapture";
-            this.tabCapture.Size = new System.Drawing.Size(447, 412);
+            this.tabCapture.Size = new System.Drawing.Size(474, 409);
             this.tabCapture.TabIndex = 3;
             this.tabCapture.Text = "Nouvelle Capture";
-            this.tabCapture.UseVisualStyleBackColor = true;
+            // 
+            // txtNombreCapture
+            // 
+            this.txtNombreCapture.Location = new System.Drawing.Point(159, 104);
+            this.txtNombreCapture.Name = "txtNombreCapture";
+            this.txtNombreCapture.Size = new System.Drawing.Size(98, 29);
+            this.txtNombreCapture.TabIndex = 5;
+            this.txtNombreCapture.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
+            // 
+            // lblNbCapture
+            // 
+            this.lblNbCapture.AutoSize = true;
+            this.lblNbCapture.Location = new System.Drawing.Point(6, 107);
+            this.lblNbCapture.Name = "lblNbCapture";
+            this.lblNbCapture.Size = new System.Drawing.Size(147, 24);
+            this.lblNbCapture.TabIndex = 4;
+            this.lblNbCapture.Text = "Nombre capturé";
             // 
             // btnValiderCapture
             // 
-            this.btnValiderCapture.Location = new System.Drawing.Point(338, 368);
+            this.btnValiderCapture.Location = new System.Drawing.Point(371, 369);
             this.btnValiderCapture.Name = "btnValiderCapture";
             this.btnValiderCapture.Size = new System.Drawing.Size(100, 40);
             this.btnValiderCapture.TabIndex = 3;
@@ -458,7 +491,7 @@
             // 
             // btnAnnulerCapture
             // 
-            this.btnAnnulerCapture.Location = new System.Drawing.Point(232, 369);
+            this.btnAnnulerCapture.Location = new System.Drawing.Point(265, 370);
             this.btnAnnulerCapture.Name = "btnAnnulerCapture";
             this.btnAnnulerCapture.Size = new System.Drawing.Size(100, 40);
             this.btnAnnulerCapture.TabIndex = 2;
@@ -487,28 +520,12 @@
             // 
             this.errSomme.ContainerControl = this;
             // 
-            // lblNbCapture
-            // 
-            this.lblNbCapture.AutoSize = true;
-            this.lblNbCapture.Location = new System.Drawing.Point(6, 107);
-            this.lblNbCapture.Name = "lblNbCapture";
-            this.lblNbCapture.Size = new System.Drawing.Size(147, 24);
-            this.lblNbCapture.TabIndex = 4;
-            this.lblNbCapture.Text = "Nombre capturé";
-            // 
-            // txtNombreCapture
-            // 
-            this.txtNombreCapture.Location = new System.Drawing.Point(159, 104);
-            this.txtNombreCapture.Name = "txtNombreCapture";
-            this.txtNombreCapture.Size = new System.Drawing.Size(98, 29);
-            this.txtNombreCapture.TabIndex = 5;
-            this.txtNombreCapture.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
-            // 
             // EditeurJournal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(479, 454);
+            this.BackColor = System.Drawing.Color.Firebrick;
+            this.ClientSize = new System.Drawing.Size(506, 454);
             this.Controls.Add(this.tabControl1);
             this.Name = "EditeurJournal";
             this.Text = "Modifier de modification";

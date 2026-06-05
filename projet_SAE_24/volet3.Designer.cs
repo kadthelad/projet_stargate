@@ -56,7 +56,7 @@
             // 
             this.lblMisssion.AutoSize = true;
             this.lblMisssion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMisssion.Location = new System.Drawing.Point(153, 12);
+            this.lblMisssion.Location = new System.Drawing.Point(14, 9);
             this.lblMisssion.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblMisssion.Name = "lblMisssion";
             this.lblMisssion.Size = new System.Drawing.Size(93, 20);
@@ -77,7 +77,7 @@
             // 
             // rtbFeuilleDeRoute
             // 
-            this.rtbFeuilleDeRoute.BackColor = System.Drawing.SystemColors.Menu;
+            this.rtbFeuilleDeRoute.BackColor = System.Drawing.Color.Salmon;
             this.rtbFeuilleDeRoute.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbFeuilleDeRoute.Location = new System.Drawing.Point(0, 26);
             this.rtbFeuilleDeRoute.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -103,6 +103,7 @@
             // flpMembres
             // 
             this.flpMembres.AutoScroll = true;
+            this.flpMembres.BackColor = System.Drawing.Color.Salmon;
             this.flpMembres.Location = new System.Drawing.Point(9, 26);
             this.flpMembres.Name = "flpMembres";
             this.flpMembres.Size = new System.Drawing.Size(1235, 174);
@@ -145,7 +146,7 @@
             // 
             this.lblSoldeRestant.AutoSize = true;
             this.lblSoldeRestant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoldeRestant.ForeColor = System.Drawing.Color.Red;
+            this.lblSoldeRestant.ForeColor = System.Drawing.Color.BurlyWood;
             this.lblSoldeRestant.Location = new System.Drawing.Point(854, 69);
             this.lblSoldeRestant.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSoldeRestant.Name = "lblSoldeRestant";
@@ -165,6 +166,7 @@
             // 
             // flpCapture
             // 
+            this.flpCapture.BackColor = System.Drawing.Color.Salmon;
             this.flpCapture.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flpCapture.Location = new System.Drawing.Point(7, 24);
             this.flpCapture.Name = "flpCapture";
@@ -183,9 +185,9 @@
             // 
             // pcbPlanete
             // 
-            this.pcbPlanete.Location = new System.Drawing.Point(12, 12);
+            this.pcbPlanete.Location = new System.Drawing.Point(12, 38);
             this.pcbPlanete.Name = "pcbPlanete";
-            this.pcbPlanete.Size = new System.Drawing.Size(133, 120);
+            this.pcbPlanete.Size = new System.Drawing.Size(105, 94);
             this.pcbPlanete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbPlanete.TabIndex = 12;
             this.pcbPlanete.TabStop = false;
@@ -214,6 +216,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(1284, 615);
             this.Controls.Add(this.pcbRetour);
             this.Controls.Add(this.grpObjectifCapture);
