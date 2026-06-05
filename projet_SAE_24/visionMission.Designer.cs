@@ -33,6 +33,7 @@
             this.btnQuitterFenetre = new System.Windows.Forms.Button();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.grpEspeces = new System.Windows.Forms.GroupBox();
+            this.btnRequete = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // layMissions
@@ -46,9 +47,9 @@
             // btnQuitterFenetre
             // 
             this.btnQuitterFenetre.Font = new System.Drawing.Font("Arial", 10F);
-            this.btnQuitterFenetre.Location = new System.Drawing.Point(687, 345);
+            this.btnQuitterFenetre.Location = new System.Drawing.Point(669, 345);
             this.btnQuitterFenetre.Name = "btnQuitterFenetre";
-            this.btnQuitterFenetre.Size = new System.Drawing.Size(126, 49);
+            this.btnQuitterFenetre.Size = new System.Drawing.Size(80, 49);
             this.btnQuitterFenetre.TabIndex = 6;
             this.btnQuitterFenetre.Text = "Quitter la fenêtre";
             this.btnQuitterFenetre.UseVisualStyleBackColor = true;
@@ -64,12 +65,24 @@
             this.grpEspeces.TabStop = false;
             this.grpEspeces.Text = "Espèces présentes";
             // 
+            // btnRequete
+            // 
+            this.btnRequete.Font = new System.Drawing.Font("Arial", 9F);
+            this.btnRequete.Location = new System.Drawing.Point(755, 345);
+            this.btnRequete.Name = "btnRequete";
+            this.btnRequete.Size = new System.Drawing.Size(80, 49);
+            this.btnRequete.TabIndex = 8;
+            this.btnRequete.Text = "Nombre de missions";
+            this.btnRequete.UseVisualStyleBackColor = true;
+            this.btnRequete.Click += new System.EventHandler(this.btnRequete_Click);
+            // 
             // visionMission
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(843, 406);
+            this.Controls.Add(this.btnRequete);
             this.Controls.Add(this.grpEspeces);
             this.Controls.Add(this.btnQuitterFenetre);
             this.Controls.Add(this.layMissions);
@@ -89,5 +102,6 @@
         private System.Windows.Forms.Button btnQuitterFenetre;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.GroupBox grpEspeces;
+        private System.Windows.Forms.Button btnRequete;
     }
 }
