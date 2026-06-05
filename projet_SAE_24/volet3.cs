@@ -60,15 +60,15 @@ namespace projet_SAE_24
             lblMisssion.Text = ligneDeLaMission["nomPlanete"].ToString();
 
             // pour les dates
-            lblDateDepart.Text += ligneDeLaMission["dateDepart"].ToString();
-            lblDateRetour.Text += ligneDeLaMission["dateRetour"].ToString();
+            lblDateDepartFill.Text = ligneDeLaMission["dateDepart"].ToString();
+            lblDateRetourFill.Text = ligneDeLaMission["dateRetour"].ToString();
 
             //pour le journal de bord
             rtbFeuilleDeRoute.Text = ligneDeLaMission["feuilleDeRoute"].ToString();
 
             // pour le budget
             int budget = Convert.ToInt32(ligneDeLaMission["budget"]);
-            lblBudget.Text += budget.ToString();
+            lblBudgetFill.Text = budget.ToString();
 
 
             // pour sold restant
@@ -97,7 +97,7 @@ namespace projet_SAE_24
 
             //Quand on a calculer toutes les dépenses
             m_montantRestant = budget - depenseTotal;
-            lblSoldeRestant.Text += (budget - depenseTotal).ToString();
+            lblSoldeRestantFill.Text = (budget - depenseTotal).ToString();
 
 
 

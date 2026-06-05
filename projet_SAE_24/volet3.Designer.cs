@@ -43,6 +43,10 @@
             this.pcbPlanete = new System.Windows.Forms.PictureBox();
             this.pcbModifier = new System.Windows.Forms.PictureBox();
             this.pcbRetour = new System.Windows.Forms.PictureBox();
+            this.lblSoldeRestantFill = new System.Windows.Forms.Label();
+            this.lblBudgetFill = new System.Windows.Forms.Label();
+            this.lblDateRetourFill = new System.Windows.Forms.Label();
+            this.lblDateDepartFill = new System.Windows.Forms.Label();
             this.grpFeuilleDeRoute.SuspendLayout();
             this.grpMembres.SuspendLayout();
             this.grpObjectifCapture.SuspendLayout();
@@ -146,7 +150,7 @@
             // 
             this.lblSoldeRestant.AutoSize = true;
             this.lblSoldeRestant.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSoldeRestant.ForeColor = System.Drawing.Color.BurlyWood;
+            this.lblSoldeRestant.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblSoldeRestant.Location = new System.Drawing.Point(854, 69);
             this.lblSoldeRestant.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
             this.lblSoldeRestant.Name = "lblSoldeRestant";
@@ -212,12 +216,67 @@
             this.pcbRetour.TabStop = false;
             this.pcbRetour.Click += new System.EventHandler(this.pcbRetour_Click);
             // 
+            // lblSoldeRestantFill
+            // 
+            this.lblSoldeRestantFill.AutoSize = true;
+            this.lblSoldeRestantFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSoldeRestantFill.ForeColor = System.Drawing.Color.BurlyWood;
+            this.lblSoldeRestantFill.Location = new System.Drawing.Point(1091, 69);
+            this.lblSoldeRestantFill.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblSoldeRestantFill.Name = "lblSoldeRestantFill";
+            this.lblSoldeRestantFill.Size = new System.Drawing.Size(32, 24);
+            this.lblSoldeRestantFill.TabIndex = 15;
+            this.lblSoldeRestantFill.Text = "int";
+            // 
+            // lblBudgetFill
+            // 
+            this.lblBudgetFill.AutoSize = true;
+            this.lblBudgetFill.BackColor = System.Drawing.Color.Firebrick;
+            this.lblBudgetFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBudgetFill.ForeColor = System.Drawing.Color.BurlyWood;
+            this.lblBudgetFill.Location = new System.Drawing.Point(935, 38);
+            this.lblBudgetFill.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblBudgetFill.Name = "lblBudgetFill";
+            this.lblBudgetFill.Size = new System.Drawing.Size(32, 24);
+            this.lblBudgetFill.TabIndex = 16;
+            this.lblBudgetFill.Text = "int";
+            // 
+            // lblDateRetourFill
+            // 
+            this.lblDateRetourFill.AutoSize = true;
+            this.lblDateRetourFill.BackColor = System.Drawing.Color.Firebrick;
+            this.lblDateRetourFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateRetourFill.ForeColor = System.Drawing.Color.BurlyWood;
+            this.lblDateRetourFill.Location = new System.Drawing.Point(528, 69);
+            this.lblDateRetourFill.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDateRetourFill.Name = "lblDateRetourFill";
+            this.lblDateRetourFill.Size = new System.Drawing.Size(50, 24);
+            this.lblDateRetourFill.TabIndex = 17;
+            this.lblDateRetourFill.Text = "date";
+            // 
+            // lblDateDepartFill
+            // 
+            this.lblDateDepartFill.AutoSize = true;
+            this.lblDateDepartFill.BackColor = System.Drawing.Color.Firebrick;
+            this.lblDateDepartFill.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDateDepartFill.ForeColor = System.Drawing.Color.BurlyWood;
+            this.lblDateDepartFill.Location = new System.Drawing.Point(459, 38);
+            this.lblDateDepartFill.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.lblDateDepartFill.Name = "lblDateDepartFill";
+            this.lblDateDepartFill.Size = new System.Drawing.Size(50, 24);
+            this.lblDateDepartFill.TabIndex = 18;
+            this.lblDateDepartFill.Text = "date";
+            // 
             // Volet3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Firebrick;
             this.ClientSize = new System.Drawing.Size(1284, 615);
+            this.Controls.Add(this.lblDateDepartFill);
+            this.Controls.Add(this.lblDateRetourFill);
+            this.Controls.Add(this.lblBudgetFill);
+            this.Controls.Add(this.lblSoldeRestantFill);
             this.Controls.Add(this.pcbRetour);
             this.Controls.Add(this.grpObjectifCapture);
             this.Controls.Add(this.pcbModifier);
@@ -266,5 +325,9 @@
         private System.Windows.Forms.PictureBox pcbModifier;
         private System.Windows.Forms.PictureBox pcbRetour;
         private System.Windows.Forms.FlowLayoutPanel flpCapture;
+        private System.Windows.Forms.Label lblSoldeRestantFill;
+        private System.Windows.Forms.Label lblBudgetFill;
+        private System.Windows.Forms.Label lblDateRetourFill;
+        private System.Windows.Forms.Label lblDateDepartFill;
     }
 }
