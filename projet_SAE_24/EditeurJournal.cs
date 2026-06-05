@@ -14,14 +14,14 @@ namespace projet_SAE_24
 {
     public partial class EditeurJournal : Form
     {
-        readonly int m_missioNumero;
+        readonly int m_missionNumero;
         readonly string m_missionPlanete;
         int m_montantRestant = 0;
 
         public EditeurJournal(int nbMissionPlanete, string missionPlanete)
         {
             InitializeComponent();
-            m_missioNumero = nbMissionPlanete;
+            m_missionNumero = nbMissionPlanete;
             m_missionPlanete = missionPlanete;
         }
 
@@ -53,6 +53,8 @@ namespace projet_SAE_24
 
         private void editeurJournal_Load(object sender, EventArgs e)
         {
+            string filtre = $"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'";
+
             // Remplir cboInformateur
             DataTable tblInformateur = monds.Tables["Informateur"];
             cboInformateurs.DataSource = tblInformateur;
@@ -68,14 +70,43 @@ namespace projet_SAE_24
 
 
             // Remplir cboEspeceCapture
+
+            // On parcour la table des objectifs de capture pour ne pas pourvoir capturer une espece qui ne fait pas partit des objectifs
             DataTable tblEspece = monds.Tables["Espece"];
-            cboEspece.DataSource = tblEspece;
-            cboEspece.DisplayMember = "nom";
-            cboEspece.ValueMember = "id";
+            DataRow[] lignesObjectif = monds.Tables["ObjectifCapture"].Select(filtre);
+            if (lignesObjectif.Length > 0)
+            {
+                DataTable tblObjectif = lignesObjectif.CopyToDataTable();
+
+                DataTable tblEspeceSelectionable = new DataTable();
+                tblEspeceSelectionable.Columns.Add("id");
+                tblEspeceSelectionable.Columns.Add("nom");
+
+                foreach (DataRow ligne in tblObjectif.Rows)
+                {
+                    int idEspece = Convert.ToInt32(tblEspece.Select($"id = {ligne["idEspeceEnnemi"].ToString()}")[0]["id"]);
+                    string nomEspece = tblEspece.Select($"id = {idEspece}")[0]["nom"].ToString();
+                    tblEspeceSelectionable.Rows.Add(
+                        idEspece,
+                        nomEspece
+                        );
+                }
+
+                cboEspece.DataSource = tblEspeceSelectionable;
+                cboEspece.DisplayMember = "nom";
+                cboEspece.ValueMember = "id";
+            }
+            else
+            {
+                // Si il n'y a pas d'objectif on desactive le bouton validé
+                cboEspece.Items.Add("Pas d'objectif de capture");
+                cboEspece.SelectedIndex = 0;
+                btnValiderCapture.Enabled = false;
+            }
 
             // Bloqué les dates selectionables entre le debut et la fin de la mission.
-            DataTable tblMission = monds.Tables["Mission"];
-            DataRow ligneMission = tblMission.Select($"nomPlanete = '{m_missionPlanete}' AND numero = {m_missioNumero}").CopyToDataTable().Rows[0];
+            DataTable tblMission = monds.Tables["Mission"].Select($"numero = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
+            DataRow ligneMission = tblMission.Select($"nomPlanete = '{m_missionPlanete}' AND numero = {m_missionNumero}").CopyToDataTable().Rows[0];
             DateTime dateMissionDepart = DateTime.Parse(ligneMission["dateDepart"].ToString());
             DateTime dateMissionRetour = DateTime.Parse(ligneMission["dateRetour"].ToString());
             dtpDateContact.MinDate = dateMissionDepart;
@@ -83,7 +114,7 @@ namespace projet_SAE_24
 
             dtpDateDepense.MinDate = dateMissionDepart;
             dtpDateDepense.MaxDate = dateMissionRetour;
-            
+
             dtpEvent.MinDate = dateMissionDepart;
             dtpEvent.MaxDate = dateMissionRetour;
         }
@@ -98,7 +129,7 @@ namespace projet_SAE_24
         }
 
 
-       
+
 
         private void btnValiderDepense_Click(object sender, EventArgs e)
         {
@@ -129,22 +160,22 @@ namespace projet_SAE_24
             if (e.KeyChar == (char)Keys.Return)
             {
                 string txtName = ((TextBox)sender).Name;
-                if (txtName== "txtSomme")
+                if (txtName == "txtSomme")
                 {
                     appliquerContact();
                 }
-                else if(txtName == "txtMontantDepense")
+                else if (txtName == "txtMontantDepense")
                 {
                     appliquerDepense();
                 }
-                else if(txtName == "txtNombreCapture")
+                else if (txtName == "txtNombreCapture")
                 {
                     appliquerCapture();
                 }
             }
         }
 
-   
+
         private void appliquerContact()
         {
             int sommeContact = Convert.ToInt32(txtSomme.Text);
@@ -156,7 +187,7 @@ namespace projet_SAE_24
             {
                 monds.Tables["Contact"].Rows.Add(
                   m_missionPlanete,
-                  m_missioNumero,
+                  m_missionNumero,
                   dtpDateContact.Value.ToString("yyyy-MM-dd"),
                   sommeContact,
                   echApostrophe(rtbAppreciation.Text),
@@ -192,7 +223,7 @@ namespace projet_SAE_24
             {
                 monds.Tables["Depense"].Rows.Add(
                  m_missionPlanete,
-                 m_missioNumero,
+                 m_missionNumero,
                  idDepense,
                  dtpDateDepense.Value.ToString("yyyy-MM-dd"),
                  montantDepense,
@@ -211,7 +242,7 @@ namespace projet_SAE_24
 
             tblDepense.Rows.Add(
              m_missionPlanete,
-             m_missioNumero,
+             m_missionNumero,
              dtpDateDepense.Value.ToString("yyyy-MM-dd"),
              echApostrophe(rtbCommentaireEvent.Text)
                 );
@@ -239,7 +270,7 @@ namespace projet_SAE_24
             {
                 monds.Tables["Capturer"].Rows.Add(
                     m_missionPlanete,
-                    m_missioNumero,
+                    m_missionNumero,
                     Convert.ToInt32(cboEspece.SelectedValue),
                     Convert.ToInt32(txtNombreCapture.Text)
                     );
@@ -253,6 +284,9 @@ namespace projet_SAE_24
             this.Close();
         }
 
-
+        //private void enregistreChangement()
+        //{
+        //    for
+        //}
     }
 }

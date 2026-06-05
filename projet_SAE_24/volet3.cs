@@ -137,45 +137,38 @@ namespace projet_SAE_24
             DataRow[] lignesCapture = monds.Tables["Capturer"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
 
 
-            int maxIteration = Math.Max(lignesCapture.Length, lignesObjectifCapture.Length);
-            if (maxIteration > 0)
+            //int maxIteration = Math.Max(lignesCapture.Length, lignesObjectifCapture.Length);
+            flpCapture.Controls.Clear();
+            for (int i = 0; i < lignesObjectifCapture.Length; i++)
             {
-                flpCapture.Controls.Clear();
-                for (int i = 0; i < maxIteration; i++)
+                int idEnnemie;
+                string nomEnnemie = "";
+
+                int objectifPrises = 0;
+                int prises = 0;
+
+                DataRow objectifDeCapture = lignesObjectifCapture[i];
+                idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
+                nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
+                objectifPrises = Convert.ToInt32(objectifDeCapture["objectif"]);
+
+                // On verifie que la ligne existe
+                if (lignesCapture.Length - 1 >= i)
                 {
-                    int idEnnemie;
-                    string nomEnnemie = "";
-
-                    int objectifPrises = 0;
-                    int prises = 0;
-
-                    // On verifie que la ligne existe
-                    if (lignesObjectifCapture.Length - 1 >= i)
-                    {
-                        DataRow objectifDeCapture = lignesObjectifCapture[i];
-
-                        idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
-                        nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
-                        objectifPrises = Convert.ToInt32(objectifDeCapture["objectif"]);
-                    }
-
-                    // On verifie que la ligne existe
-                    if (lignesCapture.Length - 1 >= i)
-                    {
-                        DataRow lignePrises = lignesCapture[i];
-                        idEnnemie = Convert.ToInt32(lignePrises["idEspeceEnnemi"]);
-                        nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
-                        prises = Convert.ToInt32(lignePrises["nombre"]);
-                    }
-                    Label lblObjectif = new Label();
-                    lblObjectif.AutoSize = true;
-
-
-                    // On affecte le texte au label
-
-                    lblObjectif.Text = $"{nomEnnemie} --> {prises}/{objectifPrises} prise(s)";
-                    flpCapture.Controls.Add(lblObjectif);
+                    DataRow lignePrises = lignesCapture[i];
+                    idEnnemie = Convert.ToInt32(lignePrises["idEspeceEnnemi"]);
+                    nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
+                    prises = Convert.ToInt32(lignePrises["nombre"]);
                 }
+
+                Label lblObjectif = new Label();
+                lblObjectif.AutoSize = true;
+
+
+                // On affecte le texte au label
+
+                lblObjectif.Text = $"{nomEnnemie} --> {prises}/{objectifPrises} prise(s)";
+                flpCapture.Controls.Add(lblObjectif);
             }
 
             // Création de la table de capture de compte rendu de mission
@@ -192,20 +185,20 @@ namespace projet_SAE_24
             {
                 DataRow ligneResultat = lignesCapture[i];
                 DataRow ligneObjectif = monds.Tables["objectifCapture"].NewRow();
-                if(lignesObjectifCapture.Length-1 >= i)
+                if (lignesObjectifCapture.Length - 1 >= i)
                 {
                     ligneObjectif = lignesObjectifCapture[i];
                 }
-                
 
-                    int idEspece = Convert.ToInt32(ligneObjectif["idEspeceEnnemi"]);
+
+                int idEspece = Convert.ToInt32(ligneObjectif["idEspeceEnnemi"]);
                 string nomEspece = monds.Tables["Espece"].Select($"id = {idEspece}")[0]["nom"].ToString();
                 int objectifInital = Convert.ToInt32(ligneObjectif["objectif"]);
                 int resultatFinal = 0;
                 double tauxReussite;
 
                 resultatFinal = Convert.ToInt32(ligneResultat["nombre"]);
-                tauxReussite = Math.Round(objectifInital / (double)resultatFinal)*100;
+                tauxReussite = Math.Round(objectifInital / (double)resultatFinal) * 100;
 
                 tblResultatCapture.Rows.Add(
                     nomEspece,
@@ -216,7 +209,7 @@ namespace projet_SAE_24
             }
             string tblName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
             tblResultatCapture.TableName = tblName;
-            if (monds.Tables[tblName]!= null)
+            if (monds.Tables[tblName] != null)
             {
                 monds.Tables.Remove(tblName);
             }
