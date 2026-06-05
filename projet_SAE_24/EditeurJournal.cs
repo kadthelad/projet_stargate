@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Org.BouncyCastle.Crypto.Engines;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -52,19 +53,25 @@ namespace projet_SAE_24
 
         private void editeurJournal_Load(object sender, EventArgs e)
         {
-            //Remplir cboInformateur
+            // Remplir cboInformateur
             DataTable tblInformateur = monds.Tables["Informateur"];
             cboInformateurs.DataSource = tblInformateur;
             cboInformateurs.DisplayMember = "nom";
             cboInformateurs.ValueMember = "nomCode";
 
 
-            //Remplir cboTypeDepense
+            // Remplir cboTypeDepense
             DataTable tblTypeDepense = monds.Tables["TypeDepense"];
             cboTypeDepense.DataSource = tblTypeDepense;
             cboTypeDepense.DisplayMember = "libelle";
             cboTypeDepense.ValueMember = "id";
 
+
+            // Remplir cboEspeceCapture
+            DataTable tblEspece = monds.Tables["Espece"];
+            cboEspece.DataSource = tblEspece;
+            cboEspece.DisplayMember = "nom";
+            cboEspece.ValueMember = "id";
         }
 
 
@@ -116,7 +123,7 @@ namespace projet_SAE_24
             // faire affichage erreur pas assez d'argent
             if (montantDepense > m_montantRestant)
             {
-                errSomme.SetError(txtMontantDepense, "Pas assez de $G");
+                errSomme.SetError(txtMontantDepense, "Pas assez d'argent");
             }
             else
             {
@@ -145,6 +152,41 @@ namespace projet_SAE_24
              echApostrophe(rtbCommentaireEvent.Text)
                 );
             this.Close();
+        }
+
+        private void btnValiderCapture_Click(object sender, EventArgs e)
+        {
+            bool especeDejaPresente = false;
+            int indexLigneEspecePresente = 0;
+            DataTable tblCapture = monds.Tables["Capturer"];
+            for (int i = 0; i < tblCapture.Rows.Count; i++)
+            {
+                DataRow ligne = tblCapture.Rows[i];
+                if (Convert.ToInt32(ligne["idEspeceEnnemi"]) == Convert.ToInt32(cboEspece.SelectedValue))
+                {
+                    especeDejaPresente = true;
+                    indexLigneEspecePresente = i;
+                }
+            }
+
+
+            if (!especeDejaPresente)
+            // Si l'espece n'est pas ajouté on crée une nouvelle ligne et on l'ajoute
+            {
+                monds.Tables["Capturer"].Rows.Add(
+                    m_missionPlanete,
+                    m_missioNumero,
+                    Convert.ToInt32(cboEspece.SelectedValue),
+                    Convert.ToInt32(txtNombreCapture.Text)
+                    );
+            }
+            else
+            // Sinon on incremente juste le nombre d'especes deja capturé
+            {
+                int nbDejaCapturer = Convert.ToInt32(monds.Tables["Capturer"].Rows[indexLigneEspecePresente]["nombre"]);
+                monds.Tables["Capturer"].Rows[indexLigneEspecePresente]["nombre"] = nbDejaCapturer + Convert.ToInt32(txtNombreCapture.Text);
+            }
+            MessageBox.Show(monds.Tables["Capturer"].Rows.Count.ToString());
         }
 
         private void estUnChiffre(object sender, KeyPressEventArgs e)

@@ -25,11 +25,7 @@ namespace projet_SAE_24
         readonly int m_missionNumero;
         readonly string m_missionPlanete;
         DataSet monds = MesDatas.DsGlobal;
-        public Journal()
-        {
-            InitializeComponent();
-        }
-
+       
         public Journal(string nomPlanete, int numeroMission)
         {
             InitializeComponent();
@@ -105,7 +101,7 @@ namespace projet_SAE_24
             {
 
                 DataTable tblDepenseMissionChoisis = lignesDepenseMissionChoisis.CopyToDataTable();
-            foreach (DataRow ligne in tblDepenseMissionChoisis.Rows)
+                foreach (DataRow ligne in tblDepenseMissionChoisis.Rows)
                 {
                     sommeDepense += Convert.ToInt32(ligne["Montant"]);
                     string libelleDepense = ligne["idTypeDepense"].ToString();
@@ -160,7 +156,6 @@ namespace projet_SAE_24
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
-            int test = 0;
             // Création du fichier PDF
             string cheminPdf = Path.Combine(projectPath, "BilanCapture_" + m_missionPlanete + "_" + m_missionNumero + ".pdf"); // Chemin de sauvegarde
 
@@ -181,35 +176,56 @@ namespace projet_SAE_24
 
             document.Add(new Paragraph("\n")); // Pour ajouter un espace entre le titre et les infos
 
-
-            // Tableau des captures
-            Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 2, 2, 2 }));
-            table.SetWidth(UnitValue.CreatePercentValue(100));
-
-            // En-tetes du tableau
-            table.AddHeaderCell(new Cell().Add(new Paragraph("Nom de l'espèce").SetFont(fontBold)));
-            table.AddHeaderCell(new Cell().Add(new Paragraph("Objectif initial").SetFont(fontBold)));
-            table.AddHeaderCell(new Cell().Add(new Paragraph("Nombre de captures réalisées").SetFont(fontBold)));
-            table.AddHeaderCell(new Cell().Add(new Paragraph("Taux de reussite (en %)").SetFont(fontBold)));
-
-            // Remplir le tableau avec les données du DataSet...
-            // On recupere la table BilanCapture pour la mission selectionée
-            DataTable tblBilanCapture = monds.Tables[$"BilanCapture{m_missionPlanete}-{m_missionNumero}"];
-
-            foreach (DataRow lignecapture in tblBilanCapture.Rows)
+            bool tblEstPresent = true;
+            DataTable tblBilanCapture = new DataTable();
+            try
             {
-                table.AddCell(lignecapture["nomEspece"].ToString());
-                table.AddCell(lignecapture["objectifInitial"].ToString());
-                table.AddCell(lignecapture["resultatFinal"].ToString());
-                table.AddCell(lignecapture["tauxReussite"].ToString());
+                tblBilanCapture = monds.Tables[$"BilanCapture{m_missionPlanete}-{m_missionNumero}"];
+                if(tblBilanCapture == null)
+                {
+                    tblEstPresent = false;
+                }
             }
-            document.Add(table); // Ajouter le tableau sur le pdf
+            catch
+            {
+                tblEstPresent = false;
+
+            }
+
+            if (tblEstPresent)
+            {
+
+                // Tableau des captures
+                Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 2, 2, 2 }));
+                table.SetWidth(UnitValue.CreatePercentValue(100));
+
+                // En-tetes du tableau
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Nom de l'espèce").SetFont(fontBold)));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Objectif initial").SetFont(fontBold)));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Nombre de captures réalisées").SetFont(fontBold)));
+                table.AddHeaderCell(new Cell().Add(new Paragraph("Taux de reussite (en %)").SetFont(fontBold)));
+
+                // Remplir le tableau avec les données du DataSet...
+                // On recupere la table BilanCapture pour la mission selectioné 
+
+                foreach (DataRow lignecapture in tblBilanCapture.Rows)
+                {
+                    table.AddCell(lignecapture["nomEspece"].ToString());
+                    table.AddCell(lignecapture["objectifInitial"].ToString());
+                    table.AddCell(lignecapture["resultatFinal"].ToString());
+                    table.AddCell(lignecapture["tauxReussite"].ToString());
+                }
+                document.Add(table); // Ajouter le tableau sur le pdf
+            }
+            else
+            {
+                document.Add(new Paragraph("Pas de capture").SetTextAlignment(TextAlignment.CENTER));
+            }
 
             // Fermeture 
             document.Close();
             pdf.Close();
             writer.Close();
-
         }
     }
 }

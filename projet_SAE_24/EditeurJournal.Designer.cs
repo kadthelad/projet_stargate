@@ -64,7 +64,14 @@
             this.dtpEvent = new System.Windows.Forms.DateTimePicker();
             this.lblCommentaireEvent = new System.Windows.Forms.Label();
             this.lblDateEvent = new System.Windows.Forms.Label();
+            this.tabCapture = new System.Windows.Forms.TabPage();
+            this.btnValiderCapture = new System.Windows.Forms.Button();
+            this.btnAnnulerCapture = new System.Windows.Forms.Button();
+            this.lblEspeceCapture = new System.Windows.Forms.Label();
+            this.cboEspece = new System.Windows.Forms.ComboBox();
             this.errSomme = new System.Windows.Forms.ErrorProvider(this.components);
+            this.lblNbCapture = new System.Windows.Forms.Label();
+            this.txtNombreCapture = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabContact.SuspendLayout();
             this.grpAjouterContact.SuspendLayout();
@@ -72,6 +79,7 @@
             this.grpDepense.SuspendLayout();
             this.tabEvent.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            this.tabCapture.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errSomme)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,10 +176,11 @@
             this.tabControl1.Controls.Add(this.tabContact);
             this.tabControl1.Controls.Add(this.tabDepense);
             this.tabControl1.Controls.Add(this.tabEvent);
+            this.tabControl1.Controls.Add(this.tabCapture);
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(449, 438);
+            this.tabControl1.Size = new System.Drawing.Size(455, 438);
             this.tabControl1.TabIndex = 3;
             // 
             // tabContact
@@ -421,9 +430,79 @@
             this.lblDateEvent.TabIndex = 0;
             this.lblDateEvent.Text = "Date";
             // 
+            // tabCapture
+            // 
+            this.tabCapture.Controls.Add(this.txtNombreCapture);
+            this.tabCapture.Controls.Add(this.lblNbCapture);
+            this.tabCapture.Controls.Add(this.btnValiderCapture);
+            this.tabCapture.Controls.Add(this.btnAnnulerCapture);
+            this.tabCapture.Controls.Add(this.lblEspeceCapture);
+            this.tabCapture.Controls.Add(this.cboEspece);
+            this.tabCapture.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabCapture.Location = new System.Drawing.Point(4, 22);
+            this.tabCapture.Name = "tabCapture";
+            this.tabCapture.Size = new System.Drawing.Size(447, 412);
+            this.tabCapture.TabIndex = 3;
+            this.tabCapture.Text = "Nouvelle Capture";
+            this.tabCapture.UseVisualStyleBackColor = true;
+            // 
+            // btnValiderCapture
+            // 
+            this.btnValiderCapture.Location = new System.Drawing.Point(338, 368);
+            this.btnValiderCapture.Name = "btnValiderCapture";
+            this.btnValiderCapture.Size = new System.Drawing.Size(100, 40);
+            this.btnValiderCapture.TabIndex = 3;
+            this.btnValiderCapture.Text = "Valider";
+            this.btnValiderCapture.UseVisualStyleBackColor = true;
+            this.btnValiderCapture.Click += new System.EventHandler(this.btnValiderCapture_Click);
+            // 
+            // btnAnnulerCapture
+            // 
+            this.btnAnnulerCapture.Location = new System.Drawing.Point(232, 369);
+            this.btnAnnulerCapture.Name = "btnAnnulerCapture";
+            this.btnAnnulerCapture.Size = new System.Drawing.Size(100, 40);
+            this.btnAnnulerCapture.TabIndex = 2;
+            this.btnAnnulerCapture.Text = "Annuler";
+            this.btnAnnulerCapture.UseVisualStyleBackColor = true;
+            this.btnAnnulerCapture.Click += new System.EventHandler(this.annulerModif_Click);
+            // 
+            // lblEspeceCapture
+            // 
+            this.lblEspeceCapture.AutoSize = true;
+            this.lblEspeceCapture.Location = new System.Drawing.Point(6, 47);
+            this.lblEspeceCapture.Name = "lblEspeceCapture";
+            this.lblEspeceCapture.Size = new System.Drawing.Size(143, 24);
+            this.lblEspeceCapture.TabIndex = 1;
+            this.lblEspeceCapture.Text = "Espèce capturé";
+            // 
+            // cboEspece
+            // 
+            this.cboEspece.FormattingEnabled = true;
+            this.cboEspece.Location = new System.Drawing.Point(159, 44);
+            this.cboEspece.Name = "cboEspece";
+            this.cboEspece.Size = new System.Drawing.Size(279, 32);
+            this.cboEspece.TabIndex = 0;
+            // 
             // errSomme
             // 
             this.errSomme.ContainerControl = this;
+            // 
+            // lblNbCapture
+            // 
+            this.lblNbCapture.AutoSize = true;
+            this.lblNbCapture.Location = new System.Drawing.Point(6, 107);
+            this.lblNbCapture.Name = "lblNbCapture";
+            this.lblNbCapture.Size = new System.Drawing.Size(147, 24);
+            this.lblNbCapture.TabIndex = 4;
+            this.lblNbCapture.Text = "Nombre capturé";
+            // 
+            // txtNombreCapture
+            // 
+            this.txtNombreCapture.Location = new System.Drawing.Point(159, 104);
+            this.txtNombreCapture.Name = "txtNombreCapture";
+            this.txtNombreCapture.Size = new System.Drawing.Size(98, 29);
+            this.txtNombreCapture.TabIndex = 5;
+            this.txtNombreCapture.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
             // 
             // EditeurJournal
             // 
@@ -444,6 +523,8 @@
             this.tabEvent.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            this.tabCapture.ResumeLayout(false);
+            this.tabCapture.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.errSomme)).EndInit();
             this.ResumeLayout(false);
 
@@ -486,5 +567,12 @@
         private System.Windows.Forms.Label lblDeviseContact;
         private System.Windows.Forms.Label lblDeviseDepense;
         private System.Windows.Forms.ErrorProvider errSomme;
+        private System.Windows.Forms.TabPage tabCapture;
+        private System.Windows.Forms.Button btnValiderCapture;
+        private System.Windows.Forms.Button btnAnnulerCapture;
+        private System.Windows.Forms.Label lblEspeceCapture;
+        private System.Windows.Forms.ComboBox cboEspece;
+        private System.Windows.Forms.TextBox txtNombreCapture;
+        private System.Windows.Forms.Label lblNbCapture;
     }
 }
