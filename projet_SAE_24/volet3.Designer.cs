@@ -179,6 +179,7 @@
             // 
             // pcbJournal
             // 
+            this.pcbJournal.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pcbJournal.Location = new System.Drawing.Point(1036, 527);
             this.pcbJournal.Name = "pcbJournal";
             this.pcbJournal.Size = new System.Drawing.Size(75, 75);
@@ -198,6 +199,7 @@
             // 
             // pcbModifier
             // 
+            this.pcbModifier.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pcbModifier.Location = new System.Drawing.Point(1117, 527);
             this.pcbModifier.Name = "pcbModifier";
             this.pcbModifier.Size = new System.Drawing.Size(75, 75);
@@ -208,6 +210,7 @@
             // 
             // pcbRetour
             // 
+            this.pcbRetour.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pcbRetour.Location = new System.Drawing.Point(1198, 527);
             this.pcbRetour.Name = "pcbRetour";
             this.pcbRetour.Size = new System.Drawing.Size(75, 75);
@@ -295,7 +298,7 @@
             this.MinimumSize = new System.Drawing.Size(1300, 654);
             this.Name = "Volet3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "recapMission";
+            this.Text = "Recapitulatif de la misison";
             this.Load += new System.EventHandler(this.recapMission_Load);
             this.grpFeuilleDeRoute.ResumeLayout(false);
             this.grpMembres.ResumeLayout(false);

@@ -128,7 +128,7 @@
             this.rtbAppreciation.Location = new System.Drawing.Point(139, 136);
             this.rtbAppreciation.Name = "rtbAppreciation";
             this.rtbAppreciation.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbAppreciation.Size = new System.Drawing.Size(223, 119);
+            this.rtbAppreciation.Size = new System.Drawing.Size(317, 119);
             this.rtbAppreciation.TabIndex = 5;
             this.rtbAppreciation.Text = "";
             // 
@@ -148,7 +148,7 @@
             this.dtpDateContact.CalendarTitleBackColor = System.Drawing.Color.BurlyWood;
             this.dtpDateContact.Location = new System.Drawing.Point(139, 47);
             this.dtpDateContact.Name = "dtpDateContact";
-            this.dtpDateContact.Size = new System.Drawing.Size(200, 29);
+            this.dtpDateContact.Size = new System.Drawing.Size(317, 29);
             this.dtpDateContact.TabIndex = 3;
             this.dtpDateContact.ValueChanged += new System.EventHandler(this.dtpDateContact_ValueChanged);
             // 
@@ -309,25 +309,27 @@
             this.cboTypeDepense.FormattingEnabled = true;
             this.cboTypeDepense.Location = new System.Drawing.Point(172, 274);
             this.cboTypeDepense.Name = "cboTypeDepense";
-            this.cboTypeDepense.Size = new System.Drawing.Size(156, 32);
+            this.cboTypeDepense.Size = new System.Drawing.Size(284, 32);
             this.cboTypeDepense.TabIndex = 6;
             // 
             // rtbMotifDepense
             // 
             this.rtbMotifDepense.BackColor = System.Drawing.Color.BurlyWood;
+            this.rtbMotifDepense.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbMotifDepense.Location = new System.Drawing.Point(97, 134);
             this.rtbMotifDepense.Name = "rtbMotifDepense";
             this.rtbMotifDepense.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
-            this.rtbMotifDepense.Size = new System.Drawing.Size(223, 119);
+            this.rtbMotifDepense.Size = new System.Drawing.Size(359, 119);
             this.rtbMotifDepense.TabIndex = 5;
             this.rtbMotifDepense.Text = "";
             // 
             // txtMontantDepense
             // 
             this.txtMontantDepense.BackColor = System.Drawing.Color.BurlyWood;
+            this.txtMontantDepense.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMontantDepense.Location = new System.Drawing.Point(93, 83);
             this.txtMontantDepense.Name = "txtMontantDepense";
-            this.txtMontantDepense.Size = new System.Drawing.Size(100, 29);
+            this.txtMontantDepense.Size = new System.Drawing.Size(100, 22);
             this.txtMontantDepense.TabIndex = 4;
             this.txtMontantDepense.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
             // 
@@ -335,7 +337,7 @@
             // 
             this.dtpDateDepense.Location = new System.Drawing.Point(93, 43);
             this.dtpDateDepense.Name = "dtpDateDepense";
-            this.dtpDateDepense.Size = new System.Drawing.Size(200, 29);
+            this.dtpDateDepense.Size = new System.Drawing.Size(297, 29);
             this.dtpDateDepense.TabIndex = 3;
             // 
             // lblMotifDepense
@@ -425,7 +427,7 @@
             // 
             this.dtpEvent.Location = new System.Drawing.Point(169, 43);
             this.dtpEvent.Name = "dtpEvent";
-            this.dtpEvent.Size = new System.Drawing.Size(200, 29);
+            this.dtpEvent.Size = new System.Drawing.Size(255, 29);
             this.dtpEvent.TabIndex = 3;
             // 
             // lblCommentaireEvent
@@ -465,9 +467,11 @@
             // 
             // txtNombreCapture
             // 
+            this.txtNombreCapture.BackColor = System.Drawing.Color.BurlyWood;
+            this.txtNombreCapture.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNombreCapture.Location = new System.Drawing.Point(159, 104);
             this.txtNombreCapture.Name = "txtNombreCapture";
-            this.txtNombreCapture.Size = new System.Drawing.Size(98, 29);
+            this.txtNombreCapture.Size = new System.Drawing.Size(98, 22);
             this.txtNombreCapture.TabIndex = 5;
             this.txtNombreCapture.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.estUnChiffre);
             // 
@@ -511,6 +515,7 @@
             // 
             // cboEspece
             // 
+            this.cboEspece.BackColor = System.Drawing.Color.BurlyWood;
             this.cboEspece.FormattingEnabled = true;
             this.cboEspece.Location = new System.Drawing.Point(159, 44);
             this.cboEspece.Name = "cboEspece";

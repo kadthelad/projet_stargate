@@ -136,12 +136,11 @@ namespace projet_SAE_24
             DataRow[] lignesObjectifCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
             DataRow[] lignesCapture = monds.Tables["Capturer"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
 
-            //MessageBox.Show(lignesObjectifCapture.Length.ToString());
 
             int maxIteration = Math.Max(lignesCapture.Length, lignesObjectifCapture.Length);
             if (maxIteration > 0)
             {
-
+                flpCapture.Controls.Clear();
                 for (int i = 0; i < maxIteration; i++)
                 {
                     int idEnnemie;
@@ -175,8 +174,6 @@ namespace projet_SAE_24
                     // On affecte le texte au label
 
                     lblObjectif.Text = $"{nomEnnemie} --> {prises}/{objectifPrises} prise(s)";
-
-
                     flpCapture.Controls.Add(lblObjectif);
                 }
             }
@@ -192,8 +189,6 @@ namespace projet_SAE_24
 
             if (lignesObjectifCapture.Length > 0 || lignesCapture.Length > 0)
             {
-                //DataTable tblObjectifCapture = lignesObjectifCapture.CopyToDataTable();
-                //DataTable tblCapture = lignesCapture.CopyToDataTable();
                 for (int i = 0; i < lignesObjectifCapture.Length; i++)
                 {
                     DataRow ligneObjectif = null;

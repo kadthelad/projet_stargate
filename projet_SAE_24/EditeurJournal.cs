@@ -200,7 +200,6 @@ namespace projet_SAE_24
                 int nbDejaCapturer = Convert.ToInt32(monds.Tables["Capturer"].Rows[indexLigneEspecePresente]["nombre"]);
                 monds.Tables["Capturer"].Rows[indexLigneEspecePresente]["nombre"] = nbDejaCapturer + Convert.ToInt32(txtNombreCapture.Text);
             }
-            MessageBox.Show(monds.Tables["Capturer"].Rows.Count.ToString());
             this.Close();
         }
 
@@ -214,6 +213,10 @@ namespace projet_SAE_24
                 {
                     e.Handled = true;
                 }
+            }
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                MessageBox.Show("Enter");
             }
         }
 
