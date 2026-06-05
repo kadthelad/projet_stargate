@@ -103,6 +103,68 @@ namespace projet_SAE_24
 
 			}
 		}
+
+		private void ajouterMembre(String membre)
+		{
+			lsbxParticipants.Items.Add(membre);
+			cboAjoutMembre.Items.Remove(membre);
+
+			if (ckbVerifTravailEns.Checked)
+			{
+				// Vérifier si ce membre a travaillé avec quelqu'un du groupe
+				try
+				{
+					if (membre == "")
+					{
+						return;
+					}
+					List<String> list = new List<String>() { };
+					String requete = "SELECT DISTINCT m.nom, m.prenom, CASE " +
+																			"WHEN mil.matriculeMembre IS NOT NULL THEN 'Militaire' " +
+																			"ELSE 'Civil' " +
+																	   "END AS type, m.matricule " +
+									 "FROM Membre m " +
+									 "JOIN Composer c ON c.matriculeMembre = m.matricule " +
+									 "LEFT JOIN Militaire mil ON mil.matriculeMembre = m.matricule " +
+									 $"WHERE c.matriculeMembre != '{matricules[membre]}'  AND EXISTS (SELECT * " +
+																				   "FROM Composer c2 " +
+																				   "WHERE c2.nomPlanete = c.nomPlanete " +
+																				   "AND c2.numeroMission = c.numeroMission " +
+																				   $"AND c2.matriculeMembre = '{matricules[membre]}')";
+
+					SQLiteCommand commande = new SQLiteCommand(requete, Connexion.Connec);
+					commande.CommandType = CommandType.Text;
+					SQLiteDataReader queryResponse = commande.ExecuteReader();
+					while (queryResponse.Read())
+					{
+						foreach (String membreGroupe in lsbxParticipants.Items)
+						{
+							if (queryResponse.GetString(3) == matricules[membreGroupe])
+							{
+								list.Add(queryResponse.GetString(0) + " " + queryResponse.GetString(1) + " (" + queryResponse.GetString(2) + ")");
+							}
+						}
+					}
+					if (list.Count > 0)
+					{
+						String res = $"Le membre {membre} à déjà travaillé avec ces membres du groupe : \n";
+						foreach (String item in list)
+						{
+							res += "- " + item + "\n";
+						}
+						MessageBox.Show(res);
+					}
+				}
+				catch (Exception ex)
+				{
+					MessageBox.Show("Erreur lors de la vérification de si un membre ajouté à déjà travaillé avec quelqu'un du groupe actuel.\n" +
+						"Plus de détails: " + ex.Message);
+					ckbVerifTravailEns.Checked = false;
+				}
+			}
+
+		}
+
 		private void reinitialiser_volet()
 		{
 			// Remettre toutes les valeuers par défaut
@@ -367,6 +429,8 @@ namespace projet_SAE_24
 			else
 			{
 				btnCreerMission.Text = "Suivant";
+				btnRetour.Text = "Retour au Tableau de Bord";
+				btnRetour.ForeColor = Color.Red;
 			}
 		}
 		
@@ -387,8 +451,7 @@ namespace projet_SAE_24
 				cboAjoutMembre.Enabled = true;
 
 				lsbxParticipants.Items.Clear();
-				lsbxParticipants.Items.Add(cboChefMission.Text);
-				cboAjoutMembre.Items.Remove(cboChefMission.Text);
+				ajouterMembre(cboChefMission.Text);
 			}
 			else // Pas de chef sélectionné
 			{
@@ -453,8 +516,7 @@ namespace projet_SAE_24
 			}
 			else
 			{
-				lsbxParticipants.Items.Add(cboAjoutMembre.Text);
-				cboAjoutMembre.Items.Remove(cboAjoutMembre.Text);
+				ajouterMembre(cboAjoutMembre.Text);
 			}
 		}
 
@@ -469,11 +531,6 @@ namespace projet_SAE_24
 					lsbxParticipants.Items.Remove(lsbxParticipants.SelectedItem);
 				}
 			}
-		}
-
-		private void ckbAfficherTousEnnemis_CheckedChanged(object sender, EventArgs e)
-		{
-			cboChoixPlanete_SelectedIndexChanged(sender, e);
 		}
 
 		private void lsbxCaptures_SelectedIndexChanged(object sender, EventArgs e)
@@ -528,6 +585,10 @@ namespace projet_SAE_24
 			{
 				lsbxCaptures.Items.Add(especeEnnemi + " ---> " + objectifs_capture[especeEnnemi].ToString());
 			}
+
+			cboObjectifCapture.SelectedIndex = -1;
+			nudNbCapture.Value = 0;
+			nudNbCapture.Enabled = false;
 		}
 
 		private void btnRetour_Click(object sender, EventArgs e)

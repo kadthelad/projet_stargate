@@ -224,6 +224,7 @@
 			// 
 			// cboFiltre
 			// 
+			this.cboFiltre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
 			this.cboFiltre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.cboFiltre.FormattingEnabled = true;
 			this.cboFiltre.Location = new System.Drawing.Point(224, 149);
@@ -235,16 +236,18 @@
 			// 
 			// btnReinitialiser
 			// 
+			this.btnReinitialiser.BackColor = System.Drawing.Color.White;
 			this.btnReinitialiser.Image = global::projet_SAE_24.Properties.Resources.fleche_retour;
 			this.btnReinitialiser.Location = new System.Drawing.Point(84, 339);
 			this.btnReinitialiser.Name = "btnReinitialiser";
 			this.btnReinitialiser.Size = new System.Drawing.Size(69, 69);
 			this.btnReinitialiser.TabIndex = 16;
-			this.btnReinitialiser.UseVisualStyleBackColor = true;
+			this.btnReinitialiser.UseVisualStyleBackColor = false;
 			this.btnReinitialiser.Click += new System.EventHandler(this.btnReinitialiser_Click);
 			// 
 			// btnOrdre
 			// 
+			this.btnOrdre.BackColor = System.Drawing.Color.White;
 			this.btnOrdre.Image = global::projet_SAE_24.Properties.Resources.fleche_haut;
 			this.btnOrdre.Location = new System.Drawing.Point(542, 146);
 			this.btnOrdre.Margin = new System.Windows.Forms.Padding(4);
@@ -252,7 +255,7 @@
 			this.btnOrdre.Size = new System.Drawing.Size(42, 42);
 			this.btnOrdre.TabIndex = 10;
 			this.btnOrdre.Text = "\r\n";
-			this.btnOrdre.UseVisualStyleBackColor = true;
+			this.btnOrdre.UseVisualStyleBackColor = false;
 			this.btnOrdre.Click += new System.EventHandler(this.btnOrdre_Click);
 			// 
 			// FormTDB

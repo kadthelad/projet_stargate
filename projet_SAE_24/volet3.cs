@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SQLite;
 using System.Diagnostics;
+using Org.BouncyCastle.Utilities.Encoders;
 
 
 namespace projet_SAE_24
@@ -17,11 +18,13 @@ namespace projet_SAE_24
     {
         readonly int m_missioNumero;
         readonly string m_missionPlanete;
+        int m_montantRestant = 0;
         public Volet3(int nbMissionPlanete, string missionPlanete)
         {
             InitializeComponent();
             m_missioNumero = nbMissionPlanete;
             m_missionPlanete = missionPlanete;
+
         }
 
         DataSet monds = MesDatas.DsGlobal;
@@ -57,27 +60,50 @@ namespace projet_SAE_24
             lblMisssion.Text = ligneDeLaMission["nomPlanete"].ToString();
 
             // pour les dates
-            lblDateDepart.Text += ligneDeLaMission["dateDepart"].ToString();
-            lblDateRetour.Text += ligneDeLaMission["dateRetour"].ToString();
+            lblDateDepartFill.Text = ligneDeLaMission["dateDepart"].ToString();
+            lblDateRetourFill.Text = ligneDeLaMission["dateRetour"].ToString();
 
             //pour le journal de bord
             rtbFeuilleDeRoute.Text = ligneDeLaMission["feuilleDeRoute"].ToString();
 
             // pour le budget
-            lblBudget.Text += ligneDeLaMission["budget"].ToString();
+            int budget = Convert.ToInt32(ligneDeLaMission["budget"]);
+            lblBudgetFill.Text = budget.ToString();
+
 
             // pour sold restant
-            DataTable tblDepenses = monds.Tables["Depense"];
-            DataTable tblTotalDepenses = tblDepenses.Select("numeroMission = " + m_missioNumero.ToString()).CopyToDataTable();
+            //DataTable tblDepenses = monds.Tables["Depense"];
+            int depenseTotal = 0;
+            DataRow[] lignesDepense = monds.Tables["Depense"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
+            DataRow[] lignesContact = monds.Tables["Contact"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
 
-            double depenseTotal = 0;
-            foreach (DataRow ligne in tblTotalDepenses.Rows)
+            if (lignesDepense.Length > 0)
             {
-                depenseTotal += Convert.ToDouble(ligne["montant"]);
+                DataTable tblTotalDepenses = lignesDepense.CopyToDataTable();
+                foreach (DataRow ligne in tblTotalDepenses.Rows)
+                {
+                    depenseTotal += Convert.ToInt32(ligne["montant"]);
+                }
             }
-            lblSoldeRestant.Text += depenseTotal.ToString();
 
-            // pour les membres
+            if (lignesContact.Length > 0)
+            {
+                DataTable tblTotalContact = lignesContact.CopyToDataTable();
+                foreach (DataRow ligne in tblTotalContact.Rows)
+                {
+                    depenseTotal += Convert.ToInt32(ligne["sommeVersee"]);
+                }
+            }
+
+            //Quand on a calculer toutes les dépenses
+            m_montantRestant = budget - depenseTotal;
+            lblSoldeRestantFill.Text = (budget - depenseTotal).ToString();
+
+
+
+            // Ajout des membres
+
+            flpMembres.Controls.Clear();
             DataTable membresDeLaMission = monds.Tables["Composer"].Select($"numeroMission = {m_missioNumero} AND nomPlanete = '{m_missionPlanete}'").CopyToDataTable();
             foreach (DataRow membreMission in membresDeLaMission.Rows)
             {
@@ -108,33 +134,42 @@ namespace projet_SAE_24
 
             // Création table captures
             DataRow[] lignesObjectifCapture = monds.Tables["ObjectifCapture"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
-            if (lignesObjectifCapture.Length > 0)
+            DataRow[] lignesCapture = monds.Tables["Capturer"].Select($"nomPlanete = '{m_missionPlanete}' AND numeroMission = {m_missioNumero}");
+
+
+            //int maxIteration = Math.Max(lignesCapture.Length, lignesObjectifCapture.Length);
+            flpCapture.Controls.Clear();
+            for (int i = 0; i < lignesObjectifCapture.Length; i++)
             {
-                DataTable tblObjectifCapture = lignesObjectifCapture.CopyToDataTable();
-                foreach (DataRow objectifDeCapture in tblObjectifCapture.Rows)
+                int idEnnemie;
+                string nomEnnemie = "";
+
+                int objectifPrises = 0;
+                int prises = 0;
+
+                DataRow objectifDeCapture = lignesObjectifCapture[i];
+                idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
+                nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
+                objectifPrises = Convert.ToInt32(objectifDeCapture["objectif"]);
+
+                // On verifie que la ligne existe
+                if (lignesCapture.Length - 1 >= i)
                 {
-                    int idEnnemie = Convert.ToInt32(objectifDeCapture["idEspeceEnnemi"]);
-                    string nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
-
-
-
-                    Label lblObjectif = new Label();
-                    string objectifPrises = objectifDeCapture["objectif"].ToString();
-                    lblObjectif.Text = $"{nomEnnemie} --> {objectifPrises} prise(s)";
-                    lblObjectif.AutoSize = true;
-
-
-                    flpCapture.Controls.Add(lblObjectif);
+                    DataRow lignePrises = lignesCapture[i];
+                    idEnnemie = Convert.ToInt32(lignePrises["idEspeceEnnemi"]);
+                    nomEnnemie = monds.Tables["Espece"].Select($"id = {idEnnemie}")[0]["Nom"].ToString();
+                    prises = Convert.ToInt32(lignePrises["nombre"]);
                 }
-            }
-            else
-            {
-                Label lblPasDeCapture = new Label();
-                lblPasDeCapture.Text = "Pas de capture";
-                lblPasDeCapture.AutoSize = true;
-                flpCapture.Controls.Add(lblPasDeCapture);
-            }
 
+                Label lblObjectif = new Label();
+                lblObjectif.AutoSize = true;
+
+
+                // On affecte le texte au label
+
+                lblObjectif.Text = $"{nomEnnemie} --> {prises}/{objectifPrises} prise(s)";
+                flpCapture.Controls.Add(lblObjectif);
+            }
 
             // Création de la table de capture de compte rendu de mission
             DataTable tblResultatCapture = new DataTable();
@@ -145,38 +180,47 @@ namespace projet_SAE_24
             tblResultatCapture.Columns.Add("resultatFinal");
             tblResultatCapture.Columns.Add("tauxReussite");
 
-            if (lignesObjectifCapture.Length > 0)
-            {
-                DataTable tblObjectifCapture = lignesObjectifCapture.CopyToDataTable();
-                DataTable tblCapture = monds.Tables["Capturer"];
-                for (int i = 0; i < tblObjectifCapture.Rows.Count; i++)
-                {
-                    DataRow ligneObjectif = tblObjectifCapture.Rows[i];
-                    DataRow ligneResultat = tblCapture.Rows[i];
-                    string nomEspece = monds.Tables["Espece"].Select($"id = {ligneObjectif["idEspeceEnnemi"]}")[0]["nom"].ToString();
-                    int objectifInital = Convert.ToInt32(ligneObjectif["objectif"]);
-                    int resultatFinal = Convert.ToInt32(ligneResultat["nombre"]);
-                    double tauxReussite = objectifInital / resultatFinal;
 
-                    tblResultatCapture.Rows.Add(
-                        nomEspece,
-                        objectifInital,
-                        resultatFinal,
-                        tauxReussite
-                        );
-                }
-                string tblName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
-                tblResultatCapture.TableName = tblName;
-                if (monds.Tables[tblName] != null)
+            for (int i = 0; i < lignesCapture.Length; i++)
+            {
+                DataRow ligneResultat = lignesCapture[i];
+                DataRow ligneObjectif = monds.Tables["objectifCapture"].NewRow();
+                if (lignesObjectifCapture.Length - 1 >= i)
                 {
-                    monds.Tables.Add(tblResultatCapture);
+                    ligneObjectif = lignesObjectifCapture[i];
                 }
+
+
+                int idEspece = Convert.ToInt32(ligneObjectif["idEspeceEnnemi"]);
+                string nomEspece = monds.Tables["Espece"].Select($"id = {idEspece}")[0]["nom"].ToString();
+                int objectifInital = Convert.ToInt32(ligneObjectif["objectif"]);
+                int resultatFinal = 0;
+                double tauxReussite;
+
+                resultatFinal = Convert.ToInt32(ligneResultat["nombre"]);
+                tauxReussite = Math.Round(objectifInital / (double)resultatFinal) * 100;
+
+                tblResultatCapture.Rows.Add(
+                    nomEspece,
+                    objectifInital,
+                    resultatFinal,
+                    tauxReussite
+                    );
             }
+            string tblName = $"BilanCapture{m_missionPlanete}-{m_missioNumero}";
+            tblResultatCapture.TableName = tblName;
+            if (monds.Tables[tblName] != null)
+            {
+                monds.Tables.Remove(tblName);
+            }
+            monds.Tables.Add(tblResultatCapture);
         }
 
         private void pcbJournal_Click(object sender, EventArgs e)
         {
             Journal journal = new Journal(m_missionPlanete, m_missioNumero);
+            journal.MaximumSize = journal.Size;
+            journal.MinimumSize = journal.Size;
             journal.ShowDialog();
         }
 
@@ -188,17 +232,11 @@ namespace projet_SAE_24
         private void pcbModifier_Click(object sender, EventArgs e)
         {
             EditeurJournal editeurJournal = new EditeurJournal(m_missioNumero, m_missionPlanete);
+            editeurJournal.MaximumSize = editeurJournal.Size;
+            editeurJournal.MinimumSize = editeurJournal.Size;
+            editeurJournal.MontantRestant = m_montantRestant;
             editeurJournal.ShowDialog();
-        }
-
-        private void lblSoldeRestant_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void rtbFeuilleDeRoute_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = true;
+            remplirForm();
         }
     }
 }

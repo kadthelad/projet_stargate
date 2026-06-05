@@ -56,15 +56,19 @@
             // 
             // grpEvenement
             // 
+            this.grpEvenement.BackColor = System.Drawing.Color.Firebrick;
             this.grpEvenement.Controls.Add(this.lblDate);
             this.grpEvenement.Controls.Add(this.btnFIn);
             this.grpEvenement.Controls.Add(this.btnSuivant);
             this.grpEvenement.Controls.Add(this.btnPrecedant);
             this.grpEvenement.Controls.Add(this.btnDebut);
             this.grpEvenement.Controls.Add(this.rtbEvenement);
-            this.grpEvenement.Location = new System.Drawing.Point(29, 32);
+            this.grpEvenement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.grpEvenement.Location = new System.Drawing.Point(53, 59);
+            this.grpEvenement.Margin = new System.Windows.Forms.Padding(6);
             this.grpEvenement.Name = "grpEvenement";
-            this.grpEvenement.Size = new System.Drawing.Size(414, 156);
+            this.grpEvenement.Padding = new System.Windows.Forms.Padding(6);
+            this.grpEvenement.Size = new System.Drawing.Size(759, 288);
             this.grpEvenement.TabIndex = 0;
             this.grpEvenement.TabStop = false;
             this.grpEvenement.Text = "Evénement du journal";
@@ -72,17 +76,20 @@
             // lblDate
             // 
             this.lblDate.AutoSize = true;
-            this.lblDate.Location = new System.Drawing.Point(6, 22);
+            this.lblDate.Location = new System.Drawing.Point(11, 41);
+            this.lblDate.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(30, 13);
+            this.lblDate.Size = new System.Drawing.Size(48, 24);
             this.lblDate.TabIndex = 6;
             this.lblDate.Text = "Date";
             // 
             // btnFIn
             // 
-            this.btnFIn.Location = new System.Drawing.Point(227, 110);
+            this.btnFIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFIn.Location = new System.Drawing.Point(416, 203);
+            this.btnFIn.Margin = new System.Windows.Forms.Padding(6);
             this.btnFIn.Name = "btnFIn";
-            this.btnFIn.Size = new System.Drawing.Size(30, 30);
+            this.btnFIn.Size = new System.Drawing.Size(55, 55);
             this.btnFIn.TabIndex = 5;
             this.btnFIn.Text = ">>";
             this.btnFIn.UseVisualStyleBackColor = true;
@@ -90,9 +97,11 @@
             // 
             // btnSuivant
             // 
-            this.btnSuivant.Location = new System.Drawing.Point(191, 110);
+            this.btnSuivant.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSuivant.Location = new System.Drawing.Point(350, 203);
+            this.btnSuivant.Margin = new System.Windows.Forms.Padding(6);
             this.btnSuivant.Name = "btnSuivant";
-            this.btnSuivant.Size = new System.Drawing.Size(30, 30);
+            this.btnSuivant.Size = new System.Drawing.Size(55, 55);
             this.btnSuivant.TabIndex = 4;
             this.btnSuivant.Text = ">";
             this.btnSuivant.UseVisualStyleBackColor = true;
@@ -100,9 +109,11 @@
             // 
             // btnPrecedant
             // 
-            this.btnPrecedant.Location = new System.Drawing.Point(155, 110);
+            this.btnPrecedant.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPrecedant.Location = new System.Drawing.Point(284, 203);
+            this.btnPrecedant.Margin = new System.Windows.Forms.Padding(6);
             this.btnPrecedant.Name = "btnPrecedant";
-            this.btnPrecedant.Size = new System.Drawing.Size(30, 30);
+            this.btnPrecedant.Size = new System.Drawing.Size(55, 55);
             this.btnPrecedant.TabIndex = 3;
             this.btnPrecedant.Text = "<";
             this.btnPrecedant.UseVisualStyleBackColor = true;
@@ -110,9 +121,11 @@
             // 
             // btnDebut
             // 
-            this.btnDebut.Location = new System.Drawing.Point(119, 110);
+            this.btnDebut.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDebut.Location = new System.Drawing.Point(218, 203);
+            this.btnDebut.Margin = new System.Windows.Forms.Padding(6);
             this.btnDebut.Name = "btnDebut";
-            this.btnDebut.Size = new System.Drawing.Size(30, 30);
+            this.btnDebut.Size = new System.Drawing.Size(55, 55);
             this.btnDebut.TabIndex = 2;
             this.btnDebut.Text = "<<";
             this.btnDebut.UseVisualStyleBackColor = true;
@@ -120,74 +133,98 @@
             // 
             // rtbEvenement
             // 
-            this.rtbEvenement.BackColor = System.Drawing.SystemColors.Menu;
+            this.rtbEvenement.BackColor = System.Drawing.Color.Salmon;
             this.rtbEvenement.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbEvenement.Enabled = false;
-            this.rtbEvenement.Location = new System.Drawing.Point(107, 19);
+            this.rtbEvenement.Location = new System.Drawing.Point(141, 35);
+            this.rtbEvenement.Margin = new System.Windows.Forms.Padding(6);
             this.rtbEvenement.Name = "rtbEvenement";
-            this.rtbEvenement.Size = new System.Drawing.Size(301, 85);
+            this.rtbEvenement.Size = new System.Drawing.Size(607, 157);
             this.rtbEvenement.TabIndex = 1;
             this.rtbEvenement.Text = "";
             // 
             // groupBox1
             // 
+            this.groupBox1.BackColor = System.Drawing.Color.Firebrick;
             this.groupBox1.Controls.Add(this.dgvContacts);
-            this.groupBox1.Location = new System.Drawing.Point(29, 194);
+            this.groupBox1.Location = new System.Drawing.Point(53, 358);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(414, 156);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBox1.Size = new System.Drawing.Size(759, 288);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Contacts avec les informateurs";
             // 
             // dgvContacts
             // 
+            this.dgvContacts.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvContacts.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvContacts.BackgroundColor = System.Drawing.Color.Salmon;
             this.dgvContacts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvContacts.Location = new System.Drawing.Point(6, 19);
+            this.dgvContacts.Location = new System.Drawing.Point(11, 35);
+            this.dgvContacts.Margin = new System.Windows.Forms.Padding(6);
             this.dgvContacts.Name = "dgvContacts";
-            this.dgvContacts.Size = new System.Drawing.Size(402, 131);
+            this.dgvContacts.ReadOnly = true;
+            this.dgvContacts.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvContacts.Size = new System.Drawing.Size(737, 242);
             this.dgvContacts.TabIndex = 0;
             // 
             // groupBox2
             // 
+            this.groupBox2.BackColor = System.Drawing.Color.Firebrick;
             this.groupBox2.Controls.Add(this.dgvDepenses);
-            this.groupBox2.Location = new System.Drawing.Point(449, 32);
+            this.groupBox2.Location = new System.Drawing.Point(823, 59);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(6);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(489, 318);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(6);
+            this.groupBox2.Size = new System.Drawing.Size(896, 587);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Dépenses effectuées";
             // 
             // dgvDepenses
             // 
+            this.dgvDepenses.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dgvDepenses.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgvDepenses.BackgroundColor = System.Drawing.Color.Salmon;
             this.dgvDepenses.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDepenses.Location = new System.Drawing.Point(6, 19);
+            this.dgvDepenses.Location = new System.Drawing.Point(11, 35);
+            this.dgvDepenses.Margin = new System.Windows.Forms.Padding(6);
             this.dgvDepenses.Name = "dgvDepenses";
-            this.dgvDepenses.Size = new System.Drawing.Size(482, 298);
+            this.dgvDepenses.ReadOnly = true;
+            this.dgvDepenses.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvDepenses.Size = new System.Drawing.Size(874, 541);
             this.dgvDepenses.TabIndex = 0;
             // 
             // lblTotalSommesVerse
             // 
             this.lblTotalSommesVerse.AutoSize = true;
-            this.lblTotalSommesVerse.Location = new System.Drawing.Point(163, 375);
+            this.lblTotalSommesVerse.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalSommesVerse.Location = new System.Drawing.Point(187, 685);
+            this.lblTotalSommesVerse.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblTotalSommesVerse.Name = "lblTotalSommesVerse";
-            this.lblTotalSommesVerse.Size = new System.Drawing.Size(141, 13);
+            this.lblTotalSommesVerse.Size = new System.Drawing.Size(250, 24);
             this.lblTotalSommesVerse.TabIndex = 3;
             this.lblTotalSommesVerse.Text = "Total des sommes versées : ";
             // 
             // lblTotalDepenses
             // 
             this.lblTotalDepenses.AutoSize = true;
-            this.lblTotalDepenses.Location = new System.Drawing.Point(542, 375);
+            this.lblTotalDepenses.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalDepenses.Location = new System.Drawing.Point(1084, 685);
+            this.lblTotalDepenses.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.lblTotalDepenses.Name = "lblTotalDepenses";
-            this.lblTotalDepenses.Size = new System.Drawing.Size(109, 13);
+            this.lblTotalDepenses.Size = new System.Drawing.Size(191, 24);
             this.lblTotalDepenses.TabIndex = 4;
             this.lblTotalDepenses.Text = "Total des dépenses : ";
             // 
             // pcbRetour
             // 
-            this.pcbRetour.Location = new System.Drawing.Point(873, 371);
+            this.pcbRetour.Location = new System.Drawing.Point(1677, 766);
+            this.pcbRetour.Margin = new System.Windows.Forms.Padding(6);
             this.pcbRetour.Name = "pcbRetour";
-            this.pcbRetour.Size = new System.Drawing.Size(67, 67);
+            this.pcbRetour.Size = new System.Drawing.Size(50, 50);
             this.pcbRetour.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pcbRetour.TabIndex = 5;
             this.pcbRetour.TabStop = false;
@@ -195,9 +232,10 @@
             // 
             // btnPdf
             // 
-            this.btnPdf.Location = new System.Drawing.Point(367, 407);
+            this.btnPdf.Location = new System.Drawing.Point(673, 751);
+            this.btnPdf.Margin = new System.Windows.Forms.Padding(6);
             this.btnPdf.Name = "btnPdf";
-            this.btnPdf.Size = new System.Drawing.Size(187, 31);
+            this.btnPdf.Size = new System.Drawing.Size(343, 57);
             this.btnPdf.TabIndex = 6;
             this.btnPdf.Text = "Editer un PDF";
             this.btnPdf.UseVisualStyleBackColor = true;
@@ -205,9 +243,10 @@
             // 
             // Journal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 450);
+            this.BackColor = System.Drawing.Color.Firebrick;
+            this.ClientSize = new System.Drawing.Size(1742, 831);
             this.Controls.Add(this.btnPdf);
             this.Controls.Add(this.pcbRetour);
             this.Controls.Add(this.lblTotalDepenses);
@@ -215,7 +254,11 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.grpEvenement);
+            this.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Journal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Journal de Bord";
             this.Load += new System.EventHandler(this.Journal_Load);
             this.grpEvenement.ResumeLayout(false);

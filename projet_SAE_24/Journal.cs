@@ -25,10 +25,6 @@ namespace projet_SAE_24
         readonly int m_missionNumero;
         readonly string m_missionPlanete;
         DataSet monds = MesDatas.DsGlobal;
-        public Journal()
-        {
-            InitializeComponent();
-        }
 
         public Journal(string nomPlanete, int numeroMission)
         {
@@ -48,7 +44,7 @@ namespace projet_SAE_24
             rtbEvenement.DataBindings.Add("Text", bsEvenement, "commentaires");
             lblDate.DataBindings.Add("Text", bsEvenement, "dateJ");
 
-                pcbRetour.Image = Properties.Resources.fleche_retour;
+            pcbRetour.Image = Properties.Resources.fleche_retour;
 
 
 
@@ -62,23 +58,28 @@ namespace projet_SAE_24
             DataTable tblInformateurs = monds.Tables["Informateurs"];
 
             int sommeVerse = 0;
-            DataTable tblContactMissionChoisis = monds.Tables["Contact"]
-                .Select($"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'")
-                .CopyToDataTable();
-            foreach (DataRow ligne in tblContactMissionChoisis.Rows)
+            DataRow[] lignesContactMissionChoisis = monds.Tables["Contact"].Select($"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'");
+            if (lignesContactMissionChoisis.Length > 0)
             {
-                var test = ligne["nomCodeInformateur"];
-                sommeVerse += Convert.ToInt32(ligne["sommeVersee"]);
-                string codeInformateur = ligne["nomCodeInformateur"].ToString();                
-                DataTable tblInformateur = monds.Tables["Informateur"].Select($"nomCode = '{codeInformateur}'").CopyToDataTable();
-                string nomInformateur = tblInformateur.Rows[0]["nom"].ToString();
-                tblContactsInformateurs.Rows.Add(
-                    ligne["dateC"],
-                    ligne["sommeVersee"],
-                    ligne["appreciation"],
-                    nomInformateur
-                    );
+                DataTable tblContactMissionChoisis = lignesContactMissionChoisis.CopyToDataTable();
+                foreach (DataRow ligne in tblContactMissionChoisis.Rows)
+                {
+                    //var test = ligne["nomCodeInformateur"];
+                    sommeVerse += Convert.ToInt32(ligne["sommeVersee"]);
+                    string codeInformateur = ligne["nomCodeInformateur"].ToString();
+                    DataTable tblInformateur = monds.Tables["Informateur"].Select($"nomCode = '{codeInformateur}'").CopyToDataTable();
+                    string nomInformateur = tblInformateur.Rows[0]["nom"].ToString();
+                    string dateFormate = DateTime.Parse(ligne["dateC"].ToString()).ToString("yyyy - MM - dd");
+
+                    tblContactsInformateurs.Rows.Add(
+                        dateFormate,
+                        ligne["sommeVersee"],
+                        ligne["appreciation"],
+                        nomInformateur
+                        );
+                }
             }
+
 
             // Affichage table contacts
             dgvContacts.DataSource = tblContactsInformateurs;
@@ -96,34 +97,35 @@ namespace projet_SAE_24
 
 
             int sommeDepense = 0;
-            DataTable tblDepenseMissionChoisis = monds.Tables["Depense"]
-                .Select($"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'")
-                .CopyToDataTable();
-            foreach (DataRow ligne in tblDepenseMissionChoisis.Rows)
+            DataRow[] lignesDepenseMissionChoisis = monds.Tables["Depense"].Select($"numeroMission = {m_missionNumero} AND nomPlanete = '{m_missionPlanete}'");
+
+            if (lignesDepenseMissionChoisis.Length > 0)
             {
-                sommeDepense += Convert.ToInt32(ligne["Montant"]);
-                string libelleDepense = ligne["idTypeDepense"].ToString();
-                tblDepenses.Rows.Add(
-                ligne["id"],
-                ligne["dateD"],
-                ligne["motif"],
-                ligne["montant"],
-                libelleDepense
-                    );
+
+                DataTable tblDepenseMissionChoisis = lignesDepenseMissionChoisis.CopyToDataTable();
+                foreach (DataRow ligne in tblDepenseMissionChoisis.Rows)
+                {
+                    sommeDepense += Convert.ToInt32(ligne["Montant"]);
+                    int idDepense = Convert.ToInt32(ligne["idTypeDepense"]);
+                    DataTable tblTypeDepense = monds.Tables["TypeDepense"];
+                    string libelleDepense = tblTypeDepense.Select($"id={idDepense}")[0]["libelle"].ToString();
+                    string dateFormate = DateTime.Parse(ligne["dateD"].ToString()).ToString("yyyy - MM - dd");
+                    tblDepenses.Rows.Add(
+                    ligne["id"],
+                    dateFormate,
+                    ligne["motif"],
+                    ligne["montant"],
+                    libelleDepense
+                        );
+                }
             }
+
 
             // Affichage table dépenses
             dgvDepenses.DataSource = tblDepenses;
 
             //Affichage dépenses total
             lblTotalDepenses.Text += sommeDepense;
-            MessageBox.Show(tblDepenses.Rows.Count.ToString());
-        }
-
-        public void creerPDF()
-        {
-           
-
         }
 
         private void btnDebut_Click(object sender, EventArgs e)
@@ -153,7 +155,6 @@ namespace projet_SAE_24
 
         private void btnPdf_Click(object sender, EventArgs e)
         {
-            int test = 0;
             // Création du fichier PDF
             string cheminPdf = Path.Combine(projectPath, "BilanCapture_" + m_missionPlanete + "_" + m_missionNumero + ".pdf"); // Chemin de sauvegarde
 
@@ -174,6 +175,8 @@ namespace projet_SAE_24
 
             document.Add(new Paragraph("\n")); // Pour ajouter un espace entre le titre et les infos
 
+            DataTable tblBilanCapture = monds.Tables[$"BilanCapture{m_missionPlanete}-{m_missionNumero}"];
+
 
             // Tableau des captures
             Table table = new Table(UnitValue.CreatePercentArray(new float[] { 2, 2, 2, 2 }));
@@ -186,24 +189,32 @@ namespace projet_SAE_24
             table.AddHeaderCell(new Cell().Add(new Paragraph("Taux de reussite (en %)").SetFont(fontBold)));
 
             // Remplir le tableau avec les données du DataSet...
-            // On recupere la table BilanCapture pour la mission selectionée
-            DataTable tblBilanCapture = monds.Tables[$"BilanCapture{m_missionPlanete}-{m_missionNumero}"];
+            // On recupere la table BilanCapture pour la mission selectioné 
 
-            foreach (DataRow lignecapture in tblBilanCapture.Rows)
+            if (tblBilanCapture.Rows.Count > 0)
             {
-                MessageBox.Show(lignecapture["nomEspece"].ToString());
-                table.AddCell(lignecapture["nomEspece"].ToString());
-                table.AddCell(lignecapture["objectifInitial"].ToString());
-                table.AddCell(lignecapture["resultatFinal"].ToString());
-                table.AddCell(lignecapture["tauxReussite"].ToString());
+
+                foreach (DataRow lignecapture in tblBilanCapture.Rows)
+                {
+                    table.AddCell(lignecapture["nomEspece"].ToString());
+                    table.AddCell(lignecapture["objectifInitial"].ToString());
+                    table.AddCell(lignecapture["resultatFinal"].ToString());
+                    table.AddCell(lignecapture["tauxReussite"].ToString());
+                }
+                document.Add(table); // Ajouter le tableau sur le pdf
             }
-            document.Add(table); // Ajouter le tableau sur le pdf
+            else
+            {
+                document.Add(new Paragraph("Pas de capture\n").SetTextAlignment(TextAlignment.CENTER));
+            }
 
             // Fermeture 
             document.Close();
             pdf.Close();
             writer.Close();
-            
+
+            // Ne pas enlever
+            MessageBox.Show("Pdf généré dans : " + cheminPdf);
         }
     }
 }
